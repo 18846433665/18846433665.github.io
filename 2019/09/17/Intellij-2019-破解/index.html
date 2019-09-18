@@ -46,8 +46,6 @@
 
 
 
-<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-
 <script src="/js/iconfont.js?v=1.0.1"></script>
 
 </head>
@@ -99,7 +97,7 @@
     
         
             
-            <li><div data-rel="博客">博客<small>(3)</small></div>
+            <li><div data-rel="环境">环境<small>(2)</small></div>
                 
             </li>
             
@@ -107,7 +105,7 @@
     
         
             
-            <li><div data-rel="环境">环境<small>(2)</small></div>
+            <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
             
@@ -163,11 +161,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color1">Intellij破解</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Intellij破解</a>
+        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -204,14 +202,6 @@
     
     <nav id="title-list-nav">
         
-        <a  class="博客 "
-           href="/2019/09/17/Hexo使用简介/"
-           data-tag="博客"
-           data-author="" >
-            <span class="post-title" title="Hexo 使用简介">Hexo 使用简介</span>
-            <span class="post-date" title="2019-09-17 00:43:29">2019/09/17</span>
-        </a>
-        
         <a  class="环境 "
            href="/2019/09/17/Intellij-2019-破解/"
            data-tag="Intellij破解"
@@ -220,12 +210,12 @@
             <span class="post-date" title="2019-09-17 17:17:24">2019/09/17</span>
         </a>
         
-        <a  class="环境 "
-           href="/2019/09/17/Mac-jdk-环境变量配置/"
-           data-tag="mac_Jdk"
+        <a  class="博客 "
+           href="/2019/09/17/Hexo使用简介/"
+           data-tag="博客"
            data-author="" >
-            <span class="post-title" title="Mac jdk 环境变量配置">Mac jdk 环境变量配置</span>
-            <span class="post-date" title="2019-09-17 16:02:32">2019/09/17</span>
+            <span class="post-title" title="Hexo 使用简介">Hexo 使用简介</span>
+            <span class="post-date" title="2019-09-17 00:43:29">2019/09/17</span>
         </a>
         
         <a  class="博客 "
@@ -234,6 +224,14 @@
            data-author="" >
             <span class="post-title" title="hexo博客搭建过程">hexo博客搭建过程</span>
             <span class="post-date" title="2019-09-17 11:52:11">2019/09/17</span>
+        </a>
+        
+        <a  class="环境 "
+           href="/2019/09/17/Mac-jdk-环境变量配置/"
+           data-tag="mac_Jdk"
+           data-author="" >
+            <span class="post-title" title="Mac jdk 环境变量配置">Mac jdk 环境变量配置</span>
+            <span class="post-date" title="2019-09-17 16:02:32">2019/09/17</span>
         </a>
         
         <a  class="博客 "
@@ -392,23 +390,19 @@
 
 
     <div id="comments"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script type="text/javascript">
-    $.getScript('/js/gitalk.js', function () {
-        var gitalk = new Gitalk({
-            clientID: '99d5530116c8da2dd8bc',
-            clientSecret: 'e779c1275c40fe5f6b9d72da4413acb8552be946',
-            repo: 'hexotalk',
-            owner: '18846433665@163.com',
-            admin: ['18846433665@163.com'],
-            id: decodeURI(location.pathname),
-            distractionFreeMode: 'true',
-            language: 'zh-CN',
-            perPage: parseInt('10',10)
-        })
-        gitalk.render('comments')
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'http://yoursite.com/2019/09/17/Intellij-2019-破解/', // 可选。默认为 location.href
+        owner: '18846433665@163.com',
+        repo: 'hexotalk',
+        oauth: {
+            client_id: '7386c7ecad1c54869b2c',
+            client_secret: 'e6ebab707b9f5f896922bc54a16ae8e4fac62bfa',
+        },
     })
+    gitment.render('comments')
 </script>
 
 
@@ -465,7 +459,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#博客','#Intellij破解','#mac_Jdk','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot配置','#SpringBoot',],
+            'data': ['#Intellij破解','#博客','#mac_Jdk','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
