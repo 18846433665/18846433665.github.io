@@ -46,6 +46,8 @@
 
 
 
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
 <script src="/js/iconfont.js?v=1.0.1"></script>
 
 </head>
@@ -173,6 +175,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">SpringBootHelloWorld</a>
     </li>
     
@@ -181,15 +187,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
+        <a href="javascript:" class="color3">SpringBoot配置</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color1">SpringBoot</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot配置</a>
     </li>
     
     <div class="clearfix"></div>
@@ -226,6 +228,22 @@
             <span class="post-date" title="2019-09-17 16:02:32">2019/09/17</span>
         </a>
         
+        <a  class="博客 "
+           href="/2019/09/17/hexo博客搭建/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="hexo博客搭建过程">hexo博客搭建过程</span>
+            <span class="post-date" title="2019-09-17 11:52:11">2019/09/17</span>
+        </a>
+        
+        <a  class="博客 "
+           href="/2019/09/17/markdown-高效编写工具小书匠配置介绍/"
+           data-tag="小书匠MarkDown图床配置"
+           data-author="" >
+            <span class="post-title" title="markdown 高效编写工具小书匠配置介绍">markdown 高效编写工具小书匠配置介绍</span>
+            <span class="post-date" title="2019-09-17 12:57:31">2019/09/17</span>
+        </a>
+        
         <a  class="SpringBoot "
            href="/2019/09/18/SpringBoot入门HelloWorld搭建/"
            data-tag="SpringBootHelloWorld"
@@ -242,20 +260,12 @@
             <span class="post-date" title="2019-09-18 15:51:26">2019/09/18</span>
         </a>
         
-        <a  class="博客 "
-           href="/2019/09/17/markdown-高效编写工具小书匠配置介绍/"
-           data-tag="小书匠MarkDown图床配置"
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot配置/"
+           data-tag="SpringBoot配置"
            data-author="" >
-            <span class="post-title" title="markdown 高效编写工具小书匠配置介绍">markdown 高效编写工具小书匠配置介绍</span>
-            <span class="post-date" title="2019-09-17 12:57:31">2019/09/17</span>
-        </a>
-        
-        <a  class="博客 "
-           href="/2019/09/17/hexo博客搭建/"
-           data-tag="博客"
-           data-author="" >
-            <span class="post-title" title="hexo博客搭建过程">hexo博客搭建过程</span>
-            <span class="post-date" title="2019-09-17 11:52:11">2019/09/17</span>
+            <span class="post-title" title="SpringBoot配置">SpringBoot配置</span>
+            <span class="post-date" title="2019-09-18 15:51:07">2019/09/18</span>
         </a>
         
         <a  class="SpringBoot "
@@ -264,14 +274,6 @@
            data-author="" >
             <span class="post-title" title="Spring Boot 基础">Spring Boot 基础</span>
             <span class="post-date" title="2019-09-17 15:12:18">2019/09/17</span>
-        </a>
-        
-        <a  class="SpringBoot "
-           href="/2019/09/18/SpringBoot配置/"
-           data-tag="SpringBoot配置"
-           data-author="" >
-            <span class="post-title" title="SpringBoot配置">SpringBoot配置</span>
-            <span class="post-date" title="2019-09-18 15:51:07">2019/09/18</span>
         </a>
         
     </nav>
@@ -387,19 +389,23 @@
 
 
     <div id="comments"></div>
-<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
-<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
-<script>
-    var gitment = new Gitment({
-        // id: 'http://yoursite.com/2019/09/17/markdown-高效编写工具小书匠配置介绍/', // 可选。默认为 location.href
-        owner: '18846433665@163.com',
-        repo: 'hexotalk',
-        oauth: {
-            client_id: '7386c7ecad1c54869b2c',
-            client_secret: 'e6ebab707b9f5f896922bc54a16ae8e4fac62bfa',
-        },
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '7386c7ecad1c54869b2c',
+            clientSecret: 'e6ebab707b9f5f896922bc54a16ae8e4fac62bfa',
+            repo: 'hexotalk',
+            owner: '18846433665@163.com',
+            admin: ['18846433665@163.com'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
     })
-    gitment.render('comments')
 </script>
 
 
@@ -456,7 +462,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Intellij破解','#博客','#mac_Jdk','#SpringBootHelloWorld','#SpringBoot日志','#小书匠MarkDown图床配置','#SpringBoot','#SpringBoot配置',],
+            'data': ['#Intellij破解','#博客','#mac_Jdk','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
