@@ -29,7 +29,7 @@
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+<link href="/css/hl_theme/darcula.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -70,104 +70,6 @@
 <div class="icon">
     
         
-        <a title="rss" href="/atom.xml" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-rss"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="github" href="https://github.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-github"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="facebook" href="https://www.facebook.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-facebook"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-    
-        
-    
-        
-        <a title="instagram" href="https://www.facebook.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-instagram"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="reddit" href="https://www.reddit.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-reddit"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="weibo" href="http://weibo.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-weibo"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="jianshu" href="https://www.jianshu.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-jianshu"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="zhihu" href="https://www.zhihu.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-zhihu"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-    
-        
-        <a title="oschina" href="https://my.oschina.net/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-oschina"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-    
-        
         <a title="email" href="mailto:18846433665@163.com" target="_blank">
             
                 <svg class="iconfont-svg" aria-hidden="true">
@@ -187,18 +89,6 @@
         </a>
         
     
-        
-        <a title="kugou" href="https://www.kugou.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-kugou"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-    
 </div>
 
 
@@ -209,7 +99,7 @@
     
         
             
-            <li><div data-rel="环境">环境<small>(2)</small></div>
+            <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
             
@@ -217,7 +107,7 @@
     
         
             
-            <li><div data-rel="博客">博客<small>(3)</small></div>
+            <li><div data-rel="环境">环境<small>(2)</small></div>
                 
             </li>
             
@@ -262,7 +152,7 @@
 </div>
         <div class="title-list">
     <form onkeydown="if(event.keyCode==13){return false;}">
-        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
         <i class="cross"></i>
         <span>
             <label for="tagswitch">Tags:</label>
@@ -273,15 +163,15 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">Intellij破解</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">mac_Jdk</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -308,7 +198,19 @@
 </div>
 
     
+    <div id="local-search-result">
+
+    </div>
+    
     <nav id="title-list-nav">
+        
+        <a  class="博客 "
+           href="/2019/09/17/Hexo使用简介/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="Hexo 使用简介">Hexo 使用简介</span>
+            <span class="post-date" title="2019-09-17 00:43:29">2019/09/17</span>
+        </a>
         
         <a  class="环境 "
            href="/2019/09/17/Intellij-2019-破解/"
@@ -324,14 +226,6 @@
            data-author="" >
             <span class="post-title" title="Mac jdk 环境变量配置">Mac jdk 环境变量配置</span>
             <span class="post-date" title="2019-09-17 16:02:32">2019/09/17</span>
-        </a>
-        
-        <a  class="博客 "
-           href="/2019/09/17/Hexo使用简介/"
-           data-tag="博客"
-           data-author="" >
-            <span class="post-title" title="Hexo 使用简介">Hexo 使用简介</span>
-            <span class="post-date" title="2019-09-17 00:43:29">2019/09/17</span>
         </a>
         
         <a  class="博客 "
@@ -439,6 +333,27 @@
         </p>
         
         
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '99d5530116c8da2dd8bc',
+            clientSecret: 'e779c1275c40fe5f6b9d72da4413acb8552be946',
+            repo: 'hexotalk',
+            owner: '18846433665@163.com',
+            admin: ['18846433665@163.com'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2016-2019 xushengcai</p>
@@ -485,7 +400,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Intellij破解','#mac_Jdk','#博客','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot配置','#SpringBoot',],
+            'data': ['#博客','#Intellij破解','#mac_Jdk','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
@@ -572,7 +487,7 @@
         border-right: 1px solid #C3CCD0;
         text-align: right;
         color: #AAA;
-        background-color: #fafafa;
+        background-color: ;
     }
     .pre-numbering.widther {
         width: 35px;
@@ -648,24 +563,6 @@
 
     /*列表样式*/
     
-    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
-        border: #e2dede solid 1px;
-        border-radius: 10px;
-        padding: 10px 32px 10px 56px;
-    }
-    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-    
 
     /* 背景图样式 */
     
@@ -677,26 +574,17 @@
 
     /*文章列表背景图*/
     
-    .nav-right:before {
-        content: ' ';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.3;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
-        background-repeat: no-repeat;
-        background-position: 50% 0;
-        -ms-background-size: cover;
-        -o-background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        background-size: cover;
-    }
-    
 
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
     
 </style>
 
