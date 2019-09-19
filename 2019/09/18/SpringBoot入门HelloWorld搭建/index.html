@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568793845888.png">
 <meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568793937505.png">
 <meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568793979284.png">
-<meta property="og:updated_time" content="2019-09-18T08:07:33.178Z">
+<meta property="og:updated_time" content="2019-09-19T02:43:51.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot日志">
 <meta name="twitter:description" content="一、日志1、日志框架 小张；开发一个大型系统； ​        1、System.out.println(“”)；将关键数据打印在控制台；去掉？写在一个文件？ ​        2、框架来记录系统的一些运行时信息；日志框架 ；  zhanglogging.jar； ​        3、高大上的几个功能？异步模式？自动归档？xxxx？  zhanglogging-good.jar？ ​">
@@ -99,7 +99,7 @@
     
         
             
-            <li><div data-rel="博客">博客<small>(3)</small></div>
+            <li><div data-rel="环境">环境<small>(2)</small></div>
                 
             </li>
             
@@ -107,7 +107,7 @@
     
         
             
-            <li><div data-rel="环境">环境<small>(2)</small></div>
+            <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
             
@@ -163,15 +163,19 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">Intellij破解</a>
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">mac_Jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -180,10 +184,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color1">SpringBootHelloWorld</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -312,7 +312,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-18 15:58:30'>2019-09-18 15:50</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-19 10:39:32'>2019-09-18 15:50</time>
         
     </div>
     <div class="article-meta">
@@ -452,7 +452,7 @@ public class HelloController {
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
     &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
-<p><strong>spring-boot-starter</strong>-==web==：</p>
+<p><strong>spring-boot-starter</strong>-<code>web</code>：</p>
 <p>​    spring-boot-starter：spring-boot场景启动器；帮我们导入了web模块正常运行所依赖的组件；</p>
 <p>Spring Boot将所有的功能场景都抽取出来，做成一个个的starters（启动器），只需要在项目里面引入这些starter相关场景的所有依赖都会导入进来。要用什么功能就导入什么场景的启动器</p>
 <h3 id="2、主程序类，主入口类"><a href="#2、主程序类，主入口类" class="headerlink" title="2、主程序类，主入口类"></a>2、主程序类，主入口类</h3><pre><code class="java">/**
@@ -491,7 +491,7 @@ public @interface EnableAutoConfiguration {</code></pre>
 <p>​          @<strong>AutoConfigurationPackage</strong>：自动配置包</p>
 <p>​        @<strong>Import</strong>(AutoConfigurationPackages.Registrar.class)：</p>
 <p>​        Spring的底层注解@Import，给容器中导入一个组件；导入的组件由AutoConfigurationPackages.Registrar.class；</p>
-<p>==将主配置类（@SpringBootApplication标注的类）的所在包及下面所有子包里面的所有组件扫描到Spring容器；==</p>
+<p><code>将主配置类（@SpringBootApplication标注的类）的所在包及下面所有子包里面的所有组件扫描到Spring容器;</code></p>
 <p>​    @<strong>Import</strong>(EnableAutoConfigurationImportSelector.class)；</p>
 <p>​        给容器中导入组件？</p>
 <p>​        <strong>EnableAutoConfigurationImportSelector</strong>：导入哪些组件的选择器；</p>
@@ -499,10 +499,9 @@ public @interface EnableAutoConfiguration {</code></pre>
 <p>​        会给容器中导入非常多的自动配置类（xxxAutoConfiguration）；就是给容器中导入这个场景需要的所有组件，并配置好这些组件；        <img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568793366283.png" alt="自动配置类"></p>
 <p>有了自动配置类，免去了我们手动编写配置注入功能组件等的工作；</p>
 <p>​        SpringFactoriesLoader.loadFactoryNames(EnableAutoConfiguration.class,classLoader)；</p>
-<p>==Spring Boot在启动的时候从类路径下的META-INF/spring.factories中获取EnableAutoConfiguration指定的值，将这些值作为自动配置类导入到容器中，自动配置类就生效，帮我们进行自动配置工作；==以前我们需要自己配置的东西，自动配置类都帮我们；</p>
+<p><code>Spring Boot在启动的时候从类路径下的META-INF/spring.factories中获取EnableAutoConfiguration指定的值，将这些值作为自动配置类导入到容器中，自动配置类就生效，帮我们进行自动配置工作；</code>以前我们需要自己配置的东西，自动配置类都帮我们；</p>
 <p>J2EE的整体整合解决方案和自动配置都在spring-boot-autoconfigure-1.5.9.RELEASE.jar；</p>
-<p>​        </p>
-<p>==Spring注解版（谷粒学院）==</p>
+<p>​</p>
 <h2 id="6、使用Spring-Initializer快速创建Spring-Boot项目"><a href="#6、使用Spring-Initializer快速创建Spring-Boot项目" class="headerlink" title="6、使用Spring Initializer快速创建Spring Boot项目"></a>6、使用Spring Initializer快速创建Spring Boot项目</h2><h3 id="1、IDEA：使用-Spring-Initializer快速创建项目"><a href="#1、IDEA：使用-Spring-Initializer快速创建项目" class="headerlink" title="1、IDEA：使用 Spring Initializer快速创建项目"></a>1、IDEA：使用 Spring Initializer快速创建项目</h3><p>IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目；</p>
 <p>选择我们需要的模块；向导会联网创建Spring Boot项目；</p>
 <p>默认生成的Spring Boot项目；</p>
@@ -532,7 +531,7 @@ public @interface EnableAutoConfiguration {</code></pre>
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.6k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-09-18, 15:50:23</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-18, 15:58:30</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-19, 10:39:32</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/18/SpringBoot入门HelloWorld搭建/" title="SpringBoot入门HelloWorld搭建">http://yoursite.com/2019/09/18/SpringBoot入门HelloWorld搭建/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -615,7 +614,7 @@ public @interface EnableAutoConfiguration {</code></pre>
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#博客','#Intellij破解','#mac_Jdk','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot配置','#SpringBoot',],
+            'data': ['#Intellij破解','#博客','#mac_Jdk','#SpringBoot日志','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
@@ -790,16 +789,6 @@ public @interface EnableAutoConfiguration {</code></pre>
     /*文章列表背景图*/
     
 
-    
-    .post .pjax article :not(pre) > code {
-        color: #24292e;
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-        background-color: rgba(27,31,35,.05);
-        border-radius: 3px;
-        font-size: 85%;
-        margin: 0;
-        padding: .2em .4em;
-    }
     
 </style>
 

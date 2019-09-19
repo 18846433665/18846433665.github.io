@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568793845888.png">
 <meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568793937505.png">
 <meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568793979284.png">
-<meta property="og:updated_time" content="2019-09-18T08:07:33.178Z">
+<meta property="og:updated_time" content="2019-09-19T02:43:51.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot日志">
 <meta name="twitter:description" content="一、日志1、日志框架 小张；开发一个大型系统； ​        1、System.out.println(“”)；将关键数据打印在控制台；去掉？写在一个文件？ ​        2、框架来记录系统的一些运行时信息；日志框架 ；  zhanglogging.jar； ​        3、高大上的几个功能？异步模式？自动归档？xxxx？  zhanglogging-good.jar？ ​">
@@ -99,7 +99,7 @@
     
         
             
-            <li><div data-rel="博客">博客<small>(3)</small></div>
+            <li><div data-rel="环境">环境<small>(2)</small></div>
                 
             </li>
             
@@ -107,7 +107,7 @@
     
         
             
-            <li><div data-rel="环境">环境<small>(2)</small></div>
+            <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
             
@@ -163,15 +163,19 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">Intellij破解</a>
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">mac_Jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -180,10 +184,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color1">SpringBootHelloWorld</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -312,7 +312,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-18 16:02:06'>2019-09-18 15:51</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-19 10:42:32'>2019-09-18 15:51</time>
         
     </div>
     <div class="article-meta">
@@ -611,10 +611,10 @@ spring:
 <p>–classpath:/</p>
 <p>优先级由高到底，高优先级的配置会覆盖低优先级的配置；</p>
 <p>SpringBoot会从这四个位置全部加载主配置文件；<strong>互补配置</strong>；</p>
-<p>==我们还可以通过spring.config.location来改变默认的配置文件位置==</p>
+<p><code>我们还可以通过spring.config.location来改变默认的配置文件位置</code></p>
 <p><strong>项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；</strong></p>
 <p>java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar –spring.config.location=G:/application.properties</p>
-<h2 id="7、外部配置加载顺序"><a href="#7、外部配置加载顺序" class="headerlink" title="7、外部配置加载顺序"></a>7、外部配置加载顺序</h2><p><strong>==SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置==</strong></p>
+<h2 id="7、外部配置加载顺序"><a href="#7、外部配置加载顺序" class="headerlink" title="7、外部配置加载顺序"></a>7、外部配置加载顺序</h2><p><strong><code>SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置</code></strong></p>
 <p><strong>1.命令行参数</strong></p>
 <p>所有的配置都可以在命令行上进行指定</p>
 <p>java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar –server.port=8087  –server.context-path=/abc</p>
@@ -623,11 +623,11 @@ spring:
 <p>3.Java系统属性（System.getProperties()）</p>
 <p>4.操作系统环境变量</p>
 <p>5.RandomValuePropertySource配置的random.*属性值</p>
-<p>==<strong>由jar包外向jar包内进行寻找；</strong>==</p>
-<p>==<strong>优先加载带profile</strong>==</p>
+<p><code>**由jar包外向jar包内进行寻找；**</code></p>
+<p><code>**优先加载带profile**</code></p>
 <p><strong>6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
 <p><strong>7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
-<p>==<strong>再来加载不带profile</strong>==</p>
+<p><code>**再来加载不带profile**</code></p>
 <p><strong>8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
 <p><strong>9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
 <p>10.@Configuration注解类上的@PropertySource</p>
@@ -636,7 +636,7 @@ spring:
 <p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config" target="_blank" rel="noopener">参考官方文档</a></p>
 <h2 id="8、自动配置原理"><a href="#8、自动配置原理" class="headerlink" title="8、自动配置原理"></a>8、自动配置原理</h2><p>配置文件到底能写什么？怎么写？自动配置原理；</p>
 <p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="noopener">配置文件能配置的属性参照</a></p>
-<h3 id="1、自动配置原理："><a href="#1、自动配置原理：" class="headerlink" title="1、自动配置原理："></a>1、<strong>自动配置原理：</strong></h3><p>1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==</p>
+<h3 id="1、自动配置原理："><a href="#1、自动配置原理：" class="headerlink" title="1、自动配置原理："></a>1、<strong>自动配置原理：</strong></h3><p>1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 <code>@EnableAutoConfiguration</code></p>
 <p><strong>2）、@EnableAutoConfiguration 作用：</strong></p>
 <ul>
 <li>利用EnableAutoConfigurationImportSelector给容器中导入一些组件？</li>
@@ -656,7 +656,7 @@ spring:
 </ul>
 </li>
 </ul>
-<p><strong>==将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；==</strong></p>
+<p><strong><code>将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；</code></strong></p>
 <pre><code class="properties"># Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\
@@ -860,7 +860,7 @@ public class HttpEncodingProperties {
 </tbody></table>
 <p><strong>自动配置类必须在一定的条件下才能生效；</strong></p>
 <p>我们怎么知道哪些自动配置类生效；</p>
-<p><strong>==我们可以通过启用  debug=true属性；来让控制台打印自动配置报告==</strong>，这样我们就可以很方便的知道哪些自动配置类生效；</p>
+<p><strong><code>我们可以通过启用  debug=true属性；来让控制台打印自动配置报告</code></strong>，这样我们就可以很方便的知道哪些自动配置类生效；</p>
 <pre><code class="java">=========================
 AUTO-CONFIGURATION REPORT
 =========================
@@ -902,7 +902,7 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
     <p><span class="copy-title">文章字数:</span><span class="post-count">4.2k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-09-18, 15:51:07</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-18, 16:02:06</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-19, 10:42:32</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/18/SpringBoot配置/" title="SpringBoot配置">http://yoursite.com/2019/09/18/SpringBoot配置/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -985,7 +985,7 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#博客','#Intellij破解','#mac_Jdk','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot配置','#SpringBoot',],
+            'data': ['#Intellij破解','#博客','#mac_Jdk','#SpringBoot日志','#小书匠MarkDown图床配置','#SpringBootHelloWorld','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
@@ -1160,16 +1160,6 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
     /*文章列表背景图*/
     
 
-    
-    .post .pjax article :not(pre) > code {
-        color: #24292e;
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-        background-color: rgba(27,31,35,.05);
-        border-radius: 3px;
-        font-size: 85%;
-        margin: 0;
-        padding: .2em .4em;
-    }
     
 </style>
 
