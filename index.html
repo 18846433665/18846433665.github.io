@@ -169,23 +169,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">mac_Jdk</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">SpringBoot MVC配置</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">SpringBoot订制错误响应</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
+        <a href="javascript:" class="color3">mac_Jdk</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -197,11 +185,23 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot国际化、登录拦截、CRUD</a>
+        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot订制错误响应</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">SpringBoot内嵌容器个性化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot国际化、登录拦截、CRUD</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -385,11 +385,14 @@
 <h2 id="关于本博客"><a href="#关于本博客" class="headerlink" title="关于本博客"></a>关于本博客</h2><p><strong>本博客</strong> 是徐胜财的个人站。</p>
 <p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源<br>置顶的前三篇文章是详细的博客搭建、使用教程，有兴趣的小伙伴可以参考教程搭建一个免费的个人博客~</p>
 <p>主要功能：</p>
 <ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
+<li>搜索支持文章标题、标签、全文检索(in:)</li>
 <li>pad/手机等移动端适配</li>
+<li>讨论回复（gitalk）</li>
+<li>文章概览、快速置顶</li>
+<li>打赏</li>
 </ul>
 
         </article>
@@ -466,7 +469,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Intellij破解','#博客','#mac_Jdk','#SpringBoot MVC配置','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBootHelloWorld','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#Intellij破解','#博客','#SpringBoot MVC配置','#mac_Jdk','#Thymeleaf','#SpringBoot日志','#SpringBootHelloWorld','#SpringBoot订制错误响应','#小书匠MarkDown图床配置','#SpringBoot内嵌容器个性化','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
