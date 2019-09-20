@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>SpringBoot 内嵌容器个性化配置和外部容器配置及原理 | Hexo</title>
+  <meta name="keywords" content=" SpringBoot内嵌容器个性化 ">
+  <meta name="description" content="SpringBoot 内嵌容器个性化配置和外部容器配置及原理 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="RestfulCRUD1）、默认访问首页 //使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能 //@EnableWebMvc   不要接管SpringMVC @Configuration public class MyMvcConfig extends WebMvcConfigurerAdapter {      @Override     public vo">
+<meta name="keywords" content="SpringBoot国际化、登录拦截、CRUD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot CRUD实践 （国际化，登录拦截）">
+<meta property="og:url" content="http://yoursite.com/2019/09/20/SpringBoot-CRUD实践（国际化，登录拦截）/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RestfulCRUD1）、默认访问首页 //使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能 //@EnableWebMvc   不要接管SpringMVC @Configuration public class MyMvcConfig extends WebMvcConfigurerAdapter {      @Override     public vo">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568947838760.png">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568947878695.png">
+<meta property="og:updated_time" content="2019-09-20T02:53:35.361Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot CRUD实践 （国际化，登录拦截）">
+<meta name="twitter:description" content="RestfulCRUD1）、默认访问首页 //使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能 //@EnableWebMvc   不要接管SpringMVC @Configuration public class MyMvcConfig extends WebMvcConfigurerAdapter {      @Override     public vo">
+<meta name="twitter:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568947838760.png">
+
+
+<link rel="icon" href="/img/sender.jpeg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/sender.jpeg" />
+</a>
+<div class="author">
+    <span>Xu Shengcai</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:18846433665@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=84497122&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(15)</small></div></li>
+    
+        
+            
+            <li><div data-rel="环境">环境<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="博客">博客<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="SpringBoot">SpringBoot<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="15">
+<input type="hidden" id="yelog_site_word_count" value="24.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Intellij破解</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">mac_Jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot MVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot国际化、登录拦截、CRUD</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Thymeleaf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot订制错误响应</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot内嵌容器个性化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/Hexo使用简介/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="Hexo 使用简介">Hexo 使用简介</span>
+            <span class="post-date" title="2019-09-17 00:43:29">2019/09/17</span>
+        </a>
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/hexo博客搭建/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="hexo博客搭建过程">hexo博客搭建过程</span>
+            <span class="post-date" title="2019-09-17 11:52:11">2019/09/17</span>
+        </a>
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/markdown-高效编写工具小书匠配置介绍/"
+           data-tag="小书匠MarkDown图床配置"
+           data-author="" >
+            <span class="post-title" title="markdown 高效编写工具小书匠配置介绍">markdown 高效编写工具小书匠配置介绍</span>
+            <span class="post-date" title="2019-09-17 12:57:31">2019/09/17</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/20/SpringBoot-CRUD实践（国际化，登录拦截）/"
+           data-tag="SpringBoot国际化、登录拦截、CRUD"
+           data-author="" >
+            <span class="post-title" title="SpringBoot CRUD实践 （国际化，登录拦截）">SpringBoot CRUD实践 （国际化，登录拦截）</span>
+            <span class="post-date" title="2019-09-20 10:46:09">2019/09/20</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-内嵌容器个性化配置和外部容器配置及原理/"
+           data-tag="SpringBoot内嵌容器个性化"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 内嵌容器个性化配置和外部容器配置及原理">SpringBoot 内嵌容器个性化配置和外部容器配置及原理</span>
+            <span class="post-date" title="2019-09-19 23:46:07">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-错误响应个性化配置/"
+           data-tag="SpringBoot订制错误响应"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 错误响应个性化配置">SpringBoot 错误响应个性化配置</span>
+            <span class="post-date" title="2019-09-19 23:45:03">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-SpringMVC个性化配置/"
+           data-tag="SpringBoot MVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringBoot SpringMVC个性化配置">SpringBoot SpringMVC个性化配置</span>
+            <span class="post-date" title="2019-09-19 23:40:19">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot模板引擎Thymeleaf/"
+           data-tag="Thymeleaf"
+           data-author="" >
+            <span class="post-title" title="SpringBoot模板引擎Thymeleaf">SpringBoot模板引擎Thymeleaf</span>
+            <span class="post-date" title="2019-09-19 23:39:43">2019/09/19</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/19/SpringBoot静态资源映射规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringBoot静态资源映射规则">SpringBoot静态资源映射规则</span>
+            <span class="post-date" title="2019-09-19 23:39:07">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot日志/"
+           data-tag="SpringBoot日志"
+           data-author="" >
+            <span class="post-title" title="SpringBoot日志">SpringBoot日志</span>
+            <span class="post-date" title="2019-09-18 15:51:26">2019/09/18</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot配置/"
+           data-tag="SpringBoot配置"
+           data-author="" >
+            <span class="post-title" title="SpringBoot配置">SpringBoot配置</span>
+            <span class="post-date" title="2019-09-18 15:51:07">2019/09/18</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot入门HelloWorld搭建/"
+           data-tag="SpringBootHelloWorld"
+           data-author="" >
+            <span class="post-title" title="SpringBoot入门HelloWorld搭建">SpringBoot入门HelloWorld搭建</span>
+            <span class="post-date" title="2019-09-18 15:50:23">2019/09/18</span>
+        </a>
+        
+        <a  class="环境 "
+           href="/2019/09/17/Intellij-2019-破解/"
+           data-tag="Intellij破解"
+           data-author="" >
+            <span class="post-title" title="Intellij 2019 破解">Intellij 2019 破解</span>
+            <span class="post-date" title="2019-09-17 17:17:24">2019/09/17</span>
+        </a>
+        
+        <a  class="环境 "
+           href="/2019/09/17/Mac-jdk-环境变量配置/"
+           data-tag="mac_Jdk"
+           data-author="" >
+            <span class="post-title" title="Mac jdk 环境变量配置">Mac jdk 环境变量配置</span>
+            <span class="post-date" title="2019-09-17 16:02:32">2019/09/17</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/17/Spring-Boot-基础/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="Spring Boot 基础">Spring Boot 基础</span>
+            <span class="post-date" title="2019-09-17 15:12:18">2019/09/17</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-SpringBoot-内嵌容器个性化配置和外部容器配置及原理" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">SpringBoot 内嵌容器个性化配置和外部容器配置及原理</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="SpringBoot">SpringBoot</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color3">SpringBoot内嵌容器个性化</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-09-20 11:08:15'>2019-09-19 23:46</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置嵌入式Servlet容器"><span class="toc-text">配置嵌入式Servlet容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1）、如何定制和修改Servlet容器的相关配置；"><span class="toc-text">1）、如何定制和修改Servlet容器的相关配置；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2）、注册Servlet三大组件【Servlet、Filter、Listener】"><span class="toc-text">2）、注册Servlet三大组件【Servlet、Filter、Listener】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3）、替换为其他嵌入式Servlet容器"><span class="toc-text">3）、替换为其他嵌入式Servlet容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4）、嵌入式Servlet容器自动配置原理；"><span class="toc-text">4）、嵌入式Servlet容器自动配置原理；</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用外置的Servlet容器"><span class="toc-text">使用外置的Servlet容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="配置嵌入式Servlet容器"><a href="#配置嵌入式Servlet容器" class="headerlink" title="配置嵌入式Servlet容器"></a>配置嵌入式Servlet容器</h2><p>SpringBoot默认使用Tomcat作为嵌入式的Servlet容器；</p>
+<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948747402.png" alt></p>
+<p>问题？</p>
+<h3 id="1）、如何定制和修改Servlet容器的相关配置；"><a href="#1）、如何定制和修改Servlet容器的相关配置；" class="headerlink" title="1）、如何定制和修改Servlet容器的相关配置；"></a>1）、如何定制和修改Servlet容器的相关配置；</h3><p>1、修改和server有关的配置（ServerProperties【也是EmbeddedServletContainerCustomizer】）；</p>
+<pre><code class="properties">server.port=8081
+server.context-path=/crud
+
+server.tomcat.uri-encoding=UTF-8
+
+//通用的Servlet容器设置
+server.xxx
+//Tomcat的设置
+server.tomcat.xxx</code></pre>
+<p>2、编写一个<strong>EmbeddedServletContainerCustomizer</strong>：嵌入式的Servlet容器的定制器；来修改Servlet容器的配置</p>
+<pre><code class="java">@Bean  //一定要将这个定制器加入到容器中
+public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer(){
+    return new EmbeddedServletContainerCustomizer() {
+
+        //定制嵌入式的Servlet容器相关的规则
+        @Override
+        public void customize(ConfigurableEmbeddedServletContainer container) {
+            container.setPort(8083);
+        }
+    };
+}</code></pre>
+<h3 id="2）、注册Servlet三大组件【Servlet、Filter、Listener】"><a href="#2）、注册Servlet三大组件【Servlet、Filter、Listener】" class="headerlink" title="2）、注册Servlet三大组件【Servlet、Filter、Listener】"></a>2）、注册Servlet三大组件【Servlet、Filter、Listener】</h3><p>由于SpringBoot默认是以jar包的方式启动嵌入式的Servlet容器来启动SpringBoot的web应用，没有web.xml文件。</p>
+<p>注册三大组件用以下方式</p>
+<p>ServletRegistrationBean</p>
+<pre><code class="java">//注册三大组件
+@Bean
+public ServletRegistrationBean myServlet(){
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(new MyServlet(),&quot;/myServlet&quot;);
+    return registrationBean;
+}
+</code></pre>
+<p>FilterRegistrationBean</p>
+<pre><code class="java">@Bean
+public FilterRegistrationBean myFilter(){
+    FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+    registrationBean.setFilter(new MyFilter());
+    registrationBean.setUrlPatterns(Arrays.asList(&quot;/hello&quot;,&quot;/myServlet&quot;));
+    return registrationBean;
+}</code></pre>
+<p>ServletListenerRegistrationBean</p>
+<pre><code class="java">@Bean
+public ServletListenerRegistrationBean myListener(){
+    ServletListenerRegistrationBean&lt;MyListener&gt; registrationBean = new ServletListenerRegistrationBean&lt;&gt;(new MyListener());
+    return registrationBean;
+}</code></pre>
+<p>SpringBoot帮我们自动SpringMVC的时候，自动的注册SpringMVC的前端控制器；DIspatcherServlet；</p>
+<p>DispatcherServletAutoConfiguration中：</p>
+<pre><code class="java">@Bean(name = DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME)
+@ConditionalOnBean(value = DispatcherServlet.class, name = DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
+public ServletRegistrationBean dispatcherServletRegistration(
+      DispatcherServlet dispatcherServlet) {
+   ServletRegistrationBean registration = new ServletRegistrationBean(
+         dispatcherServlet, this.serverProperties.getServletMapping());
+    //默认拦截： /  所有请求；包静态资源，但是不拦截jsp请求；   /*会拦截jsp
+    //可以通过server.servletPath来修改SpringMVC前端控制器默认拦截的请求路径
+
+   registration.setName(DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
+   registration.setLoadOnStartup(
+         this.webMvcProperties.getServlet().getLoadOnStartup());
+   if (this.multipartConfig != null) {
+      registration.setMultipartConfig(this.multipartConfig);
+   }
+   return registration;
+}
+</code></pre>
+<p>2）、SpringBoot能不能支持其他的Servlet容器；</p>
+<h3 id="3）、替换为其他嵌入式Servlet容器"><a href="#3）、替换为其他嵌入式Servlet容器" class="headerlink" title="3）、替换为其他嵌入式Servlet容器"></a>3）、替换为其他嵌入式Servlet容器</h3><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948715555.png" alt></p>
+<p>默认支持：</p>
+<p>Tomcat（默认使用）</p>
+<pre><code class="xml">&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+   引入web模块默认就是使用嵌入式的Tomcat作为Servlet容器；
+&lt;/dependency&gt;</code></pre>
+<p>Jetty</p>
+<pre><code class="xml">&lt;!-- 引入web模块 --&gt;
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+   &lt;exclusions&gt;
+      &lt;exclusion&gt;
+         &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;/exclusion&gt;
+   &lt;/exclusions&gt;
+&lt;/dependency&gt;
+
+&lt;!--引入其他的Servlet容器--&gt;
+&lt;dependency&gt;
+   &lt;artifactId&gt;spring-boot-starter-jetty&lt;/artifactId&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+&lt;/dependency&gt;</code></pre>
+<p>Undertow</p>
+<pre><code class="xml">&lt;!-- 引入web模块 --&gt;
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+   &lt;exclusions&gt;
+      &lt;exclusion&gt;
+         &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;/exclusion&gt;
+   &lt;/exclusions&gt;
+&lt;/dependency&gt;
+
+&lt;!--引入其他的Servlet容器--&gt;
+&lt;dependency&gt;
+   &lt;artifactId&gt;spring-boot-starter-undertow&lt;/artifactId&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+&lt;/dependency&gt;</code></pre>
+<h3 id="4）、嵌入式Servlet容器自动配置原理；"><a href="#4）、嵌入式Servlet容器自动配置原理；" class="headerlink" title="4）、嵌入式Servlet容器自动配置原理；"></a>4）、嵌入式Servlet容器自动配置原理；</h3><p>EmbeddedServletContainerAutoConfiguration：嵌入式的Servlet容器自动配置？</p>
+<pre><code class="java">@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
+@Configuration
+@ConditionalOnWebApplication
+@Import(BeanPostProcessorsRegistrar.class)
+//导入BeanPostProcessorsRegistrar：Spring注解版；给容器中导入一些组件
+//导入了EmbeddedServletContainerCustomizerBeanPostProcessor：
+//后置处理器：bean初始化前后（创建完对象，还没赋值赋值）执行初始化工作
+public class EmbeddedServletContainerAutoConfiguration {
+
+    @Configuration
+    @ConditionalOnClass({ Servlet.class, Tomcat.class })//判断当前是否引入了Tomcat依赖；
+    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)//判断当前容器没有用户自己定义EmbeddedServletContainerFactory：嵌入式的Servlet容器工厂；作用：创建嵌入式的Servlet容器
+    public static class EmbeddedTomcat {
+
+        @Bean
+        public TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory() {
+            return new TomcatEmbeddedServletContainerFactory();
+        }
+
+    }
+
+    /**
+     * Nested configuration if Jetty is being used.
+     */
+    @Configuration
+    @ConditionalOnClass({ Servlet.class, Server.class, Loader.class,
+            WebAppContext.class })
+    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)
+    public static class EmbeddedJetty {
+
+        @Bean
+        public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory() {
+            return new JettyEmbeddedServletContainerFactory();
+        }
+
+    }
+
+    /**
+     * Nested configuration if Undertow is being used.
+     */
+    @Configuration
+    @ConditionalOnClass({ Servlet.class, Undertow.class, SslClientAuthMode.class })
+    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)
+    public static class EmbeddedUndertow {
+
+        @Bean
+        public UndertowEmbeddedServletContainerFactory undertowEmbeddedServletContainerFactory() {
+            return new UndertowEmbeddedServletContainerFactory();
+        }
+
+    }</code></pre>
+<p>1）、EmbeddedServletContainerFactory（嵌入式Servlet容器工厂）</p>
+<pre><code class="java">public interface EmbeddedServletContainerFactory {
+
+   //获取嵌入式的Servlet容器
+   EmbeddedServletContainer getEmbeddedServletContainer(
+         ServletContextInitializer... initializers);
+
+}</code></pre>
+<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948645009.png" alt></p>
+<p>2）、EmbeddedServletContainer：（嵌入式的Servlet容器）</p>
+<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948682495.png" alt></p>
+<p>3）、以<strong>TomcatEmbeddedServletContainerFactory</strong>为例</p>
+<pre><code class="java">@Override
+public EmbeddedServletContainer getEmbeddedServletContainer(
+      ServletContextInitializer... initializers) {
+    //创建一个Tomcat
+   Tomcat tomcat = new Tomcat();
+
+    //配置Tomcat的基本环节
+   File baseDir = (this.baseDirectory != null ? this.baseDirectory
+         : createTempDir(&quot;tomcat&quot;));
+   tomcat.setBaseDir(baseDir.getAbsolutePath());
+   Connector connector = new Connector(this.protocol);
+   tomcat.getService().addConnector(connector);
+   customizeConnector(connector);
+   tomcat.setConnector(connector);
+   tomcat.getHost().setAutoDeploy(false);
+   configureEngine(tomcat.getEngine());
+   for (Connector additionalConnector : this.additionalTomcatConnectors) {
+      tomcat.getService().addConnector(additionalConnector);
+   }
+   prepareContext(tomcat.getHost(), initializers);
+
+    //将配置好的Tomcat传入进去，返回一个EmbeddedServletContainer；并且启动Tomcat服务器
+   return getTomcatEmbeddedServletContainer(tomcat);
+}</code></pre>
+<p>4）、我们对嵌入式容器的配置修改是怎么生效？</p>
+<pre><code>ServerProperties、EmbeddedServletContainerCustomizer</code></pre><p><strong>EmbeddedServletContainerCustomizer</strong>：定制器帮我们修改了Servlet容器的配置？</p>
+<p>怎么修改的原理？</p>
+<p>5）、容器中导入了<strong>EmbeddedServletContainerCustomizerBeanPostProcessor</strong></p>
+<pre><code class="java">//初始化之前
+@Override
+public Object postProcessBeforeInitialization(Object bean, String beanName)
+      throws BeansException {
+    //如果当前初始化的是一个ConfigurableEmbeddedServletContainer类型的组件
+   if (bean instanceof ConfigurableEmbeddedServletContainer) {
+       //
+      postProcessBeforeInitialization((ConfigurableEmbeddedServletContainer) bean);
+   }
+   return bean;
+}
+
+private void postProcessBeforeInitialization(
+            ConfigurableEmbeddedServletContainer bean) {
+    //获取所有的定制器，调用每一个定制器的customize方法来给Servlet容器进行属性赋值；
+    for (EmbeddedServletContainerCustomizer customizer : getCustomizers()) {
+        customizer.customize(bean);
+    }
+}
+
+private Collection&lt;EmbeddedServletContainerCustomizer&gt; getCustomizers() {
+    if (this.customizers == null) {
+        // Look up does not include the parent context
+        this.customizers = new ArrayList&lt;EmbeddedServletContainerCustomizer&gt;(
+            this.beanFactory
+            //从容器中获取所有这葛类型的组件：EmbeddedServletContainerCustomizer
+            //定制Servlet容器，给容器中可以添加一个EmbeddedServletContainerCustomizer类型的组件
+            .getBeansOfType(EmbeddedServletContainerCustomizer.class,
+                            false, false)
+            .values());
+        Collections.sort(this.customizers, AnnotationAwareOrderComparator.INSTANCE);
+        this.customizers = Collections.unmodifiableList(this.customizers);
+    }
+    return this.customizers;
+}
+
+ServerProperties也是定制器</code></pre>
+<p>步骤：</p>
+<p>1）、SpringBoot根据导入的依赖情况，给容器中添加相应的EmbeddedServletContainerFactory【TomcatEmbeddedServletContainerFactory】</p>
+<p>2）、容器中某个组件要创建对象就会惊动后置处理器；EmbeddedServletContainerCustomizerBeanPostProcessor；</p>
+<p>只要是嵌入式的Servlet容器工厂，后置处理器就工作；</p>
+<p>3）、后置处理器，从容器中获取所有的<strong>EmbeddedServletContainerCustomizer</strong>，调用定制器的定制方法</p>
+<p>###5）、嵌入式Servlet容器启动原理；</p>
+<p>什么时候创建嵌入式的Servlet容器工厂？什么时候获取嵌入式的Servlet容器并启动Tomcat；</p>
+<p>获取嵌入式的Servlet容器工厂：</p>
+<p>1）、SpringBoot应用启动运行run方法</p>
+<p>2）、refreshContext(context);SpringBoot刷新IOC容器【创建IOC容器对象，并初始化容器，创建容器中的每一个组件】；如果是web应用创建<strong>AnnotationConfigEmbeddedWebApplicationContext</strong>，否则：<strong>AnnotationConfigApplicationContext</strong></p>
+<p>3）、refresh(context);<strong>刷新刚才创建好的ioc容器；</strong></p>
+<pre><code class="java">public void refresh() throws BeansException, IllegalStateException {
+   synchronized (this.startupShutdownMonitor) {
+      // Prepare this context for refreshing.
+      prepareRefresh();
+
+      // Tell the subclass to refresh the internal bean factory.
+      ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+
+      // Prepare the bean factory for use in this context.
+      prepareBeanFactory(beanFactory);
+
+      try {
+         // Allows post-processing of the bean factory in context subclasses.
+         postProcessBeanFactory(beanFactory);
+
+         // Invoke factory processors registered as beans in the context.
+         invokeBeanFactoryPostProcessors(beanFactory);
+
+         // Register bean processors that intercept bean creation.
+         registerBeanPostProcessors(beanFactory);
+
+         // Initialize message source for this context.
+         initMessageSource();
+
+         // Initialize event multicaster for this context.
+         initApplicationEventMulticaster();
+
+         // Initialize other special beans in specific context subclasses.
+         onRefresh();
+
+         // Check for listener beans and register them.
+         registerListeners();
+
+         // Instantiate all remaining (non-lazy-init) singletons.
+         finishBeanFactoryInitialization(beanFactory);
+
+         // Last step: publish corresponding event.
+         finishRefresh();
+      }
+
+      catch (BeansException ex) {
+         if (logger.isWarnEnabled()) {
+            logger.warn(&quot;Exception encountered during context initialization - &quot; +
+                  &quot;cancelling refresh attempt: &quot; + ex);
+         }
+
+         // Destroy already created singletons to avoid dangling resources.
+         destroyBeans();
+
+         // Reset &#39;active&#39; flag.
+         cancelRefresh(ex);
+
+         // Propagate exception to caller.
+         throw ex;
+      }
+
+      finally {
+         // Reset common introspection caches in Spring&#39;s core, since we
+         // might not ever need metadata for singleton beans anymore...
+         resetCommonCaches();
+      }
+   }
+}</code></pre>
+<p>4）、  onRefresh(); web的ioc容器重写了onRefresh方法</p>
+<p>5）、webioc容器会创建嵌入式的Servlet容器；<strong>createEmbeddedServletContainer</strong>();</p>
+<p><strong>6）、获取嵌入式的Servlet容器工厂：</strong></p>
+<p>EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFactory();</p>
+<p>​    从ioc容器中获取EmbeddedServletContainerFactory 组件；<strong>TomcatEmbeddedServletContainerFactory</strong>创建对象，后置处理器一看是这个对象，就获取所有的定制器来先定制Servlet容器的相关配置；</p>
+<p>7）、<strong>使用容器工厂获取嵌入式的Servlet容器</strong>：this.embeddedServletContainer = containerFactory      .getEmbeddedServletContainer(getSelfInitializer());</p>
+<p>8）、嵌入式的Servlet容器创建对象并启动Servlet容器；</p>
+<p><strong>先启动嵌入式的Servlet容器，再将ioc容器中剩下没有创建出的对象获取出来；</strong></p>
+<p><strong><code>IOC容器启动创建嵌入式的Servlet容器</code></strong></p>
+<h2 id="使用外置的Servlet容器"><a href="#使用外置的Servlet容器" class="headerlink" title="使用外置的Servlet容器"></a>使用外置的Servlet容器</h2><p>嵌入式Servlet容器：应用打成可执行的jar</p>
+<p>​        优点：简单、便携；</p>
+<p>​        缺点：默认不支持JSP、优化定制比较复杂（使用定制器【ServerProperties、自定义EmbeddedServletContainerCustomizer】，自己编写嵌入式Servlet容器的创建工厂【EmbeddedServletContainerFactory】）；</p>
+<p>外置的Servlet容器：外面安装Tomcat—应用war包的方式打包；</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1）、必须创建一个war项目；（利用idea创建好目录结构）</p>
+<p>2）、将嵌入式的Tomcat指定为provided；</p>
+<pre><code class="xml">&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+   &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+<p>3）、必须编写一个<strong>SpringBootServletInitializer</strong>的子类，并调用configure方法</p>
+<pre><code class="java">public class ServletInitializer extends SpringBootServletInitializer {
+
+   @Override
+   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+       //传入SpringBoot应用的主程序
+      return application.sources(SpringBoot04WebJspApplication.class);
+   }
+
+}</code></pre>
+<p>4）、启动服务器就可以使用；</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>jar包：执行SpringBoot主类的main方法，启动ioc容器，创建嵌入式的Servlet容器；</p>
+<p>war包：启动服务器，<strong>服务器启动SpringBoot应用</strong>【SpringBootServletInitializer】，启动ioc容器；</p>
+<p>servlet3.0（Spring注解版）：</p>
+<p>8.2.4 Shared libraries / runtimes pluggability：</p>
+<p>规则：</p>
+<p>​    1）、服务器启动（web应用启动）会创建当前web应用里面每一个jar包里面ServletContainerInitializer实例：</p>
+<p>​    2）、ServletContainerInitializer的实现放在jar包的META-INF/services文件夹下，有一个名为javax.servlet.ServletContainerInitializer的文件，内容就是ServletContainerInitializer的实现类的全类名</p>
+<p>​    3）、还可以使用@HandlesTypes，在应用启动的时候加载我们感兴趣的类；</p>
+<p>流程：</p>
+<p>1）、启动Tomcat</p>
+<p>2）、org\springframework\spring-web\4.3.14.RELEASE\spring-web-4.3.14.RELEASE.jar!\META-INF\services\javax.servlet.ServletContainerInitializer：</p>
+<p>Spring的web模块里面有这个文件：<strong>org.springframework.web.SpringServletContainerInitializer</strong></p>
+<p>3）、SpringServletContainerInitializer将@HandlesTypes(WebApplicationInitializer.class)标注的所有这个类型的类都传入到onStartup方法的Set&lt;Class&lt;?&gt;&gt;；为这些WebApplicationInitializer类型的类创建实例；</p>
+<p>4）、每一个WebApplicationInitializer都调用自己的onStartup；</p>
+<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948799385.png" alt></p>
+<p>5）、相当于我们的SpringBootServletInitializer的类会被创建对象，并执行onStartup方法</p>
+<p>6）、SpringBootServletInitializer实例执行onStartup的时候会createRootApplicationContext；创建容器</p>
+<pre><code class="java">protected WebApplicationContext createRootApplicationContext(
+      ServletContext servletContext) {
+    //1、创建SpringApplicationBuilder
+   SpringApplicationBuilder builder = createSpringApplicationBuilder();
+   StandardServletEnvironment environment = new StandardServletEnvironment();
+   environment.initPropertySources(servletContext, null);
+   builder.environment(environment);
+   builder.main(getClass());
+   ApplicationContext parent = getExistingRootWebApplicationContext(servletContext);
+   if (parent != null) {
+      this.logger.info(&quot;Root context already created (using as parent).&quot;);
+      servletContext.setAttribute(
+            WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, null);
+      builder.initializers(new ParentContextApplicationContextInitializer(parent));
+   }
+   builder.initializers(
+         new ServletContextApplicationContextInitializer(servletContext));
+   builder.contextClass(AnnotationConfigEmbeddedWebApplicationContext.class);
+
+    //调用configure方法，子类重写了这个方法，将SpringBoot的主程序类传入了进来
+   builder = configure(builder);
+
+    //使用builder创建一个Spring应用
+   SpringApplication application = builder.build();
+   if (application.getSources().isEmpty() &amp;&amp; AnnotationUtils
+         .findAnnotation(getClass(), Configuration.class) != null) {
+      application.getSources().add(getClass());
+   }
+   Assert.state(!application.getSources().isEmpty(),
+         &quot;No SpringApplication sources have been defined. Either override the &quot;
+               + &quot;configure method or add an @Configuration annotation&quot;);
+   // Ensure error pages are registered
+   if (this.registerErrorPageFilter) {
+      application.getSources().add(ErrorPageFilterConfiguration.class);
+   }
+    //启动Spring应用
+   return run(application);
+}</code></pre>
+<p>7）、Spring的应用就启动并且创建IOC容器</p>
+<pre><code class="java">public ConfigurableApplicationContext run(String... args) {
+   StopWatch stopWatch = new StopWatch();
+   stopWatch.start();
+   ConfigurableApplicationContext context = null;
+   FailureAnalyzers analyzers = null;
+   configureHeadlessProperty();
+   SpringApplicationRunListeners listeners = getRunListeners(args);
+   listeners.starting();
+   try {
+      ApplicationArguments applicationArguments = new DefaultApplicationArguments(
+            args);
+      ConfigurableEnvironment environment = prepareEnvironment(listeners,
+            applicationArguments);
+      Banner printedBanner = printBanner(environment);
+      context = createApplicationContext();
+      analyzers = new FailureAnalyzers(context);
+      prepareContext(context, environment, listeners, applicationArguments,
+            printedBanner);
+
+       //刷新IOC容器
+      refreshContext(context);
+      afterRefresh(context, applicationArguments);
+      listeners.finished(context, null);
+      stopWatch.stop();
+      if (this.logStartupInfo) {
+         new StartupInfoLogger(this.mainApplicationClass)
+               .logStarted(getApplicationLog(), stopWatch);
+      }
+      return context;
+   }
+   catch (Throwable ex) {
+      handleRunFailure(context, listeners, analyzers, ex);
+      throw new IllegalStateException(ex);
+   }
+}</code></pre>
+<p><strong><code>启动Servlet容器，再启动SpringBoot应用</code></strong></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>SpringBoot 内嵌容器个性化配置和外部容器配置及原理</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">2.6k</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-09-19, 23:46:07</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-20, 11:08:15</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/19/SpringBoot-内嵌容器个性化配置和外部容器配置及原理/" title="SpringBoot 内嵌容器个性化配置和外部容器配置及原理">http://yoursite.com/2019/09/19/SpringBoot-内嵌容器个性化配置和外部容器配置及原理/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '7386c7ecad1c54869b2c',
+            clientSecret: 'e6ebab707b9f5f896922bc54a16ae8e4fac62bfa',
+            repo: '18846433665.github.io',
+            owner: '18846433665',
+            admin: ['18846433665'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 xushengcai</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#Intellij破解','#博客','#mac_Jdk','#SpringBoot MVC配置','#小书匠MarkDown图床配置','#SpringBoot国际化、登录拦截、CRUD','#Thymeleaf','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot订制错误响应','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
