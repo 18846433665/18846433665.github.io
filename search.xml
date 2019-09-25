@@ -13,14 +13,14 @@
       
       <categories>
           
-          <category> SpringBoot </category>
+          <category> 缓存 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SpringBoot与缓存 </tag>
+            <tag> SpringBoot使用缓存(JCache/Redis) </tag>
             
         </tags>
       
