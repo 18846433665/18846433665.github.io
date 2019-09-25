@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>SpringBoot任务(异步、定时、邮件)</title>
+      <link href="/2019/09/25/SpringBoot%E4%BB%BB%E5%8A%A1-%E5%BC%82%E6%AD%A5%E3%80%81%E5%AE%9A%E6%97%B6%E3%80%81%E9%82%AE%E4%BB%B6/"/>
+      <url>/2019/09/25/SpringBoot%E4%BB%BB%E5%8A%A1-%E5%BC%82%E6%AD%A5%E3%80%81%E5%AE%9A%E6%97%B6%E3%80%81%E9%82%AE%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 异步任务 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringBoot任务异步、定时、邮件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SpringBoot检索(Elasticsearch)基础</title>
+      <link href="/2019/09/25/SpringBoot%E4%B8%8E%E6%A3%80%E7%B4%A2-Elasticsearch-%E5%9F%BA%E7%A1%80/"/>
+      <url>/2019/09/25/SpringBoot%E4%B8%8E%E6%A3%80%E7%B4%A2-Elasticsearch-%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 检索 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Elasticsearch和SpringBoot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SpringBoot与消息队列</title>
+      <link href="/2019/09/25/SpringBoot%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+      <url>/2019/09/25/SpringBoot%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 消息队列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringBoot与消息队列 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SpringBoot与缓存(原生缓存/Redis)</title>
       <link href="/2019/09/24/SpringBoot%E4%B8%8E%E7%BC%93%E5%AD%98-%E5%8E%9F%E7%94%9F%E7%BC%93%E5%AD%98-Redis/"/>
       <url>/2019/09/24/SpringBoot%E4%B8%8E%E7%BC%93%E5%AD%98-%E5%8E%9F%E7%94%9F%E7%BC%93%E5%AD%98-Redis/</url>

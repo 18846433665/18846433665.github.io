@@ -6,23 +6,15 @@
   <meta name="keywords" content=" SpringBoot MVC配置 ">
   <meta name="description" content="SpringBoot SpringMVC个性化配置 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="一、JSR107缓存介绍层级关系如图所示： 二、Spring缓存抽象（JCache）Spring从3.1开始定义了org.springframework.cache.Cache和org.springframework.cache.CacheManager接口来统一不同的缓存技术；并支持使用JCache（JSR-107）注解简化我们开发；  Cache接口为缓存的组件规范定义，包含缓存的各种操作集合">
-<meta name="keywords" content="SpringBoot使用缓存(JCache&#x2F;Redis)">
+<meta name="keywords" content="SpringBoot任务异步、定时、邮件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot与缓存(原生缓存&#x2F;Redis)">
-<meta property="og:url" content="http://yoursite.com/2019/09/24/SpringBoot与缓存-原生缓存-Redis/index.html">
+<meta property="og:title" content="SpringBoot任务(异步、定时、邮件)">
+<meta property="og:url" content="http://yoursite.com/2019/09/25/SpringBoot任务-异步、定时、邮件/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、JSR107缓存介绍层级关系如图所示： 二、Spring缓存抽象（JCache）Spring从3.1开始定义了org.springframework.cache.Cache和org.springframework.cache.CacheManager接口来统一不同的缓存技术；并支持使用JCache（JSR-107）注解简化我们开发；  Cache接口为缓存的组件规范定义，包含缓存的各种操作集合">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569378309733.png">
-<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569378524115.png">
-<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569379310639.png">
-<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569379488267.png">
-<meta property="og:updated_time" content="2019-09-25T05:08:34.487Z">
+<meta property="og:updated_time" content="2019-09-25T13:30:54.234Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringBoot与缓存(原生缓存&#x2F;Redis)">
-<meta name="twitter:description" content="一、JSR107缓存介绍层级关系如图所示： 二、Spring缓存抽象（JCache）Spring从3.1开始定义了org.springframework.cache.Cache和org.springframework.cache.CacheManager接口来统一不同的缓存技术；并支持使用JCache（JSR-107）注解简化我们开发；  Cache接口为缓存的组件规范定义，包含缓存的各种操作集合">
-<meta name="twitter:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569378309733.png">
+<meta name="twitter:title" content="SpringBoot任务(异步、定时、邮件)">
 
 
 <link rel="icon" href="/img/sender.jpeg">
@@ -95,7 +87,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(20)</small></div></li>
+    <li><div class="all active">全部文章<small>(23)</small></div></li>
     
         
             
@@ -131,6 +123,30 @@
     
         
             
+            <li><div data-rel="检索">检索<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="异步任务">异步任务<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
             <li><div data-rel="缓存">缓存<small>(1)</small></div>
                 
             </li>
@@ -146,7 +162,7 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="20">
+<input type="hidden" id="yelog_site_posts_number" value="23">
 <input type="hidden" id="yelog_site_word_count" value="30.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -187,11 +203,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Intellij破解</a>
+        <a href="javascript:" class="color3">mac_Jdk</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">mac_Jdk</a>
+        <a href="javascript:" class="color1">Intellij破解</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -203,6 +219,18 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Elasticsearch和SpringBoot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
     </li>
     
@@ -211,19 +239,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">SpringBoot订制错误响应</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Thymeleaf</a>
+        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
+        <a href="javascript:" class="color5">Thymeleaf</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -232,6 +256,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">SpringBoot日志</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -282,6 +310,30 @@
            data-author="" >
             <span class="post-title" title="markdown 高效编写工具小书匠配置介绍">markdown 高效编写工具小书匠配置介绍</span>
             <span class="post-date" title="2019-09-17 12:57:31">2019/09/17</span>
+        </a>
+        
+        <a  class="异步任务 "
+           href="/2019/09/25/SpringBoot任务-异步、定时、邮件/"
+           data-tag="SpringBoot任务异步、定时、邮件"
+           data-author="" >
+            <span class="post-title" title="SpringBoot任务(异步、定时、邮件)">SpringBoot任务(异步、定时、邮件)</span>
+            <span class="post-date" title="2019-09-25 20:50:30">2019/09/25</span>
+        </a>
+        
+        <a  class="检索 "
+           href="/2019/09/25/SpringBoot与检索-Elasticsearch-基础/"
+           data-tag="Elasticsearch和SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot检索(Elasticsearch)基础">SpringBoot检索(Elasticsearch)基础</span>
+            <span class="post-date" title="2019-09-25 17:55:42">2019/09/25</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/09/25/SpringBoot与消息队列/"
+           data-tag="SpringBoot与消息队列"
+           data-author="" >
+            <span class="post-title" title="SpringBoot与消息队列">SpringBoot与消息队列</span>
+            <span class="post-date" title="2019-09-25 13:10:06">2019/09/25</span>
         </a>
         
         <a  class="缓存 "
@@ -730,7 +782,7 @@ public class WebMvcAutoConfiguration {</code></pre>
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Docker基础','#博客','#Intellij破解','#mac_Jdk','#SpringBoot和JDBC和Mybatis和Druid','#SpringBoot MVC配置','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#Thymeleaf','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#Docker基础','#博客','#mac_Jdk','#Intellij破解','#SpringBoot和JDBC和Mybatis和Druid','#SpringBoot MVC配置','#Elasticsearch和SpringBoot','#SpringBoot与消息队列','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#SpringBoot订制错误响应','#SpringBoot使用缓存(JCache/Redis)','#Thymeleaf','#SpringBootHelloWorld','#SpringBoot日志','#小书匠MarkDown图床配置','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
