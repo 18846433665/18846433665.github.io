@@ -123,14 +123,6 @@
     
         
             
-            <li><div data-rel="分布式">分布式<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="项目监控">项目监控<small>(1)</small></div>
                 
             </li>
@@ -139,7 +131,7 @@
     
         
             
-            <li><div data-rel="异步任务">异步任务<small>(1)</small></div>
+            <li><div data-rel="分布式">分布式<small>(1)</small></div>
                 
             </li>
             
@@ -148,6 +140,14 @@
         
             
             <li><div data-rel="检索">检索<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="异步任务">异步任务<small>(1)</small></div>
                 
             </li>
             
@@ -187,7 +187,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="27">
-<input type="hidden" id="yelog_site_word_count" value="34.4k">
+<input type="hidden" id="yelog_site_word_count" value="34.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -227,19 +227,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Intellij破解</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">mac_Jdk</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot热部署</a>
+        <a href="javascript:" class="color1">Intellij破解</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color2">SpringBoot MVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -251,11 +251,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
+        <a href="javascript:" class="color4">SpringBoot热部署</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -263,11 +259,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Spring安全Security</a>
+        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Spring安全Security</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -287,19 +287,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
+        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Thymeleaf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -580,12 +580,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-27 02:11:54'>2019-09-26 00:32</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-27 03:04:23'>2019-09-26 00:32</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:244</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -604,7 +604,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Boot项目监控-actuator"><span class="toc-text">Spring Boot项目监控 actuator</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、使用案例"><span class="toc-text">一、使用案例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-引入依赖"><span class="toc-text">1. 引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-通过http方式访问"><span class="toc-text">2. 通过http方式访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-各个路径对应的监控内容"><span class="toc-text">1. 各个路径对应的监控内容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、订制监控信息"><span class="toc-text">二、订制监控信息</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -619,7 +619,38 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Spring-Boot项目监控-actuator"><a href="#Spring-Boot项目监控-actuator" class="headerlink" title="Spring Boot项目监控 actuator"></a>Spring Boot项目监控 actuator</h1><h1 id="一、使用案例"><a href="#一、使用案例" class="headerlink" title="一、使用案例"></a>一、使用案例</h1><h2 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1. 引入依赖"></a>1. 引入依赖</h2><pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+        &lt;/dependency&gt;</code></pre>
+<h2 id="2-通过http方式访问"><a href="#2-通过http方式访问" class="headerlink" title="2. 通过http方式访问"></a>2. 通过http方式访问</h2><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569524161167.png" alt="例子"></p>
+<h3 id="1-各个路径对应的监控内容"><a href="#1-各个路径对应的监控内容" class="headerlink" title="1. 各个路径对应的监控内容"></a>1. 各个路径对应的监控内容</h3><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569524237302.png" alt="监控路径"></p>
+<h1 id="二、订制监控信息"><a href="#二、订制监控信息" class="headerlink" title="二、订制监控信息"></a>二、订制监控信息</h1><ul>
+<li>定制端点一般通过endpoints+端点名+属性名来设置。</li>
+<li>修改端点id（endpoints.beans.id=mybeans）</li>
+<li>开启远程应用关闭功能（endpoints.shutdown.enabled=true）</li>
+<li>关闭端点（endpoints.beans.enabled=false）</li>
+<li>开启所需端点<br>1.endpoints.enabled=false<br>2.endpoints.beans.enabled=true</li>
+<li>定制端点访问根路径<br>1.management.context-path=/manage</li>
+<li>关闭http端点<br>1.management.port=-1</li>
+</ul>
+<pre><code class="properties">#要配置后监控才能生效
+management.security.enabled=false
+#关闭一个试试
+endpoints.metrics.enabled=false
+#开启远程关闭
+endpoints.shutdown.enabled=true
+#自定义名字和路径
+endpoints.beans.id=mybean
+endpoints.beans.path=/bean
+# 把其他的都关了，只开一个
+endpoints.enabled=false
+endpoints.beans.enabled=true
+#设置默认路径path前缀
+management.context-path=/manage
+#设置默认端口
+management.port=8181</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
     </div>
@@ -633,10 +664,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>SpringBoot 项目监控actuator</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">244</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-09-26, 00:32:43</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-27, 02:11:54</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-27, 03:04:23</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/26/SpringBoot-项目监控/" title="SpringBoot 项目监控actuator">http://yoursite.com/2019/09/26/SpringBoot-项目监控/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -719,7 +750,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#博客','#Docker基础','#Intellij破解','#mac_Jdk','#SpringBoot热部署','#SpringBoot MVC配置','#SpringBoot和JDBC和Mybatis和Druid','#doubbo、springcloud','#SpringBoot监控actuator','#SpringBoot任务异步、定时、邮件','#Elasticsearch和SpringBoot','#Spring安全Security','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBootHelloWorld','#SpringBoot使用缓存(JCache/Redis)','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#博客','#Docker基础','#mac_Jdk','#Intellij破解','#SpringBoot MVC配置','#SpringBoot监控actuator','#SpringBoot和JDBC和Mybatis和Druid','#doubbo、springcloud','#SpringBoot热部署','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#Spring安全Security','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
