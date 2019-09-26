@@ -91,7 +91,7 @@
     
         
             
-            <li><div data-rel="博客">博客<small>(3)</small></div>
+            <li><div data-rel="Docker">Docker<small>(1)</small></div>
                 
             </li>
             
@@ -99,7 +99,7 @@
     
         
             
-            <li><div data-rel="Docker">Docker<small>(1)</small></div>
+            <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
             
@@ -139,14 +139,6 @@
     
         
             
-            <li><div data-rel="检索">检索<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="异步任务">异步任务<small>(1)</small></div>
                 
             </li>
@@ -163,7 +155,7 @@
     
         
             
-            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+            <li><div data-rel="检索">检索<small>(1)</small></div>
                 
             </li>
             
@@ -172,6 +164,14 @@
         
             
             <li><div data-rel="缓存">缓存<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
                 
             </li>
             
@@ -219,15 +219,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">Docker基础</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">mac_Jdk</a>
+        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -235,7 +231,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">mac_Jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">SpringBoot MVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot热部署</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -248,14 +252,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">doubbo、springcloud</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot热部署</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Elasticsearch和SpringBoot</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -275,15 +271,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Elasticsearch和SpringBoot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color2">SpringBoot订制错误响应</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -300,6 +296,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">SpringBoot日志</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -730,7 +730,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#博客','#Docker基础','#mac_Jdk','#Intellij破解','#SpringBoot MVC配置','#SpringBoot监控actuator','#SpringBoot和JDBC和Mybatis和Druid','#doubbo、springcloud','#SpringBoot热部署','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#Spring安全Security','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#Docker基础','#博客','#Intellij破解','#mac_Jdk','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#SpringBoot和JDBC和Mybatis和Druid','#doubbo、springcloud','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#Spring安全Security','#SpringBoot自定义Starter','#Elasticsearch和SpringBoot','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Thymeleaf','#SpringBoot日志','#SpringBoot与消息队列','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
