@@ -58,7 +58,7 @@
       <link href="/2019/09/25/SpringBoot-%E7%83%AD%E9%83%A8%E7%BD%B2/"/>
       <url>/2019/09/25/SpringBoot-%E7%83%AD%E9%83%A8%E7%BD%B2/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="一、SpringBoot热部署（快速开发）"><a href="#一、SpringBoot热部署（快速开发）" class="headerlink" title="一、SpringBoot热部署（快速开发）"></a>一、SpringBoot热部署（快速开发）</h1><p>在开发中我们修改一个Java文件后想看到效果不得不重启应用，这导致大量时间花费，我们希望不重启应用的情况下，程序可以自动部署（热部署）。有以下四种情况，如何能实现热部署。</p><p>1、模板引擎<br>在Spring Boot中开发情况下禁用模板引擎的cache<br>页面模板改变ctrl+F9可以重新编译当前页面并生效</p><p>2、Spring Loaded<br>Spring官方提供的热部署程序，实现修改类文件的热部署<br>下载Spring Loaded（项目地址<a href="https://github.com/spring-projects/spring-loaded）" target="_blank" rel="noopener">https://github.com/spring-projects/spring-loaded）</a><br>添加运行时参数；<br>-javaagent:C:/springloaded-1.2.5.RELEASE.jar –noverify</p><p>3、JRebel<br>收费的一个热部署软件<br>安装插件使用即可</p><p>4、<strong>Spring Boot Devtools</strong><code>（推荐）</code><br>引入依赖</p><pre><code class="xml">&lt;dependency&gt;         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;         &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;   &lt;/dependency&gt; </code></pre><p><code>IDEA使用ctrl+F9</code><br>或做一些小调整<br>    Intellij IEDA和Eclipse不同，Eclipse设置了自动编译之后，修改类它会自动编译，而IDEA在非RUN或DEBUG情况下才会自动编译（前提是你已经设置了Auto-Compile）。<br>设置自动编译（settings-compiler-make project automatically）<br>ctrl+shift+alt+/（maintenance）<br>勾选compiler.automake.allow.when.app.running</p>]]></content>
       
       
       <categories>
