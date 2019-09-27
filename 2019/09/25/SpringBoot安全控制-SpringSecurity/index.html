@@ -118,7 +118,7 @@
     
         
             
-            <li><div data-rel="SpringBoot">SpringBoot<small>(13)</small></div>
+            <li><div data-rel="Docker">Docker<small>(1)</small></div>
                 
             </li>
             
@@ -126,7 +126,7 @@
     
         
             
-            <li><div data-rel="Docker">Docker<small>(1)</small></div>
+            <li><div data-rel="SpringBoot">SpringBoot<small>(13)</small></div>
                 
             </li>
             
@@ -166,7 +166,7 @@
     
         
             
-            <li><div data-rel="安全">安全<small>(1)</small></div>
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
                 
             </li>
             
@@ -182,7 +182,7 @@
     
         
             
-            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+            <li><div data-rel="安全">安全<small>(1)</small></div>
                 
             </li>
             
@@ -198,7 +198,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="27">
-<input type="hidden" id="yelog_site_word_count" value="36.1k">
+<input type="hidden" id="yelog_site_word_count" value="38k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -238,6 +238,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Docker基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">mac_Jdk</a>
     </li>
     
@@ -250,19 +254,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">Docker基础</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">SpringBoot监控actuator</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
+        <a href="javascript:" class="color5">SpringBoot和JDBC和Mybatis和Druid</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">SpringBoot和JDBC和Mybatis和Druid</a>
+        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -278,10 +278,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Spring安全Security</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">SpringBoot自定义Starter</a>
     </li>
     
@@ -294,11 +290,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
+        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
+        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -306,11 +302,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
+        <a href="javascript:" class="color2">Spring安全Security</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Thymeleaf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -591,12 +591,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-27 02:10:28'>2019-09-25 22:05</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-27 18:20:50'>2019-09-25 22:05</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -615,7 +615,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot-与安全（Spring-Security）"><span class="toc-text">SpringBoot 与安全（Spring Security）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、概览"><span class="toc-text">一、概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是认证和授权"><span class="toc-text">1. 什么是认证和授权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Spring-Security"><span class="toc-text">2. Spring Security</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、使用Spring-Security"><span class="toc-text">二、使用Spring Security</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-引入依赖"><span class="toc-text">1. 引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-编写配置类-EnableWebSecurity"><span class="toc-text">2. 编写配置类@EnableWebSecurity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-SpringSecurity控制请求路径权限"><span class="toc-text">3. SpringSecurity控制请求路径权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-SpringSecurity定义登录认证规则"><span class="toc-text">3. SpringSecurity定义登录认证规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-开启自动配置的登陆功能"><span class="toc-text">4. 开启自动配置的登陆功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-注销"><span class="toc-text">5. 注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-记住我"><span class="toc-text">6. 记住我</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、配置类样例"><span class="toc-text">三、配置类样例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、Thymeleaf和SpringSecurity整合"><span class="toc-text">四、Thymeleaf和SpringSecurity整合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-html头信息"><span class="toc-text">1. html头信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-welcome界面代码样例"><span class="toc-text">2. welcome界面代码样例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-login界面案例"><span class="toc-text">3. login界面案例</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -630,7 +630,199 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="SpringBoot-与安全（Spring-Security）"><a href="#SpringBoot-与安全（Spring-Security）" class="headerlink" title="SpringBoot 与安全（Spring Security）"></a>SpringBoot 与安全（Spring Security）</h1><h1 id="一、概览"><a href="#一、概览" class="headerlink" title="一、概览"></a>一、概览</h1><h2 id="1-什么是认证和授权"><a href="#1-什么是认证和授权" class="headerlink" title="1. 什么是认证和授权"></a>1. 什么是认证和授权</h2><ul>
+<li>应用程序的两个主要区域是“认证”和“授权”（或者访问控制）。这两个主要区域是Spring Security 的两个目标。</li>
+<li>“认证”（Authentication），是建立一个他声明的主体的过程（一个“主体”一般是指用户，设备或一些可以在你的- 应用程序中执行动作的其他系统）。</li>
+<li>“授权”（Authorization）指确定一个主体是否允许在你的应用程序执行一个动作的过程。为了抵达需要授权的店，主体的身份已经有认证过程建立。</li>
+<li>这个概念是通用的而不只在Spring Security中。<h2 id="2-Spring-Security"><a href="#2-Spring-Security" class="headerlink" title="2. Spring Security"></a>2. Spring Security</h2><code>Spring Security</code>是针对Spring项目的安全框架，也是Spring Boot底层安全模块默认的技术选型。他可以实现强大的web安全控制。对于安全控制，我们仅需引入<code>spring-boot-starter-security</code>模块，进行少量的配置，即可实现强大的安全管理。<br>相关的几个类：<br>WebSecurityConfigurerAdapter：自定义Security策略<br>AuthenticationManagerBuilder：自定义认证策略<br>@EnableWebSecurity：开启WebSecurity模式</li>
+</ul>
+<h1 id="二、使用Spring-Security"><a href="#二、使用Spring-Security" class="headerlink" title="二、使用Spring Security"></a>二、使用Spring Security</h1><h2 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1. 引入依赖"></a>1. 引入依赖</h2><pre><code class="xml">        &lt;!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.thymeleaf.extras&lt;/groupId&gt;
+            &lt;artifactId&gt;thymeleaf-extras-springsecurity4&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!-- 如果不使用Thymeleaf模板引擎不需要引上面两个jar包 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+        &lt;/dependency&gt;</code></pre>
+<h2 id="2-编写配置类-EnableWebSecurity"><a href="#2-编写配置类-EnableWebSecurity" class="headerlink" title="2. 编写配置类@EnableWebSecurity"></a>2. 编写配置类@EnableWebSecurity</h2><pre><code class="java">@EnableWebSecurity
+public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+    }    </code></pre>
+<h2 id="3-SpringSecurity控制请求路径权限"><a href="#3-SpringSecurity控制请求路径权限" class="headerlink" title="3. SpringSecurity控制请求路径权限"></a>3. SpringSecurity控制请求路径权限</h2><pre><code class="java">@Override
+    protected void configure(HttpSecurity http) throws Exception {
+        //super.configure(http);
+        //定制请求的授权规则
+        http.authorizeRequests().antMatchers(&quot;/&quot;).permitAll()
+                .antMatchers(&quot;/level1/**&quot;).hasRole(&quot;VIP1&quot;)
+                .antMatchers(&quot;/level2/**&quot;).hasRole(&quot;VIP2&quot;)
+                .antMatchers(&quot;/level3/**&quot;).hasRole(&quot;VIP3&quot;);
+                }</code></pre>
+<h2 id="3-SpringSecurity定义登录认证规则"><a href="#3-SpringSecurity定义登录认证规则" class="headerlink" title="3. SpringSecurity定义登录认证规则"></a>3. SpringSecurity定义登录认证规则</h2><pre><code class="java">    //定义认证规则
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //super.configure(auth);
+        auth.inMemoryAuthentication()
+                .withUser(&quot;zhangsan&quot;).password(&quot;123456&quot;).roles(&quot;VIP1&quot;,&quot;VIP2&quot;)
+                .and()
+                .withUser(&quot;lisi&quot;).password(&quot;123456&quot;).roles(&quot;VIP2&quot;,&quot;VIP3&quot;)
+                .and()
+                .withUser(&quot;wangwu&quot;).password(&quot;123456&quot;).roles(&quot;VIP1&quot;,&quot;VIP3&quot;);
+
+    }</code></pre>
+<h2 id="4-开启自动配置的登陆功能"><a href="#4-开启自动配置的登陆功能" class="headerlink" title="4. 开启自动配置的登陆功能"></a>4. 开启自动配置的登陆功能</h2><pre><code class="java">        //开启自动配置的登陆功能，效果，如果没有登陆，没有权限就会来到登陆页面
+        http.formLogin().usernameParameter(&quot;user&quot;).passwordParameter(&quot;pwd&quot;)
+                .loginPage(&quot;/userlogin&quot;);
+        //1、/login来到登陆页
+        //2、重定向到/login?error表示登陆失败
+        //3、更多详细规定
+        //4、默认post形式的 /login代表处理登陆
+        //5、一但定制loginPage；那么 loginPage的post请求就是登陆</code></pre>
+<h2 id="5-注销"><a href="#5-注销" class="headerlink" title="5. 注销"></a>5. 注销</h2><pre><code class="java">        //开启自动配置的注销功能。
+        http.logout().logoutSuccessUrl(&quot;/&quot;);//注销成功以后来到首页
+        //1、访问 /logout 表示用户注销，清空session
+        //2、注销成功会返回 /login?logout 页面；</code></pre>
+<h2 id="6-记住我"><a href="#6-记住我" class="headerlink" title="6. 记住我"></a>6. 记住我</h2><pre><code class="java">        //开启记住我功能
+        http.rememberMe().rememberMeParameter(&quot;remeber&quot;);
+        //登陆成功以后，将cookie发给浏览器保存，以后访问页面带上这个cookie，只要通过检查就可以免登录
+        //点击注销会删除cookie</code></pre>
+<h1 id="三、配置类样例"><a href="#三、配置类样例" class="headerlink" title="三、配置类样例"></a>三、<strong>配置类样例</strong></h1><pre><code class="java">package com.atguigu.security.config;
+
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        //super.configure(http);
+        //定制请求的授权规则
+        http.authorizeRequests().antMatchers(&quot;/&quot;).permitAll()
+                .antMatchers(&quot;/level1/**&quot;).hasRole(&quot;VIP1&quot;)
+                .antMatchers(&quot;/level2/**&quot;).hasRole(&quot;VIP2&quot;)
+                .antMatchers(&quot;/level3/**&quot;).hasRole(&quot;VIP3&quot;);
+
+        //开启自动配置的登陆功能，效果，如果没有登陆，没有权限就会来到登陆页面
+        http.formLogin().usernameParameter(&quot;user&quot;).passwordParameter(&quot;pwd&quot;)
+                .loginPage(&quot;/userlogin&quot;);
+        //1、/login来到登陆页
+        //2、重定向到/login?error表示登陆失败
+        //3、更多详细规定
+        //4、默认post形式的 /login代表处理登陆
+        //5、一但定制loginPage；那么 loginPage的post请求就是登陆
+
+
+        //开启自动配置的注销功能。
+        http.logout().logoutSuccessUrl(&quot;/&quot;);//注销成功以后来到首页
+        //1、访问 /logout 表示用户注销，清空session
+        //2、注销成功会返回 /login?logout 页面；
+
+        //开启记住我功能
+        http.rememberMe().rememberMeParameter(&quot;remeber&quot;);
+        //登陆成功以后，将cookie发给浏览器保存，以后访问页面带上这个cookie，只要通过检查就可以免登录
+        //点击注销会删除cookie
+
+    }
+
+    //定义认证规则
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //super.configure(auth);
+        auth.inMemoryAuthentication()
+                .withUser(&quot;zhangsan&quot;).password(&quot;123456&quot;).roles(&quot;VIP1&quot;,&quot;VIP2&quot;)
+                .and()
+                .withUser(&quot;lisi&quot;).password(&quot;123456&quot;).roles(&quot;VIP2&quot;,&quot;VIP3&quot;)
+                .and()
+                .withUser(&quot;wangwu&quot;).password(&quot;123456&quot;).roles(&quot;VIP1&quot;,&quot;VIP3&quot;);
+
+    }
+}</code></pre>
+<h1 id="四、Thymeleaf和SpringSecurity整合"><a href="#四、Thymeleaf和SpringSecurity整合" class="headerlink" title="四、Thymeleaf和SpringSecurity整合"></a>四、Thymeleaf和SpringSecurity整合</h1><ul>
+<li>需要引入thymeleaf-extras-springsecurity4</li>
+<li>sec:authentication=“name”获得当前用户的用户名</li>
+<li>sec:authorize=“hasRole(‘ADMIN’)”当前用户必须拥有ADMIN权限时才会显示标签内容</li>
+</ul>
+<h3 id="1-html头信息"><a href="#1-html头信息" class="headerlink" title="1. html头信息"></a>1. html头信息</h3><pre><code class="html">&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;
+      xmlns:sec=&quot;http://www.thymeleaf.org/thymeleaf-extras-springsecurity4&quot;&gt;</code></pre>
+<h3 id="2-welcome界面代码样例"><a href="#2-welcome界面代码样例" class="headerlink" title="2. welcome界面代码样例"></a>2. welcome界面代码样例</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;
+      xmlns:sec=&quot;http://www.thymeleaf.org/thymeleaf-extras-springsecurity4&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 align=&quot;center&quot;&gt;欢迎光临武林秘籍管理系统&lt;/h1&gt;
+&lt;div sec:authorize=&quot;!isAuthenticated()&quot;&gt;
+    &lt;h2 align=&quot;center&quot;&gt;游客您好，如果想查看武林秘籍 &lt;a th:href=&quot;@{/userlogin}&quot;&gt;请登录&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div sec:authorize=&quot;isAuthenticated()&quot;&gt;
+    &lt;h2&gt;&lt;span sec:authentication=&quot;name&quot;&gt;&lt;/span&gt;，您好,您的角色有：
+        &lt;span sec:authentication=&quot;principal.authorities&quot;&gt;&lt;/span&gt;&lt;/h2&gt;
+    &lt;form th:action=&quot;@{/logout}&quot; method=&quot;post&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;注销&quot;/&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+
+&lt;div sec:authorize=&quot;hasRole(&#39;VIP1&#39;)&quot;&gt;
+    &lt;h3&gt;普通武功秘籍&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level1/1}&quot;&gt;罗汉拳&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level1/2}&quot;&gt;武当长拳&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level1/3}&quot;&gt;全真剑法&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div sec:authorize=&quot;hasRole(&#39;VIP2&#39;)&quot;&gt;
+    &lt;h3&gt;高级武功秘籍&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level2/1}&quot;&gt;太极拳&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level2/2}&quot;&gt;七伤拳&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level2/3}&quot;&gt;梯云纵&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div sec:authorize=&quot;hasRole(&#39;VIP3&#39;)&quot;&gt;
+    &lt;h3&gt;绝世武功秘籍&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level3/1}&quot;&gt;葵花宝典&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level3/2}&quot;&gt;龟派气功&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a th:href=&quot;@{/level3/3}&quot;&gt;独孤九剑&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h3 id="3-login界面案例"><a href="#3-login界面案例" class="headerlink" title="3. login界面案例"></a>3. login界面案例</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 align=&quot;center&quot;&gt;欢迎登陆武林秘籍管理系统&lt;/h1&gt;
+    &lt;hr&gt;
+    &lt;div align=&quot;center&quot;&gt;
+        &lt;form th:action=&quot;@{/userlogin}&quot; method=&quot;post&quot;&gt;
+            用户名:&lt;input name=&quot;user&quot;/&gt;&lt;br&gt;
+            密码:&lt;input name=&quot;pwd&quot;&gt;&lt;br/&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;remeber&quot;&gt; 记住我&lt;br/&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;登陆&quot;&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
     </div>
@@ -644,10 +836,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>安全控制(SpringSecurity)-SpringBoot</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.9k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-09-25, 22:05:45</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-27, 02:10:28</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-27, 18:20:50</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/25/SpringBoot安全控制-SpringSecurity/" title="安全控制(SpringSecurity)-SpringBoot">http://yoursite.com/2019/09/25/SpringBoot安全控制-SpringSecurity/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -730,7 +922,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#博客','#Intellij破解','#mac_Jdk','#SpringBoot MVC配置','#SpringBoot热部署','#Docker基础','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#Spring安全Security','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBoot使用缓存(JCache/Redis)','#SpringBoot与消息队列','#SpringBootHelloWorld','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#博客','#Intellij破解','#Docker基础','#mac_Jdk','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#SpringBoot和JDBC和Mybatis和Druid','#doubbo、springcloud基础','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
