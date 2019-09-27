@@ -6,15 +6,26 @@
   <meta name="keywords" content=" SpringBoot ">
   <meta name="description" content="Spring Boot 基础 | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="keywords" content="doubbo、springcloud">
+<meta name="description" content="Spring Boot与分布式一、概览在分布式系统中，国内常用zookeeper+dubbo组合，而Spring Boot推荐使用全栈的Spring，Spring Boot+Spring Cloud。 1.系统迭代升级过程  单一应用架构当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。 垂直应用架构当访问量逐">
+<meta name="keywords" content="doubbo、springcloud基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式doubbo、springcloud初体验">
 <meta property="og:url" content="http://yoursite.com/2019/09/26/SpringBoot与分布式-doubbo-springcloud/index.html">
 <meta property="og:site_name" content="XuShengcai">
+<meta property="og:description" content="Spring Boot与分布式一、概览在分布式系统中，国内常用zookeeper+dubbo组合，而Spring Boot推荐使用全栈的Spring，Spring Boot+Spring Cloud。 1.系统迭代升级过程  单一应用架构当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。 垂直应用架构当访问量逐">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-26T12:41:19.678Z">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569563549873.png">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569563932055.png">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569564590955.png">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569567345206.png">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569567543747.png">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569567376085.png">
+<meta property="og:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569567376085.png">
+<meta property="og:updated_time" content="2019-09-27T07:23:22.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式doubbo、springcloud初体验">
+<meta name="twitter:description" content="Spring Boot与分布式一、概览在分布式系统中，国内常用zookeeper+dubbo组合，而Spring Boot推荐使用全栈的Spring，Spring Boot+Spring Cloud。 1.系统迭代升级过程  单一应用架构当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。 垂直应用架构当访问量逐">
+<meta name="twitter:image" content="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569563549873.png">
 
 
 <link rel="icon" href="/img/sender.jpeg">
@@ -187,7 +198,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="27">
-<input type="hidden" id="yelog_site_word_count" value="34.7k">
+<input type="hidden" id="yelog_site_word_count" value="36.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -239,11 +250,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot热部署</a>
+        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">doubbo、springcloud</a>
+        <a href="javascript:" class="color4">SpringBoot热部署</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -259,15 +270,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color2">Spring安全Security</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -287,19 +298,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">SpringBootHelloWorld</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
+        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Thymeleaf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -354,7 +365,7 @@
         
         <a  class="分布式 "
            href="/2019/09/26/SpringBoot与分布式-doubbo-springcloud/"
-           data-tag="doubbo、springcloud"
+           data-tag="doubbo、springcloud基础"
            data-author="" >
             <span class="post-title" title="分布式doubbo、springcloud初体验">分布式doubbo、springcloud初体验</span>
             <span class="post-date" title="2019-09-26 19:05:02">2019/09/26</span>
@@ -1524,7 +1535,7 @@ public class RedisTest {
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#博客','#Docker基础','#Intellij破解','#mac_Jdk','#SpringBoot MVC配置','#SpringBoot热部署','#doubbo、springcloud','#SpringBoot和JDBC和Mybatis和Druid','#SpringBoot监控actuator','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#Spring安全Security','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBoot使用缓存(JCache/Redis)','#SpringBoot与消息队列','#SpringBootHelloWorld','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#博客','#Docker基础','#Intellij破解','#mac_Jdk','#SpringBoot MVC配置','#doubbo、springcloud基础','#SpringBoot热部署','#SpringBoot和JDBC和Mybatis和Druid','#SpringBoot监控actuator','#Elasticsearch和SpringBoot','#SpringBoot启动原理源码','#SpringBoot任务异步、定时、邮件','#Spring安全Security','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#SpringBoot订制错误响应','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#SpringBoot与消息队列','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
