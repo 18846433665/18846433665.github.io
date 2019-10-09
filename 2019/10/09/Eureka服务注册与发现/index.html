@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>Eureka服务注册与发现 | XuShengcai</title>
+  <meta name="keywords" content=" Eureka ">
+  <meta name="description" content="Eureka服务注册与发现 | XuShengcai">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="keywords" content="Zuul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zuul路由网关">
+<meta property="og:url" content="http://yoursite.com/2019/10/09/Zuul路由网关/index.html">
+<meta property="og:site_name" content="XuShengcai">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-09T07:28:37.140Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zuul路由网关">
+
+
+<link rel="icon" href="/img/sender.jpeg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/sender.jpeg" />
+</a>
+<div class="author">
+    <span>Xu Shengcai</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:18846433665@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=84497122&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(33)</small></div></li>
+    
+        
+            
+            <li><div data-rel="SpringCloud">SpringCloud<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="博客">博客<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Docker">Docker<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="环境">环境<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="SpringBoot">SpringBoot<small>(13)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="项目监控">项目监控<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="分布式">分布式<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="检索">检索<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="异步任务">异步任务<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="缓存">缓存<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="安全">安全<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="33">
+<input type="hidden" id="yelog_site_word_count" value="43.1k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Feign</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Docker基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">mac_Jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Intellij破解</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Ribbon</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot MVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot热部署</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">SpringBoot和JDBC和Mybatis和Druid</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Elasticsearch和SpringBoot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot自定义Starter</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Zuul</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">微服务概述</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Eureka</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot订制错误响应</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Spring安全Security</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Thymeleaf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot国际化、登录拦截、CRUD</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot内嵌容器个性化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/Hexo使用简介/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="Hexo 使用简介">Hexo 使用简介</span>
+            <span class="post-date" title="2019-09-17 00:43:29">2019/09/17</span>
+        </a>
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/hexo博客搭建/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="hexo博客搭建过程">hexo博客搭建过程</span>
+            <span class="post-date" title="2019-09-17 11:52:11">2019/09/17</span>
+        </a>
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/markdown-高效编写工具小书匠配置介绍/"
+           data-tag="小书匠MarkDown图床配置"
+           data-author="" >
+            <span class="post-title" title="markdown 高效编写工具小书匠配置介绍">markdown 高效编写工具小书匠配置介绍</span>
+            <span class="post-date" title="2019-09-17 12:57:31">2019/09/17</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Zuul路由网关/"
+           data-tag="Zuul"
+           data-author="" >
+            <span class="post-title" title="Zuul路由网关">Zuul路由网关</span>
+            <span class="post-date" title="2019-10-09 15:20:52">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Hystrix断路器/"
+           data-tag="Hystrix"
+           data-author="" >
+            <span class="post-title" title="Hystrix断路器">Hystrix断路器</span>
+            <span class="post-date" title="2019-10-09 15:20:30">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Feign负载均衡/"
+           data-tag="Feign"
+           data-author="" >
+            <span class="post-title" title="Feign负载均衡">Feign负载均衡</span>
+            <span class="post-date" title="2019-10-09 15:20:10">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Ribbon负载均衡/"
+           data-tag="Ribbon"
+           data-author="" >
+            <span class="post-title" title="Ribbon负载均衡">Ribbon负载均衡</span>
+            <span class="post-date" title="2019-10-09 15:19:48">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Eureka服务注册与发现/"
+           data-tag="Eureka"
+           data-author="" >
+            <span class="post-title" title="Eureka服务注册与发现">Eureka服务注册与发现</span>
+            <span class="post-date" title="2019-10-09 15:19:23">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/09/27/微服务概述与SpringCloud/"
+           data-tag="微服务概述"
+           data-author="" >
+            <span class="post-title" title="微服务概述与SpringCloud">微服务概述与SpringCloud</span>
+            <span class="post-date" title="2019-09-27 22:31:58">2019/09/27</span>
+        </a>
+        
+        <a  class="分布式 "
+           href="/2019/09/26/SpringBoot与分布式-doubbo-springcloud/"
+           data-tag="doubbo、springcloud基础"
+           data-author="" >
+            <span class="post-title" title="分布式doubbo、springcloud初体验">分布式doubbo、springcloud初体验</span>
+            <span class="post-date" title="2019-09-26 19:05:02">2019/09/26</span>
+        </a>
+        
+        <a  class="项目监控 "
+           href="/2019/09/26/SpringBoot-项目监控/"
+           data-tag="SpringBoot监控actuator"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 项目监控actuator">SpringBoot 项目监控actuator</span>
+            <span class="post-date" title="2019-09-26 00:32:43">2019/09/26</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/25/SpringBoot-热部署/"
+           data-tag="SpringBoot热部署"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 热部署">SpringBoot 热部署</span>
+            <span class="post-date" title="2019-09-25 23:45:41">2019/09/25</span>
+        </a>
+        
+        <a  class="安全 "
+           href="/2019/09/25/SpringBoot安全控制-SpringSecurity/"
+           data-tag="Spring安全Security"
+           data-author="" >
+            <span class="post-title" title="安全控制(SpringSecurity)-SpringBoot">安全控制(SpringSecurity)-SpringBoot</span>
+            <span class="post-date" title="2019-09-25 22:05:45">2019/09/25</span>
+        </a>
+        
+        <a  class="异步任务 "
+           href="/2019/09/25/SpringBoot任务-异步、定时、邮件/"
+           data-tag="SpringBoot任务异步、定时、邮件"
+           data-author="" >
+            <span class="post-title" title="SpringBoot任务(异步、定时、邮件)">SpringBoot任务(异步、定时、邮件)</span>
+            <span class="post-date" title="2019-09-25 20:50:30">2019/09/25</span>
+        </a>
+        
+        <a  class="检索 "
+           href="/2019/09/25/SpringBoot与检索-Elasticsearch-基础/"
+           data-tag="Elasticsearch和SpringBoot"
+           data-author="" >
+            <span class="post-title" title="检索(Elasticsearch)基础-SpringBoot">检索(Elasticsearch)基础-SpringBoot</span>
+            <span class="post-date" title="2019-09-25 17:55:42">2019/09/25</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/09/25/SpringBoot与消息队列/"
+           data-tag="SpringBoot与消息队列"
+           data-author="" >
+            <span class="post-title" title="消息队列、RabbitMQ-SpringBoot">消息队列、RabbitMQ-SpringBoot</span>
+            <span class="post-date" title="2019-09-25 13:10:06">2019/09/25</span>
+        </a>
+        
+        <a  class="缓存 "
+           href="/2019/09/24/SpringBoot与缓存-原生缓存-Redis/"
+           data-tag="SpringBoot使用缓存(JCache/Redis)"
+           data-author="" >
+            <span class="post-title" title="缓存(原生缓存/Redis)-SpringBoot">缓存(原生缓存/Redis)-SpringBoot</span>
+            <span class="post-date" title="2019-09-24 22:05:34">2019/09/24</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/24/SpringBoot自定义Starter/"
+           data-tag="SpringBoot自定义Starter"
+           data-author="" >
+            <span class="post-title" title="SpringBoot自定义Starter">SpringBoot自定义Starter</span>
+            <span class="post-date" title="2019-09-24 00:56:57">2019/09/24</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/24/SpringBoot启动配置原理源码解析/"
+           data-tag="SpringBoot启动原理源码"
+           data-author="" >
+            <span class="post-title" title="SpringBoot启动配置原理源码解析">SpringBoot启动配置原理源码解析</span>
+            <span class="post-date" title="2019-09-24 00:56:30">2019/09/24</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/23/SpringBoot与数据访问/"
+           data-tag="SpringBoot和JDBC和Mybatis和Druid"
+           data-author="" >
+            <span class="post-title" title="SpringBoot与数据访问">SpringBoot与数据访问</span>
+            <span class="post-date" title="2019-09-23 21:57:11">2019/09/23</span>
+        </a>
+        
+        <a  class="Docker "
+           href="/2019/09/20/Docker基础/"
+           data-tag="Docker基础"
+           data-author="" >
+            <span class="post-title" title="Docker基础">Docker基础</span>
+            <span class="post-date" title="2019-09-20 19:25:30">2019/09/20</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/20/SpringBoot-CRUD实践（国际化，登录拦截）/"
+           data-tag="SpringBoot国际化、登录拦截、CRUD"
+           data-author="" >
+            <span class="post-title" title="SpringBoot CRUD实践 （国际化，登录拦截）">SpringBoot CRUD实践 （国际化，登录拦截）</span>
+            <span class="post-date" title="2019-09-20 10:46:09">2019/09/20</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-内嵌容器个性化配置和外部容器配置及原理/"
+           data-tag="SpringBoot内嵌容器个性化"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 内嵌容器个性化配置和外部容器配置及原理">SpringBoot 内嵌容器个性化配置和外部容器配置及原理</span>
+            <span class="post-date" title="2019-09-19 23:46:07">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-错误响应个性化配置/"
+           data-tag="SpringBoot订制错误响应"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 错误响应个性化配置">SpringBoot 错误响应个性化配置</span>
+            <span class="post-date" title="2019-09-19 23:45:03">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-SpringMVC个性化配置/"
+           data-tag="SpringBoot MVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringBoot SpringMVC个性化配置">SpringBoot SpringMVC个性化配置</span>
+            <span class="post-date" title="2019-09-19 23:40:19">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot模板引擎Thymeleaf/"
+           data-tag="Thymeleaf"
+           data-author="" >
+            <span class="post-title" title="SpringBoot模板引擎Thymeleaf">SpringBoot模板引擎Thymeleaf</span>
+            <span class="post-date" title="2019-09-19 23:39:43">2019/09/19</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/19/SpringBoot静态资源映射规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringBoot静态资源映射规则">SpringBoot静态资源映射规则</span>
+            <span class="post-date" title="2019-09-19 23:39:07">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot日志/"
+           data-tag="SpringBoot日志"
+           data-author="" >
+            <span class="post-title" title="SpringBoot日志">SpringBoot日志</span>
+            <span class="post-date" title="2019-09-18 15:51:26">2019/09/18</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot配置/"
+           data-tag="SpringBoot配置"
+           data-author="" >
+            <span class="post-title" title="SpringBoot配置">SpringBoot配置</span>
+            <span class="post-date" title="2019-09-18 15:51:07">2019/09/18</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot入门HelloWorld搭建/"
+           data-tag="SpringBootHelloWorld"
+           data-author="" >
+            <span class="post-title" title="SpringBoot入门HelloWorld搭建">SpringBoot入门HelloWorld搭建</span>
+            <span class="post-date" title="2019-09-18 15:50:23">2019/09/18</span>
+        </a>
+        
+        <a  class="环境 "
+           href="/2019/09/17/Intellij-2019-破解/"
+           data-tag="Intellij破解"
+           data-author="" >
+            <span class="post-title" title="Intellij 2019 破解">Intellij 2019 破解</span>
+            <span class="post-date" title="2019-09-17 17:17:24">2019/09/17</span>
+        </a>
+        
+        <a  class="环境 "
+           href="/2019/09/17/Mac-jdk-环境变量配置/"
+           data-tag="mac_Jdk"
+           data-author="" >
+            <span class="post-title" title="Mac jdk 环境变量配置">Mac jdk 环境变量配置</span>
+            <span class="post-date" title="2019-09-17 16:02:32">2019/09/17</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/17/Spring-Boot-基础/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="Spring Boot 基础">Spring Boot 基础</span>
+            <span class="post-date" title="2019-09-17 15:12:18">2019/09/17</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-Eureka服务注册与发现" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Eureka服务注册与发现</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="SpringCloud">SpringCloud</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color2">Eureka</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-10-09 17:17:47'>2019-10-09 15:19</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、什么是Eureka"><span class="toc-text">一、什么是Eureka</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、原理"><span class="toc-text">二、原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Eureka基础架构"><span class="toc-text">1. Eureka基础架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Eureka三大角色"><span class="toc-text">2.Eureka三大角色</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、构建步骤"><span class="toc-text">三、构建步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Eureka服务注册中心搭建"><span class="toc-text">1. Eureka服务注册中心搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-pom文件依赖引入"><span class="toc-text">1. pom文件依赖引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-yml-配置"><span class="toc-text">2. yml 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-启动类修改"><span class="toc-text">3. 启动类修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-测试"><span class="toc-text">4.测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-服务注册-提供者Provider"><span class="toc-text">2.服务注册-提供者Provider</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-pom文件依赖引入-1"><span class="toc-text">1. pom文件依赖引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-yml-配置-1"><span class="toc-text">2. yml 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-启动类修改-1"><span class="toc-text">3. 启动类修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-测试-1"><span class="toc-text">4.测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-actuator与注册微服务信息完善"><span class="toc-text">3.actuator与注册微服务信息完善</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-主机名称-服务名称修改"><span class="toc-text">1. 主机名称-服务名称修改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改yml-instance-id"><span class="toc-text">修改yml(instance-id)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果验证"><span class="toc-text">结果验证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-访问信息有IP信息提示"><span class="toc-text">2. 访问信息有IP信息提示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题描述-1"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改yml-prefer-ip-address"><span class="toc-text">修改yml( prefer-ip-address)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果验证-1"><span class="toc-text">结果验证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-微服务info内容详细信息"><span class="toc-text">3. 微服务info内容详细信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题描述-2"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改provider的pom"><span class="toc-text">修改provider的pom</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改父工程的pom添加-可以获取工程信息"><span class="toc-text">修改父工程的pom添加$可以获取工程信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改provider的yml"><span class="toc-text">修改provider的yml</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Eureka自我保护"><span class="toc-text">4.Eureka自我保护</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是自我保护模式"><span class="toc-text">1.什么是自我保护模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、集群配置"><span class="toc-text">四、集群配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新建三个工程"><span class="toc-text">1.新建三个工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改pom"><span class="toc-text">2.修改pom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-修改启动类"><span class="toc-text">3.修改启动类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-修改本地host文件"><span class="toc-text">4.修改本地host文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-yml配置-主要是hostname和defaultZone"><span class="toc-text">5.yml配置(主要是hostname和defaultZone)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-服务提供者修改成集群模式yml"><span class="toc-text">6.服务提供者修改成集群模式yml</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、什么是Eureka"><a href="#一、什么是Eureka" class="headerlink" title="一、什么是Eureka"></a>一、什么是Eureka</h1><p><strong>Eureka是什么</strong> </p>
+<p>Eureka是Netflix的一个子模块，也是核心模块之一。Eureka是一个基于REST的服务，用于定位服务，以实现云端中间层服务发现和故障转移。 </p>
+<p>服务注册与发现对于微服务架构来说是非常重要的，有了服务发现与注册，<code>只需要使用服务的标识符，就可以访问到服务</code>，而不需要修改服务调用的配置文件了。 <code>功能类似于dubbo的注册中心，比如Zookeeper</code>。 </p>
+<p>￼</p>
+<h1 id="二、原理"><a href="#二、原理" class="headerlink" title="二、原理"></a>二、原理</h1><h2 id="1-Eureka基础架构"><a href="#1-Eureka基础架构" class="headerlink" title="1. Eureka基础架构"></a>1. Eureka基础架构</h2><ul>
+<li><p>Spring Cloud 封装了 Netflix 公司开发的 Eureka 模块来 <code>实现服务注册和发现(请对比Zookeeper)。</code></p>
+</li>
+<li><p>Eureka 采用了 C-S 的设计架构。Eureka Server 作为服务注册功能的服务器，它是服务注册中心。 </p>
+</li>
+<li><p>而系统中的其他微服务，使用 Eureka 的客户端连接到 Eureka Server并维持心跳连接。这样系统的维护人员就可以通过 Eureka Server 来监控系统中各个微服务是否正常运行。SpringCloud 的一些其他模块（比如Zuul）就可以通过 Eureka Server 来发现系统中的其他微服务，并执行相关的逻辑。<br>请注意和Dubbo的架构对比 </p>
+</li>
+</ul>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570609846902.png" alt="架构图"><br>￼        ￼ </p>
+<p><code>Eureka包含两个组件：Eureka Server和Eureka Client</code></p>
+<ul>
+<li>Eureka Server提供服务注册服务<br>各个节点启动后，会在EurekaServer中进行注册，这样EurekaServer中的服务注册表中将会存储所有可用服务节点的信息，服务节点的信息可以在界面中直观的看到 </li>
+</ul>
+<ul>
+<li>EurekaClient是一个Java客户端，用于简化Eureka Server的交互，客户端同时也具备一个内置的、使用轮询(round-robin)负载算法的负载均衡器。在应用启动后，将会向Eureka Server发送心跳(默认周期为30秒)。如果Eureka Server在多个心跳周期内没有接收到某个节点的心跳，EurekaServer将会从服务注册表中把这个服务节点移除（默认90秒） </li>
+</ul>
+<h2 id="2-Eureka三大角色"><a href="#2-Eureka三大角色" class="headerlink" title="2.Eureka三大角色"></a>2.Eureka三大角色</h2><ul>
+<li>Eureka Server 提供服务注册和发现</li>
+<li>Service Provider服务提供方将自身服务注册到Eureka，从而使服务消费方能够找到</li>
+<li>Service Consumer服务消费方从Eureka获取注册服务列表，从而能够消费服务</li>
+</ul>
+<h1 id="三、构建步骤"><a href="#三、构建步骤" class="headerlink" title="三、构建步骤"></a>三、构建步骤</h1><h2 id="1-Eureka服务注册中心搭建"><a href="#1-Eureka服务注册中心搭建" class="headerlink" title="1. Eureka服务注册中心搭建"></a>1. Eureka服务注册中心搭建</h2><h3 id="1-pom文件依赖引入"><a href="#1-pom文件依赖引入" class="headerlink" title="1. pom文件依赖引入"></a>1. pom文件依赖引入</h3><pre><code class="xml">   &lt; dependencies &gt; 
+    &lt;!-- eureka -server服务端 --&gt; 
+    &lt; dependency &gt; 
+      &lt; groupId &gt; org.springframework.cloud &lt;/ groupId &gt; 
+      &lt; artifactId &gt; spring-cloud-starter- eureka -server &lt;/ artifactId &gt; 
+    &lt;/ dependency &gt; 
+    &lt;!-- 修改后立即生效，热部署 --&gt; 
+    &lt; dependency &gt; 
+      &lt; groupId &gt; org.springframework &lt;/ groupId &gt; 
+      &lt; artifactId &gt; springloaded &lt;/ artifactId &gt; 
+    &lt;/ dependency &gt; 
+    &lt; dependency &gt; 
+      &lt; groupId &gt; org.springframework.boot &lt;/ groupId &gt; 
+      &lt; artifactId &gt; spring-boot- devtools &lt;/ artifactId &gt; 
+    &lt;/ dependency &gt; 
+   &lt;/ dependencies &gt; </code></pre>
+<h3 id="2-yml-配置"><a href="#2-yml-配置" class="headerlink" title="2. yml 配置"></a>2. yml 配置</h3><pre><code class="yml">server:   
+   port:  7001 
+
+eureka: 
+   instance: 
+     hostname:  localhost  #eureka服务端的实例名称 
+   client: 
+     register-with-eureka:   false   #false表示不向注册中心注册自己。 
+     fetch-registry:   false   #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务 
+     service-url: 
+       defaultZone:  http://${eureka.instance.hostname}:${server.port}/eureka/         #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。 </code></pre>
+<h3 id="3-启动类修改"><a href="#3-启动类修改" class="headerlink" title="3. 启动类修改"></a>3. 启动类修改</h3><pre><code class="java">import  org.springframework.boot.SpringApplication; 
+import  org.springframework.boot.autoconfigure.SpringBootApplication; 
+import  org.springframework.cloud.netflix.eureka.server.EnableEurekaServer; 
+
+@SpringBootApplication 
+@EnableEurekaServer //EurekaServer服务器端启动类,接受其它微服务注册进来 
+public   class  EurekaServer7001_App 
+{ 
+   public   static   void  main(String[]  args ) 
+  { 
+   SpringApplication. run (EurekaServer7001_App. class ,  args ); 
+  } 
+} </code></pre>
+<h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><p>￼<img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570610304049.png" alt="注册中心界面"></p>
+<h2 id="2-服务注册-提供者Provider"><a href="#2-服务注册-提供者Provider" class="headerlink" title="2.服务注册-提供者Provider"></a>2.服务注册-提供者Provider</h2><h3 id="1-pom文件依赖引入-1"><a href="#1-pom文件依赖引入-1" class="headerlink" title="1. pom文件依赖引入"></a>1. pom文件依赖引入</h3><pre><code class="xml">    &lt;!-- 将微服务provider侧注册进 eureka  --&gt; 
+    &lt; dependency &gt; 
+      &lt; groupId &gt; org.springframework.cloud &lt;/ groupId &gt; 
+      &lt; artifactId &gt; spring-cloud-starter- eureka &lt;/ artifactId &gt; 
+    &lt;/ dependency &gt; 
+    &lt; dependency &gt; 
+      &lt; groupId &gt; org.springframework.cloud &lt;/ groupId &gt; 
+      &lt; artifactId &gt; spring-cloud-starter- config &lt;/ artifactId &gt; 
+    &lt;/ dependency &gt; </code></pre>
+<h3 id="2-yml-配置-1"><a href="#2-yml-配置-1" class="headerlink" title="2. yml 配置"></a>2. yml 配置</h3><pre><code class="yml">server: 
+   port:  8001 
+
+mybatis: 
+   config-location:  classpath:mybatis/mybatis.cfg.xml         # mybatis配置文件所在路径 
+   type-aliases-package:  com.atguigu.springcloud.entities     # 所有Entity别名类所在包 
+   mapper-locations: 
+  - classpath:mybatis/mapper/ ** / * .xml                        # mapper映射文件 
+
+spring: 
+    application: 
+     name:  microservicecloud-dept  
+    datasource: 
+     type:  com.alibaba.druid.pool.DruidDataSource             # 当前数据源操作类型 
+     driver-class-name:  org.gjt.mm.mysql.Driver               # mysql驱动包 
+     url:  jdbc:mysql://localhost:3306/cloudDB01               # 数据库名称 
+     username:  root 
+     password:  123456 
+     dbcp2: 
+       min-idle:  5                                            # 数据库连接池的最小维持连接数 
+       initial-size:  5                                        # 初始化连接数 
+       max-total:  5                                           # 最大连接数 
+       max-wait-millis:  200                                   # 等待连接获取的最大超时时间 
+
+eureka: 
+  client: #客户端注册进eureka服务列表内 
+    service-url:  
+      defaultZone: http://localhost:7001/eureka       </code></pre>
+<h3 id="3-启动类修改-1"><a href="#3-启动类修改-1" class="headerlink" title="3. 启动类修改"></a>3. 启动类修改</h3><pre><code class="java">@SpringBootApplication 
+@EnableEurekaClient  //本服务启动后会自动注册进 eureka 服务中 
+public   class  DeptProvider8001_App 
+{ 
+   public   static   void  main(String[]  args ) 
+  { 
+   SpringApplication. run (DeptProvider8001_App. class ,  args ); 
+  } 
+} </code></pre>
+<h3 id="4-测试-1"><a href="#4-测试-1" class="headerlink" title="4.测试"></a>4.测试</h3><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570610641082.png" alt><br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570610659798.png" alt></p>
+<h2 id="3-actuator与注册微服务信息完善"><a href="#3-actuator与注册微服务信息完善" class="headerlink" title="3.actuator与注册微服务信息完善"></a>3.actuator与注册微服务信息完善</h2><h3 id="1-主机名称-服务名称修改"><a href="#1-主机名称-服务名称修改" class="headerlink" title="1. 主机名称-服务名称修改"></a>1. 主机名称-服务名称修改</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>含有主机名称<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570611414730.png" alt="冒号前面"></p>
+<h4 id="修改yml-instance-id"><a href="#修改yml-instance-id" class="headerlink" title="修改yml(instance-id)"></a>修改yml(instance-id)</h4><pre><code class="yml">eureka: 
+   client:   #客户端注册进eureka服务列表内 
+     service-url:   
+       defaultZone:  http://localhost:7001/eureka 
+  instance: 
+    instance-id: microservicecloud-dept8001 </code></pre>
+<h4 id="结果验证"><a href="#结果验证" class="headerlink" title="结果验证"></a>结果验证</h4><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570611495931.png" alt="验证结果"></p>
+<h3 id="2-访问信息有IP信息提示"><a href="#2-访问信息有IP信息提示" class="headerlink" title="2. 访问信息有IP信息提示"></a>2. 访问信息有IP信息提示</h3><h4 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h4><p>没有IP提示</p>
+<h4 id="修改yml-prefer-ip-address"><a href="#修改yml-prefer-ip-address" class="headerlink" title="修改yml( prefer-ip-address)"></a>修改yml( prefer-ip-address)</h4><pre><code class="yml">eureka: 
+   client:   #客户端注册进eureka服务列表内 
+     service-url:   
+       defaultZone:  http://localhost:7001/eureka 
+   instance: 
+     instance-id:  microservicecloud-dept8001    #自定义服务名称信息 
+     prefer-ip-address:  true      #访问路径可以显示IP地址 </code></pre>
+<h4 id="结果验证-1"><a href="#结果验证-1" class="headerlink" title="结果验证"></a>结果验证</h4><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570611665687.png" alt="IP显示"></p>
+<h3 id="3-微服务info内容详细信息"><a href="#3-微服务info内容详细信息" class="headerlink" title="3. 微服务info内容详细信息"></a>3. 微服务info内容详细信息</h3><h4 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h4><p>超链接点击服务报告ErrorPage</p>
+<h4 id="修改provider的pom"><a href="#修改provider的pom" class="headerlink" title="修改provider的pom"></a>修改provider的pom</h4><pre><code class="xml">&lt; dependency &gt; 
+        &lt; groupId &gt; org.springframework.boot &lt;/ groupId &gt; 
+        &lt; artifactId &gt; spring-boot-starter-actuator &lt;/ artifactId &gt; 
+    &lt;/ dependency &gt; </code></pre>
+<h4 id="修改父工程的pom添加-可以获取工程信息"><a href="#修改父工程的pom添加-可以获取工程信息" class="headerlink" title="修改父工程的pom添加$可以获取工程信息"></a>修改父工程的pom添加$可以获取工程信息</h4><pre><code class="xml">&lt; build &gt; 
+    &lt; finalName &gt; microservicecloud &lt;/ finalName &gt; 
+    &lt; resources &gt; 
+      &lt; resource &gt; 
+        &lt; directory &gt; src /main/resources &lt;/ directory &gt; 
+        &lt; filtering &gt; true &lt;/ filtering &gt; 
+      &lt;/ resource &gt; 
+    &lt;/ resources &gt; 
+    &lt; plugins &gt; 
+      &lt; plugin &gt; 
+        &lt; groupId &gt; org.apache.maven.plugins &lt;/ groupId &gt; 
+        &lt; artifactId &gt; maven -resources- plugin &lt;/ artifactId &gt; 
+        &lt; configuration &gt; 
+          &lt; delimiters &gt; 
+           &lt; delimit &gt; $ &lt;/ delimit &gt; 
+          &lt;/ delimiters &gt; 
+        &lt;/ configuration &gt; 
+      &lt;/ plugin &gt; 
+    &lt;/ plugins &gt; 
+   &lt;/ build &gt; </code></pre>
+<h4 id="修改provider的yml"><a href="#修改provider的yml" class="headerlink" title="修改provider的yml"></a>修改provider的yml</h4><pre><code class="yml">info: 
+   app.name:  atguigu-microservicecloud 
+   company.name:  www.sender.com 
+   build.artifactId:  $project.artifactId$ 
+   build.version:  $project.version$ </code></pre>
+<h2 id="4-Eureka自我保护"><a href="#4-Eureka自我保护" class="headerlink" title="4.Eureka自我保护"></a>4.Eureka自我保护</h2><h3 id="1-什么是自我保护模式"><a href="#1-什么是自我保护模式" class="headerlink" title="1.什么是自我保护模式"></a>1.什么是自我保护模式</h3><ul>
+<li><p>默认情况下，如果EurekaServer在一定时间内没有接收到某个微服务实例的心跳，EurekaServer将会注销该实例（默认90秒）。但是当网络分区故障发生时，微服务与EurekaServer之间无法正常通信，以上行为可能变得非常危险了——因为微服务本身其实是健康的， <code>此时本不应该注销这个微服务</code> 。Eureka通过“自我保护模式”来解决这个问题——当EurekaServer节点在短时间内丢失过多客户端时（可能发生了网络分区故障），那么这个节点就会进入自我保护模式。一旦进入该模式，EurekaServer就会保护服务注册表中的信息，不再删除服务注册表中的数据（也就是不会注销任何微服务）。当网络故障恢复后，该Eureka Server节点会自动退出自我保护模式。 </p>
+</li>
+<li><p><code>在自我保护模式中，Eureka Server会保护服务注册表中的信息，不再注销任何服务实例。当它收到的心跳数重新恢复到阈值以上时，该Eureka Server节点就会自动退出自我保护模式。它的设计哲学就是宁可保留错误的服务注册信息，也不盲目注销任何可能健康的服务实例。一句话讲解：好死不如赖活着</code></p>
+</li>
+<li><p>综上，自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务（健康的微服务和不健康的微服务都会保留），也不盲目注销任何健康的微服务。使用自我保护模式，可以让Eureka集群更加的健壮、稳定。 </p>
+</li>
+<li><p>在Spring Cloud中，可以使用eureka.server.enable-self-preservation = false 禁用自我保护模式。<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570612173281.png" alt="enter description here"><br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570612180176.png" alt="enter description here"></p>
+</li>
+</ul>
+<h1 id="四、集群配置"><a href="#四、集群配置" class="headerlink" title="四、集群配置"></a>四、集群配置</h1><h3 id="1-新建三个工程"><a href="#1-新建三个工程" class="headerlink" title="1.新建三个工程"></a>1.新建三个工程</h3><h3 id="2-修改pom"><a href="#2-修改pom" class="headerlink" title="2.修改pom"></a>2.修改pom</h3><h3 id="3-修改启动类"><a href="#3-修改启动类" class="headerlink" title="3.修改启动类"></a>3.修改启动类</h3><h3 id="4-修改本地host文件"><a href="#4-修改本地host文件" class="headerlink" title="4.修改本地host文件"></a>4.修改本地host文件</h3><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570612611592.png" alt="enter description here"></p>
+<h3 id="5-yml配置-主要是hostname和defaultZone"><a href="#5-yml配置-主要是hostname和defaultZone" class="headerlink" title="5.yml配置(主要是hostname和defaultZone)"></a>5.yml配置(主要是hostname和defaultZone)</h3><pre><code class="yml">server:   
+   port:  7001 
+
+eureka:   
+   instance: 
+     hostname: eureka7001.com #eureka服务端的实例名称 
+   client:   
+     register-with-eureka:   false       #false表示不向注册中心注册自己。 
+     fetch-registry:   false       #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务 
+     service-url:   
+       #单机 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/       #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址（单机）。 
+       defaultZone:  http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ </code></pre>
+<h3 id="6-服务提供者修改成集群模式yml"><a href="#6-服务提供者修改成集群模式yml" class="headerlink" title="6.服务提供者修改成集群模式yml"></a>6.服务提供者修改成集群模式yml</h3><pre><code class="yml">server: 
+   port:  8001 
+
+mybatis: 
+   config-location:  classpath:mybatis/mybatis.cfg.xml   #mybatis所在路径 
+   type-aliases-package:  com.atguigu.springcloud.entities  #entity别名类 
+   mapper-locations: 
+  - classpath:mybatis/mapper/ ** / * .xml  #mapper映射文件 
+
+spring: 
+    application: 
+     name:  microservicecloud-dept  
+    datasource: 
+     type:  com.alibaba.druid.pool.DruidDataSource 
+     driver-class-name:  org.gjt.mm.mysql.Driver 
+     url:  jdbc:mysql://localhost:3306/cloudDB01 
+     username:  root 
+     password:  123456 
+     dbcp2: 
+       min-idle:  5 
+       initial-size:  5 
+       max-total:  5 
+       max-wait-millis:  200 
+
+eureka: 
+   client:   #客户端注册进eureka服务列表内 
+     service-url:   
+       defaultZone:   http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ 
+   instance: 
+     instance-id:  microservicecloud-dept8001    #自定义服务名称信息 
+     prefer-ip-address:   true       #访问路径可以显示IP地址 
+
+info: 
+   app.name:  atguigu-microservicecloud 
+   company.name:  www.atguigu.com 
+   build.artifactId:  $project.artifactId$ 
+   build.version:  $project.version$ </code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Eureka服务注册与发现</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">2.3k</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-10-09, 15:19:23</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-09, 17:17:47</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/09/Eureka服务注册与发现/" title="Eureka服务注册与发现">http://yoursite.com/2019/10/09/Eureka服务注册与发现/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '7386c7ecad1c54869b2c',
+            clientSecret: 'e6ebab707b9f5f896922bc54a16ae8e4fac62bfa',
+            repo: '18846433665.github.io',
+            owner: '18846433665',
+            admin: ['18846433665'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2019 xushengcai</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#Feign','#博客','#Docker基础','#mac_Jdk','#Hystrix','#Intellij破解','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#Zuul','#微服务概述','#Eureka','#SpringBoot订制错误响应','#SpringBootHelloWorld','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
