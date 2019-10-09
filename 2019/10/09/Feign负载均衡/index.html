@@ -99,14 +99,6 @@
     
         
             
-            <li><div data-rel="博客">博客<small>(3)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="Docker">Docker<small>(1)</small></div>
                 
             </li>
@@ -116,6 +108,14 @@
         
             
             <li><div data-rel="环境">环境<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
             
@@ -163,7 +163,7 @@
     
         
             
-            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+            <li><div data-rel="缓存">缓存<small>(1)</small></div>
                 
             </li>
             
@@ -171,7 +171,7 @@
     
         
             
-            <li><div data-rel="缓存">缓存<small>(1)</small></div>
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
                 
             </li>
             
@@ -195,7 +195,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="33">
-<input type="hidden" id="yelog_site_word_count" value="43.1k">
+<input type="hidden" id="yelog_site_word_count" value="44k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -231,7 +231,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color3">Hystrix</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -239,15 +239,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">mac_Jdk</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Hystrix</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">Intellij破解</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">mac_Jdk</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -259,11 +259,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot热部署</a>
+        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
+        <a href="javascript:" class="color4">SpringBoot热部署</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -279,11 +279,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
+        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
+        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -311,7 +311,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
+        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -319,7 +319,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
+        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -660,12 +660,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-09 15:27:15'>2019-10-09 15:20</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-09 18:26:47'>2019-10-09 15:20</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:919</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -684,7 +684,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、概述"><span class="toc-text">一、概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-官网解释"><span class="toc-text">1. 官网解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Feign能干什么"><span class="toc-text">2. Feign能干什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Feign集成了Ribbon"><span class="toc-text">3. Feign集成了Ribbon</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Feign使用步骤"><span class="toc-text">二、Feign使用步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-新建消费者工程和Eureka、Ribbon关联"><span class="toc-text">1. 新建消费者工程和Eureka、Ribbon关联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-pom引入Feign"><span class="toc-text">2. pom引入Feign</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-接口定义FeignClient"><span class="toc-text">3. 接口定义FeignClient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Autowired引用接口"><span class="toc-text">4. @Autowired引用接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-启动类添加EnableFeignClients"><span class="toc-text">5. 启动类添加EnableFeignClients</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-总结"><span class="toc-text">6. 总结</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -699,7 +699,87 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><h2 id="1-官网解释"><a href="#1-官网解释" class="headerlink" title="1. 官网解释"></a>1. 官网解释</h2><p><a href="http://projects.spring.io/spring-cloud/spring-cloud.html#spring-cloud-feign" target="_blank" rel="noopener">http://projects.spring.io/spring-cloud/spring-cloud.html#spring-cloud-feign</a><br>Feign是一个声明式WebService客户端。使用Feign能让编写Web Service客户端更加简单, 它的使用方法是定义一个接口，然后在上面添加注解，同时也支持JAX-RS标准的注解。Feign也支持可拔插式的编码器和解码器。Spring Cloud对Feign进行了封装，使其支持了Spring MVC标准注解和HttpMessageConverters。Feign可以与Eureka和Ribbon组合使用以支持负载均衡。<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1570616060171.png" alt><br>Feign是一个声明式的Web服务客户端，使得编写Web服务客户端变得非常容易，<br><code>只需要创建一个接口，然后在上面添加注解即可</code><br>参考官网：<a href="https://github.com/OpenFeign/feign" target="_blank" rel="noopener">https://github.com/OpenFeign/feign</a> </p>
+<h2 id="2-Feign能干什么"><a href="#2-Feign能干什么" class="headerlink" title="2. Feign能干什么"></a>2. Feign能干什么</h2><p>Feign旨在使编写Java Http客户端变得更容易。<br>前面在使用Ribbon+RestTemplate时，利用RestTemplate对http请求的封装处理，形成了一套模版化的调用方法。但是在实际开发中，由于对服务依赖的调用可能不止一处， <code>往往一个接口会被多处调用，所以通常都会针对每个微服务自行封装一些客户端类来包装这些依赖服务的调用。</code> 所以，Feign在此基础上做了进一步封装，由他来帮助我们定义和实现依赖服务接口的定义。在Feign的实现下， <code>我们只需创建一个接口并使用注解的方式来配置它(以前是Dao接口上面标注Mapper注解,现在是一个微服务接口上面标注一个Feign注解即可)</code> ，即可完成对服务提供方的接口绑定，简化了使用Spring cloud Ribbon时，自动封装服务调用客户端的开发量。</p>
+<h2 id="3-Feign集成了Ribbon"><a href="#3-Feign集成了Ribbon" class="headerlink" title="3. Feign集成了Ribbon"></a>3. Feign集成了Ribbon</h2><p>利用Ribbon维护了MicroServiceCloud-Dept的服务列表信息，并且通过轮询实现了客户端的负载均衡。而与Ribbon不同的是， <code>通过feign只需要定义服务绑定接口且以声明式的方法</code>，优雅而简单的实现了服务调用 </p>
+<h1 id="二、Feign使用步骤"><a href="#二、Feign使用步骤" class="headerlink" title="二、Feign使用步骤"></a>二、Feign使用步骤</h1><h2 id="1-新建消费者工程和Eureka、Ribbon关联"><a href="#1-新建消费者工程和Eureka、Ribbon关联" class="headerlink" title="1. 新建消费者工程和Eureka、Ribbon关联"></a>1. 新建消费者工程和Eureka、Ribbon关联</h2><h2 id="2-pom引入Feign"><a href="#2-pom引入Feign" class="headerlink" title="2. pom引入Feign"></a>2. pom引入Feign</h2><pre><code class="xml">    &lt; dependency &gt; 
+        &lt; groupId &gt; org.springframework.cloud &lt;/ groupId &gt; 
+        &lt; artifactId &gt; spring-cloud-starter-feign &lt;/ artifactId &gt; 
+    &lt;/ dependency &gt; </code></pre>
+<h2 id="3-接口定义FeignClient"><a href="#3-接口定义FeignClient" class="headerlink" title="3. 接口定义FeignClient"></a>3. 接口定义FeignClient</h2><pre><code class="java">import  java.util.List; 
+import  org.springframework.cloud.netflix.feign.FeignClient; 
+import  org.springframework.web.bind.annotation.PathVariable; 
+import  org.springframework.web.bind.annotation.RequestMapping; 
+import  org.springframework.web.bind.annotation.RequestMethod; 
+import  com.atguigu.springcloud.entities.Dept; 
+
+@FeignClient (value =  &quot;MICROSERVICECLOUD-DEPT&quot; ) 
+public   interface  DeptClientService 
+{ 
+   @RequestMapping (value =  &quot;/dept/get/{id}&quot; ,method = RequestMethod. GET ) 
+   public  Dept get( @PathVariable ( &quot;id&quot; )  long   id ); 
+
+   @RequestMapping (value =  &quot;/dept/list&quot; ,method = RequestMethod. GET ) 
+   public  List&lt;Dept&gt; list(); 
+
+   @RequestMapping (value =  &quot;/dept/add&quot; ,method = RequestMethod. POST ) 
+   public   boolean  add(Dept  dept ); 
+} </code></pre>
+<h2 id="4-Autowired引用接口"><a href="#4-Autowired引用接口" class="headerlink" title="4. @Autowired引用接口"></a>4. @Autowired引用接口</h2><pre><code class="java">import  java.util.List; 
+import  org.springframework.beans.factory.annotation.Autowired; 
+import  org.springframework.web.bind.annotation.PathVariable; 
+import  org.springframework.web.bind.annotation.RequestMapping; 
+import  org.springframework.web.bind.annotation.RestController; 
+import  com.atguigu.springcloud.entities.Dept; 
+import  com.atguigu.springcloud.service.DeptClientService; 
+
+@RestController 
+public   class  DeptController_Feign 
+{ 
+   @Autowired 
+   private  DeptClientService service =  null ; 
+
+   @RequestMapping (value =  &quot;/consumer/dept/get/{id}&quot; ) 
+   public  Dept get( @PathVariable ( &quot;id&quot; ) Long  id ) 
+  { 
+    return   this . service .get( id ); 
+  } 
+
+   @RequestMapping (value =  &quot;/consumer/dept/list&quot; ) 
+   public  List&lt;Dept&gt; list() 
+  { 
+    return   this . service .list(); 
+  } 
+
+   @RequestMapping (value =  &quot;/consumer/dept/add&quot; ) 
+   public  Object add(Dept  dept ) 
+  { 
+    return   this . service .add( dept ); 
+  } 
+} </code></pre>
+<h2 id="5-启动类添加EnableFeignClients"><a href="#5-启动类添加EnableFeignClients" class="headerlink" title="5. 启动类添加EnableFeignClients"></a>5. 启动类添加EnableFeignClients</h2><pre><code class="java">import  org.springframework.boot.SpringApplication; 
+import  org.springframework.boot.autoconfigure.SpringBootApplication; 
+import  org.springframework.cloud.netflix.eureka.EnableEurekaClient; 
+import  org.springframework.cloud.netflix.feign.EnableFeignClients; 
+
+
+@SpringBootApplication 
+@EnableEurekaClient 
+@EnableFeignClients(basePackages= {&quot;com.sender.springcloud&quot;}) 
+@ComponentScan(&quot;com.sender.springcloud&quot;) 
+public   class  DeptConsumer80_Feign_App 
+{ 
+   public   static   void  main(String[]  args ) 
+  { 
+   SpringApplication. run (DeptConsumer80_Feign_App. class ,  args ); 
+  } 
+} </code></pre>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><ul>
+<li><code>Feign通过接口的方法调用Rest服务(之前是Ribbon+RestTemplate)</code> ， </li>
+<li>该请求发送给Eureka服务器（<a href="http://MICROSERVICECLOUD-DEPT/dept/list）" target="_blank" rel="noopener">http://MICROSERVICECLOUD-DEPT/dept/list）</a>, </li>
+<li>通过Feign直接找到服务接口，由于在进行服务调用的时候融合了Ribbon技术，所以也支持负载均衡作用。 </li>
+</ul>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
     </div>
@@ -713,10 +793,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>Feign负载均衡</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">919</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-09, 15:20:10</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-09, 15:27:15</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-09, 18:26:47</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/09/Feign负载均衡/" title="Feign负载均衡">http://yoursite.com/2019/10/09/Feign负载均衡/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -799,7 +879,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Feign','#博客','#Docker基础','#mac_Jdk','#Hystrix','#Intellij破解','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#Zuul','#微服务概述','#Eureka','#SpringBoot订制错误响应','#SpringBootHelloWorld','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#Feign','#Hystrix','#Docker基础','#Intellij破解','#博客','#mac_Jdk','#Ribbon','#SpringBoot MVC配置','#SpringBoot监控actuator','#SpringBoot热部署','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot启动原理源码','#SpringBoot任务异步、定时、邮件','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#Zuul','#微服务概述','#Eureka','#SpringBoot订制错误响应','#SpringBoot使用缓存(JCache/Redis)','#SpringBoot与消息队列','#SpringBootHelloWorld','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

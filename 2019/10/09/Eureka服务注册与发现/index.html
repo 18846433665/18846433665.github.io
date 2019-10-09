@@ -99,14 +99,6 @@
     
         
             
-            <li><div data-rel="博客">博客<small>(3)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="Docker">Docker<small>(1)</small></div>
                 
             </li>
@@ -116,6 +108,14 @@
         
             
             <li><div data-rel="环境">环境<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
             
@@ -163,7 +163,7 @@
     
         
             
-            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+            <li><div data-rel="缓存">缓存<small>(1)</small></div>
                 
             </li>
             
@@ -171,7 +171,7 @@
     
         
             
-            <li><div data-rel="缓存">缓存<small>(1)</small></div>
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
                 
             </li>
             
@@ -195,7 +195,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="33">
-<input type="hidden" id="yelog_site_word_count" value="43.1k">
+<input type="hidden" id="yelog_site_word_count" value="44k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -231,7 +231,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color3">Hystrix</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -239,15 +239,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">mac_Jdk</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Hystrix</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">Intellij破解</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">mac_Jdk</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -259,11 +259,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot热部署</a>
+        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
+        <a href="javascript:" class="color4">SpringBoot热部署</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -279,11 +279,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
+        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
+        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -311,7 +311,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
+        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -319,7 +319,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
+        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -660,7 +660,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-09 17:17:47'>2019-10-09 15:19</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-09 17:57:22'>2019-10-09 15:19</time>
         
     </div>
     <div class="article-meta">
@@ -701,8 +701,7 @@
       
         <h1 id="一、什么是Eureka"><a href="#一、什么是Eureka" class="headerlink" title="一、什么是Eureka"></a>一、什么是Eureka</h1><p><strong>Eureka是什么</strong> </p>
 <p>Eureka是Netflix的一个子模块，也是核心模块之一。Eureka是一个基于REST的服务，用于定位服务，以实现云端中间层服务发现和故障转移。 </p>
-<p>服务注册与发现对于微服务架构来说是非常重要的，有了服务发现与注册，<code>只需要使用服务的标识符，就可以访问到服务</code>，而不需要修改服务调用的配置文件了。 <code>功能类似于dubbo的注册中心，比如Zookeeper</code>。 </p>
-<p>￼</p>
+<p>服务注册与发现对于微服务架构来说是非常重要的，有了服务发现与注册，<code>只需要使用服务的标识符，就可以访问到服务</code>，而不需要修改服务调用的配置文件了.<code>功能类似于dubbo的注册中心，比如Zookeeper</code>。<br>￼</p>
 <h1 id="二、原理"><a href="#二、原理" class="headerlink" title="二、原理"></a>二、原理</h1><h2 id="1-Eureka基础架构"><a href="#1-Eureka基础架构" class="headerlink" title="1. Eureka基础架构"></a>1. Eureka基础架构</h2><ul>
 <li><p>Spring Cloud 封装了 Netflix 公司开发的 Eureka 模块来 <code>实现服务注册和发现(请对比Zookeeper)。</code></p>
 </li>
@@ -936,7 +935,7 @@ info:
     <p><span class="copy-title">文章字数:</span><span class="post-count">2.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-09, 15:19:23</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-09, 17:17:47</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-09, 17:57:22</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/09/Eureka服务注册与发现/" title="Eureka服务注册与发现">http://yoursite.com/2019/10/09/Eureka服务注册与发现/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -1019,7 +1018,7 @@ info:
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Feign','#博客','#Docker基础','#mac_Jdk','#Hystrix','#Intellij破解','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#Zuul','#微服务概述','#Eureka','#SpringBoot订制错误响应','#SpringBootHelloWorld','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#Feign','#Hystrix','#Docker基础','#Intellij破解','#博客','#mac_Jdk','#Ribbon','#SpringBoot MVC配置','#SpringBoot监控actuator','#SpringBoot热部署','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot启动原理源码','#SpringBoot任务异步、定时、邮件','#SpringBoot自定义Starter','#小书匠MarkDown图床配置','#Zuul','#微服务概述','#Eureka','#SpringBoot订制错误响应','#SpringBoot使用缓存(JCache/Redis)','#SpringBoot与消息队列','#SpringBootHelloWorld','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
