@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>分布式doubbo、springcloud初体验 | XuShengcai</title>
-  <meta name="keywords" content=" doubbo、springcloud基础 ">
-  <meta name="description" content="分布式doubbo、springcloud初体验 | XuShengcai">
+  <title>Kubernetes入门 | XuShengcai</title>
+  <meta name="keywords" content=" k8s ">
+  <meta name="description" content="Kubernetes入门 | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="keywords" content="k8s">
 <meta property="og:type" content="article">
@@ -680,9 +680,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-SpringBoot与分布式-doubbo-springcloud" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Kubernetes入门" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">分布式doubbo、springcloud初体验</h1>
+        <h1 class="article-title">Kubernetes入门</h1>
     
     <div class="article-meta">
         
@@ -690,26 +690,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="分布式">分布式</a>
+                <a href="javascript:" data-rel="Kubernetes">Kubernetes</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color1">doubbo、springcloud基础</a>
+            <a href="javascript:" class="color4">k8s</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-27 15:23:22'>2019-09-26 19:05</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-10 17:02:25'>2019-10-10 17:01</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.4k</span>
+        <span>字数:0</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -728,7 +728,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Boot与分布式"><span class="toc-text">Spring Boot与分布式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、概览"><span class="toc-text">一、概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-系统迭代升级过程"><span class="toc-text">1.系统迭代升级过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Zookeeper、Dubbo实现分布式系统"><span class="toc-text">二、Zookeeper、Dubbo实现分布式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概览"><span class="toc-text">1. 概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dubbo实现分布式架构"><span class="toc-text">2.Dubbo实现分布式架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-SpringBoot整合Zoopkeeper和Duboo案例"><span class="toc-text">3. SpringBoot整合Zoopkeeper和Duboo案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-docker安装zookeeper作为注册中心"><span class="toc-text">1. docker安装zookeeper作为注册中心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-引入依赖dubbo和zkclient"><span class="toc-text">2. 引入依赖dubbo和zkclient</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-配置dubbo扫描和zookeeper地址"><span class="toc-text">3. 配置dubbo扫描和zookeeper地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Provider发布服务到注册中心"><span class="toc-text">4. Provider发布服务到注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-先写接口interface供消费者使用"><span class="toc-text">1. 先写接口interface供消费者使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-再写实现类用-Servic发布服务"><span class="toc-text">2. 再写实现类用@Servic发布服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Consumer消费注册中心服务"><span class="toc-text">5. Consumer消费注册中心服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-引入依赖dubbo和zkclient（通上）"><span class="toc-text">1. 引入依赖dubbo和zkclient（通上）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-配置dubbo的名字和zookeeper地址"><span class="toc-text">2. 配置dubbo的名字和zookeeper地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-消费服务"><span class="toc-text">3. 消费服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-编写和provider相同的接口类（同上）"><span class="toc-text">1. 编写和provider相同的接口类（同上）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-利用-Reference注解注入消费"><span class="toc-text">2. 利用@Reference注解注入消费</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、SpringCloud实现分布式系统"><span class="toc-text">三、SpringCloud实现分布式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概要"><span class="toc-text">1. 概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-SpringCloud五大常用组件"><span class="toc-text">2. SpringCloud五大常用组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-SpringBoot整合SpringCloud案例"><span class="toc-text">3. SpringBoot整合SpringCloud案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Eureka注册中心搭建"><span class="toc-text">1. Eureka注册中心搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-引入依赖"><span class="toc-text">1. 引入依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-配置端口、名字、地址"><span class="toc-text">2. 配置端口、名字、地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-开启服务-EnableEurekaServer"><span class="toc-text">3.开启服务@EnableEurekaServer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-访问测试是否配置成功"><span class="toc-text">4.访问测试是否配置成功</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Provider服务提供者搭建"><span class="toc-text">2. Provider服务提供者搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-引入依赖-1"><span class="toc-text">1. 引入依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-配置eureka信息和自身应用"><span class="toc-text">2. 配置eureka信息和自身应用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-发布服务"><span class="toc-text">3. 发布服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Consumer服务消费者搭建"><span class="toc-text">3. Consumer服务消费者搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-引入依赖-2"><span class="toc-text">1. 引入依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-配置eureka信息和自身应用-1"><span class="toc-text">2. 配置eureka信息和自身应用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-消费服务"><span class="toc-text">4. 消费服务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-开启服务发现功能-EnableDiscoveryClient，并引入RestTemplate到容器中"><span class="toc-text">1. 开启服务发现功能@EnableDiscoveryClient，并引入RestTemplate到容器中</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-利用RestTemplate消费服务"><span class="toc-text">2. 利用RestTemplate消费服务</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -743,139 +743,7 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Spring-Boot与分布式"><a href="#Spring-Boot与分布式" class="headerlink" title="Spring Boot与分布式"></a>Spring Boot与分布式</h1><h1 id="一、概览"><a href="#一、概览" class="headerlink" title="一、概览"></a>一、概览</h1><p>在分布式系统中，国内常用zookeeper+dubbo组合，而Spring Boot推荐使用全栈的Spring，Spring Boot+Spring Cloud。</p>
-<h2 id="1-系统迭代升级过程"><a href="#1-系统迭代升级过程" class="headerlink" title="1.系统迭代升级过程"></a>1.系统迭代升级过程</h2><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569563549873.png" alt="单体应用到分布式"></p>
-<ul>
-<li><strong>单一应用架构</strong><br>当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。</li>
-<li><strong>垂直应用架构</strong><br>当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提升效率。此时，用于加速前端页面开发的Web框架(MVC)是关键。</li>
-<li><strong>分布式服务架构</strong><br>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。此时，用于提高业务复用及整合的分布式服务框架(RPC)是关键。</li>
-<li><strong>流动计算架构</strong><br>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的资源调度和治理中心(SOA)是关键。</li>
-</ul>
-<h1 id="二、Zookeeper、Dubbo实现分布式系统"><a href="#二、Zookeeper、Dubbo实现分布式系统" class="headerlink" title="二、Zookeeper、Dubbo实现分布式系统"></a>二、Zookeeper、Dubbo实现分布式系统</h1><h2 id="1-概览"><a href="#1-概览" class="headerlink" title="1. 概览"></a>1. 概览</h2><ul>
-<li><strong>ZooKeeper</strong><br>ZooKeeper 是一个分布式的，开放源码的分布式应用程序协调服务。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。</li>
-<li><strong>Dubbo</strong><br>Dubbo是Alibaba开源的分布式服务框架，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用的是一种非常简单的模型，要么是提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费方（Consumer）两个角色。</li>
-</ul>
-<h2 id="2-Dubbo实现分布式架构"><a href="#2-Dubbo实现分布式架构" class="headerlink" title="2.Dubbo实现分布式架构"></a>2.Dubbo实现分布式架构</h2><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569563932055.png" alt="调用关系架构图"><br>来源：<a href="https://github.com/alibaba/dubbo" target="_blank" rel="noopener">https://github.com/alibaba/dubbo</a> </p>
-<h2 id="3-SpringBoot整合Zoopkeeper和Duboo案例"><a href="#3-SpringBoot整合Zoopkeeper和Duboo案例" class="headerlink" title="3. SpringBoot整合Zoopkeeper和Duboo案例"></a>3. SpringBoot整合Zoopkeeper和Duboo案例</h2><h3 id="1-docker安装zookeeper作为注册中心"><a href="#1-docker安装zookeeper作为注册中心" class="headerlink" title="1. docker安装zookeeper作为注册中心"></a>1. docker安装zookeeper作为注册中心</h3><p>运行命令（注意端口号暴露）：<br><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569564590955.png" alt="运行命令"></p>
-<h3 id="2-引入依赖dubbo和zkclient"><a href="#2-引入依赖dubbo和zkclient" class="headerlink" title="2. 引入依赖dubbo和zkclient"></a>2. 引入依赖dubbo和zkclient</h3><pre><code class="xml">        &lt;dependency&gt;
-            &lt;groupId&gt;com.alibaba.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;dubbo-spring-boot-starter&lt;/artifactId&gt;
-            &lt;version&gt;0.1.0&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;!--引入zookeeper的客户端工具--&gt;
-        &lt;!-- https://mvnrepository.com/artifact/com.github.sgroschupf/zkclient --&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;com.github.sgroschupf&lt;/groupId&gt;
-            &lt;artifactId&gt;zkclient&lt;/artifactId&gt;
-            &lt;version&gt;0.1&lt;/version&gt;
-        &lt;/dependency&gt;</code></pre>
-<h3 id="3-配置dubbo扫描和zookeeper地址"><a href="#3-配置dubbo扫描和zookeeper地址" class="headerlink" title="3. 配置dubbo扫描和zookeeper地址"></a>3. 配置dubbo扫描和zookeeper地址</h3><pre><code class="properties">dubbo.application.name=provider-ticket
-dubbo.registry.address=zookeeper://118.24.44.169:2181
-dubbo.scan.base-packages=com.atguigu.ticket.service</code></pre>
-<h3 id="4-Provider发布服务到注册中心"><a href="#4-Provider发布服务到注册中心" class="headerlink" title="4. Provider发布服务到注册中心"></a>4. Provider发布服务到注册中心</h3><h4 id="1-先写接口interface供消费者使用"><a href="#1-先写接口interface供消费者使用" class="headerlink" title="1. 先写接口interface供消费者使用"></a>1. 先写接口interface供消费者使用</h4><pre><code class="java">public interface TicketService {
-    public String getTicket();
-}</code></pre>
-<h4 id="2-再写实现类用-Servic发布服务"><a href="#2-再写实现类用-Servic发布服务" class="headerlink" title="2. 再写实现类用@Servic发布服务"></a>2. 再写实现类用@Servic发布服务</h4><pre><code class="java">import com.alibaba.dubbo.config.annotation.Service;
-import org.springframework.stereotype.Component;
-@Component
-@Service //将服务发布出去
-public class TicketServiceImpl implements TicketService {
-    @Override
-    public String getTicket() {
-        return &quot;《厉害了，我的国》&quot;;
-    }
-}</code></pre>
-<h3 id="5-Consumer消费注册中心服务"><a href="#5-Consumer消费注册中心服务" class="headerlink" title="5. Consumer消费注册中心服务"></a>5. Consumer消费注册中心服务</h3><h3 id="1-引入依赖dubbo和zkclient（通上）"><a href="#1-引入依赖dubbo和zkclient（通上）" class="headerlink" title="1. 引入依赖dubbo和zkclient（通上）"></a>1. 引入依赖dubbo和zkclient（通上）</h3><h3 id="2-配置dubbo的名字和zookeeper地址"><a href="#2-配置dubbo的名字和zookeeper地址" class="headerlink" title="2. 配置dubbo的名字和zookeeper地址"></a>2. 配置dubbo的名字和zookeeper地址</h3><pre><code class="properties">dubbo.application.name=consumer-user
-dubbo.registry.address=zookeeper://118.24.44.169:2181</code></pre>
-<h3 id="3-消费服务"><a href="#3-消费服务" class="headerlink" title="3. 消费服务"></a>3. 消费服务</h3><h4 id="1-编写和provider相同的接口类（同上）"><a href="#1-编写和provider相同的接口类（同上）" class="headerlink" title="1. 编写和provider相同的接口类（同上）"></a>1. 编写和provider相同的接口类（同上）</h4><h4 id="2-利用-Reference注解注入消费"><a href="#2-利用-Reference注解注入消费" class="headerlink" title="2. 利用@Reference注解注入消费"></a>2. 利用@Reference注解注入消费</h4><pre><code class="java">@Service
-public class UserService{
-    @Reference
-    TicketService ticketService;
-    public void hello(){
-        String ticket = ticketService.getTicket();
-        System.out.println(&quot;买到票了：&quot;+ticket);
-    }
-}</code></pre>
-<h1 id="三、SpringCloud实现分布式系统"><a href="#三、SpringCloud实现分布式系统" class="headerlink" title="三、SpringCloud实现分布式系统"></a>三、SpringCloud实现分布式系统</h1><h2 id="1-概要"><a href="#1-概要" class="headerlink" title="1. 概要"></a>1. 概要</h2><p><strong>Spring Cloud</strong><br>Spring Cloud是一个分布式的整体解决方案。Spring Cloud 为开发者提供了<code>在分布式系统（配置管理，服务发现，熔断，路由，微代理，控制总线，一次性token，全局琐，leader选举，分布式session，集群状态）中快速构建的工具，</code>使用Spring Cloud的开发者可以快速的启动服务或构建应用、同时能够快速和云平台资源进行对接。</p>
-<h2 id="2-SpringCloud五大常用组件"><a href="#2-SpringCloud五大常用组件" class="headerlink" title="2. SpringCloud五大常用组件"></a>2. <code>SpringCloud五大常用组件</code></h2><ul>
-<li>服务发现——Netflix Eureka</li>
-<li>客服端负载均衡——Netflix Ribbon</li>
-<li>断路器——Netflix Hystrix</li>
-<li>服务网关——Netflix Zuul</li>
-<li>分布式配置——Spring Cloud Config</li>
-</ul>
-<h2 id="3-SpringBoot整合SpringCloud案例"><a href="#3-SpringBoot整合SpringCloud案例" class="headerlink" title="3. SpringBoot整合SpringCloud案例"></a>3. SpringBoot整合SpringCloud案例</h2><h3 id="1-Eureka注册中心搭建"><a href="#1-Eureka注册中心搭建" class="headerlink" title="1. Eureka注册中心搭建"></a>1. Eureka注册中心搭建</h3><h4 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1. 引入依赖"></a>1. 引入依赖</h4><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569567345206.png" alt="Intellij创建依赖"></p>
-<h4 id="2-配置端口、名字、地址"><a href="#2-配置端口、名字、地址" class="headerlink" title="2. 配置端口、名字、地址"></a>2. 配置端口、名字、地址</h4><p>application.yml</p>
-<pre><code class="yml">server:
-  port: 8761
-eureka:
-  instance:
-    hostname: eureka-server  # eureka实例的主机名
-  client:
-    register-with-eureka: false #不把自己注册到eureka上
-    fetch-registry: false #不从eureka上来获取服务的注册信息
-    service-url:
-      defaultZone: http://localhost:8761/eureka/</code></pre>
-<h4 id="3-开启服务-EnableEurekaServer"><a href="#3-开启服务-EnableEurekaServer" class="headerlink" title="3.开启服务@EnableEurekaServer"></a>3.开启服务@EnableEurekaServer</h4><pre><code class="java">@EnableEurekaServer</code></pre>
-<h4 id="4-访问测试是否配置成功"><a href="#4-访问测试是否配置成功" class="headerlink" title="4.访问测试是否配置成功"></a>4.访问测试是否配置成功</h4><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569567543747.png" alt="访问测试"></p>
-<h3 id="2-Provider服务提供者搭建"><a href="#2-Provider服务提供者搭建" class="headerlink" title="2. Provider服务提供者搭建"></a>2. Provider服务提供者搭建</h3><h4 id="1-引入依赖-1"><a href="#1-引入依赖-1" class="headerlink" title="1. 引入依赖"></a>1. 引入依赖</h4><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569567376085.png" alt="Intellij配置服务发现jar"></p>
-<h5 id="2-配置eureka信息和自身应用"><a href="#2-配置eureka信息和自身应用" class="headerlink" title="2. 配置eureka信息和自身应用"></a>2. 配置eureka信息和自身应用</h5><pre><code class="yml">server:
-  port: 8002
-spring:
-  application:
-    name: provider-ticket
-
-eureka:
-  instance:
-    prefer-ip-address: true # 注册服务的时候使用服务的ip地址
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/</code></pre>
-<h4 id="3-发布服务"><a href="#3-发布服务" class="headerlink" title="3. 发布服务"></a>3. 发布服务</h4><p>无需做额外的配置，只需要在Controller中发布接口即可</p>
-<pre><code class="java">@RestController
-public class TicketController {
-    @Autowired
-    TicketService ticketService;
-    @GetMapping(&quot;/ticket&quot;)
-    public String getTicket(){
-        return ticketService.getTicket();
-    }
-}</code></pre>
-<h3 id="3-Consumer服务消费者搭建"><a href="#3-Consumer服务消费者搭建" class="headerlink" title="3. Consumer服务消费者搭建"></a>3. Consumer服务消费者搭建</h3><h4 id="1-引入依赖-2"><a href="#1-引入依赖-2" class="headerlink" title="1. 引入依赖"></a>1. 引入依赖</h4><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1569567376085.png" alt="Intellij配置服务发现jar"></p>
-<h5 id="2-配置eureka信息和自身应用-1"><a href="#2-配置eureka信息和自身应用-1" class="headerlink" title="2. 配置eureka信息和自身应用"></a>2. 配置eureka信息和自身应用</h5><pre><code class="yml">spring:
-  application:
-    name: consumer-user
-server:
-  port: 8200
-eureka:
-  instance:
-    prefer-ip-address: true # 注册服务的时候使用服务的ip地址
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/</code></pre>
-<h4 id="4-消费服务"><a href="#4-消费服务" class="headerlink" title="4. 消费服务"></a>4. 消费服务</h4><h5 id="1-开启服务发现功能-EnableDiscoveryClient，并引入RestTemplate到容器中"><a href="#1-开启服务发现功能-EnableDiscoveryClient，并引入RestTemplate到容器中" class="headerlink" title="1. 开启服务发现功能@EnableDiscoveryClient，并引入RestTemplate到容器中"></a>1. 开启服务发现功能@EnableDiscoveryClient，并引入RestTemplate到容器中</h5><pre><code class="java">@EnableDiscoveryClient //开启发现服务功能
-@SpringBootApplication
-public class ConsumerUserApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ConsumerUserApplication.class, args);
-    }
-    @LoadBalanced //使用负载均衡机制
-    @Bean
-    public RestTemplate restTemplate(){
-        return new RestTemplate();
-    }
-}</code></pre>
-<h5 id="2-利用RestTemplate消费服务"><a href="#2-利用RestTemplate消费服务" class="headerlink" title="2. 利用RestTemplate消费服务"></a>2. 利用RestTemplate消费服务</h5><pre><code class="java">@RestController
-public class UserController {
-    @Autowired
-    RestTemplate restTemplate;
-    @GetMapping(&quot;/buy&quot;)
-    public String buyTicket(String name){
-        String s = restTemplate.getForObject(&quot;http://PROVIDER-TICKET/ticket&quot;, String.class);
-        return name+&quot;购买了&quot;+s;
-    }
-}</code></pre>
-
+        
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
     </div>
@@ -888,12 +756,12 @@ public class UserController {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>分布式doubbo、springcloud初体验</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1.4k</span></p>
+    <p><span class="copy-title">文章标题:</span>Kubernetes入门</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-26, 19:05:02</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-27, 15:23:22</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/26/SpringBoot与分布式-doubbo-springcloud/" title="分布式doubbo、springcloud初体验">http://yoursite.com/2019/09/26/SpringBoot与分布式-doubbo-springcloud/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-10, 17:01:45</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-10, 17:02:25</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/10/Kubernetes入门/" title="Kubernetes入门">http://yoursite.com/2019/10/10/Kubernetes入门/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
