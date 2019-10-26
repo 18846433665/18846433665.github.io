@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Linux常用命令</title>
+      <link href="/2019/10/26/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>/2019/10/26/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux命令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>IP、子网掩码、网关、DNS</title>
       <link href="/2019/10/26/IP%E3%80%81%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E3%80%81%E7%BD%91%E5%85%B3/"/>
       <url>/2019/10/26/IP%E3%80%81%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E3%80%81%E7%BD%91%E5%85%B3/</url>
@@ -826,7 +851,7 @@
       
       <categories>
           
-          <category> 环境 </category>
+          <category> 开发环境 </category>
           
       </categories>
       
@@ -851,7 +876,7 @@
       
       <categories>
           
-          <category> 环境 </category>
+          <category> 开发环境 </category>
           
       </categories>
       
