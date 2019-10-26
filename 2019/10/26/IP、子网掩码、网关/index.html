@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>SpringBoot CRUD实践 （国际化，登录拦截） | XuShengcai</title>
-  <meta name="keywords" content=" SpringBoot国际化、登录拦截、CRUD ">
-  <meta name="description" content="SpringBoot CRUD实践 （国际化，登录拦截） | XuShengcai">
+  <title>IP、子网掩码、网关 | XuShengcai</title>
+  <meta name="keywords" content=" 网络 ">
+  <meta name="description" content="IP、子网掩码、网关 | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="keywords" content="网络">
 <meta property="og:type" content="article">
@@ -724,9 +724,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-SpringBoot-CRUD实践（国际化，登录拦截）" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-IP、子网掩码、网关" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">SpringBoot CRUD实践 （国际化，登录拦截）</h1>
+        <h1 class="article-title">IP、子网掩码、网关</h1>
     
     <div class="article-meta">
         
@@ -734,26 +734,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="SpringBoot">SpringBoot</a>
+                <a href="javascript:" data-rel="计算机网络">计算机网络</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">SpringBoot国际化、登录拦截、CRUD</a>
+            <a href="javascript:" class="color3">网络</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-20 10:53:35'>2019-09-20 10:46</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-26 15:32:53'>2019-10-26 15:31</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3.1k</span>
+        <span>字数:0</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -772,7 +772,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RestfulCRUD"><span class="toc-text">RestfulCRUD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1）、默认访问首页"><span class="toc-text">1）、默认访问首页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2）、国际化"><span class="toc-text">2）、国际化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3）、登陆"><span class="toc-text">3）、登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4）、拦截器进行登陆检查"><span class="toc-text">4）、拦截器进行登陆检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5）、CRUD-员工列表"><span class="toc-text">5）、CRUD-员工列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#thymeleaf公共页面元素抽取"><span class="toc-text">thymeleaf公共页面元素抽取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6）、CRUD-员工添加"><span class="toc-text">6）、CRUD-员工添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7）、CRUD-员工修改"><span class="toc-text">7）、CRUD-员工修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8）、CRUD-员工删除"><span class="toc-text">8）、CRUD-员工删除</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -787,461 +787,7 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="RestfulCRUD"><a href="#RestfulCRUD" class="headerlink" title="RestfulCRUD"></a>RestfulCRUD</h2><h3 id="1）、默认访问首页"><a href="#1）、默认访问首页" class="headerlink" title="1）、默认访问首页"></a>1）、默认访问首页</h3><pre><code class="java">
-//使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
-//@EnableWebMvc   不要接管SpringMVC
-@Configuration
-public class MyMvcConfig extends WebMvcConfigurerAdapter {
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-       // super.addViewControllers(registry);
-        //浏览器发送 /atguigu 请求来到 success
-        registry.addViewController(&quot;/atguigu&quot;).setViewName(&quot;success&quot;);
-    }
-
-    //所有的WebMvcConfigurerAdapter组件都会一起起作用
-    @Bean //将组件注册在容器
-    public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
-        WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
-            @Override
-            public void addViewControllers(ViewControllerRegistry registry) {
-                registry.addViewController(&quot;/&quot;).setViewName(&quot;login&quot;);
-                registry.addViewController(&quot;/index.html&quot;).setViewName(&quot;login&quot;);
-            }
-        };
-        return adapter;
-    }
-}
-</code></pre>
-<h3 id="2）、国际化"><a href="#2）、国际化" class="headerlink" title="2）、国际化"></a>2）、国际化</h3><p><strong>1）、编写国际化配置文件；</strong></p>
-<p>2）、使用ResourceBundleMessageSource管理国际化资源文件</p>
-<p>3）、在页面使用fmt:message取出国际化内容</p>
-<p>步骤：</p>
-<p>1）、编写国际化配置文件，抽取页面需要显示的国际化消息</p>
-<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568947838760.png" alt></p>
-<p>2）、SpringBoot自动配置好了管理国际化资源文件的组件；</p>
-<pre><code class="java">@ConfigurationProperties(prefix = &quot;spring.messages&quot;)
-public class MessageSourceAutoConfiguration {
-
-    /**
-     * Comma-separated list of basenames (essentially a fully-qualified classpath
-     * location), each following the ResourceBundle convention with relaxed support for
-     * slash based locations. If it doesn&#39;t contain a package qualifier (such as
-     * &quot;org.mypackage&quot;), it will be resolved from the classpath root.
-     */
-    private String basename = &quot;messages&quot;;  
-    //我们的配置文件可以直接放在类路径下叫messages.properties；
-
-    @Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        if (StringUtils.hasText(this.basename)) {
-            //设置国际化资源文件的基础名（去掉语言国家代码的）
-            messageSource.setBasenames(StringUtils.commaDelimitedListToStringArray(
-                    StringUtils.trimAllWhitespace(this.basename)));
-        }
-        if (this.encoding != null) {
-            messageSource.setDefaultEncoding(this.encoding.name());
-        }
-        messageSource.setFallbackToSystemLocale(this.fallbackToSystemLocale);
-        messageSource.setCacheSeconds(this.cacheSeconds);
-        messageSource.setAlwaysUseMessageFormat(this.alwaysUseMessageFormat);
-        return messageSource;
-    }</code></pre>
-<p>3）、去页面获取国际化的值；</p>
-<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568947878695.png" alt></p>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;  xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
-    &lt;head&gt;
-        &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
-        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
-        &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;
-        &lt;meta name=&quot;author&quot; content=&quot;&quot;&gt;
-        &lt;title&gt;Signin Template for Bootstrap&lt;/title&gt;
-        &lt;!-- Bootstrap core CSS --&gt;
-        &lt;link href=&quot;asserts/css/bootstrap.min.css&quot; th:href=&quot;@{/webjars/bootstrap/4.0.0/css/bootstrap.css}&quot; rel=&quot;stylesheet&quot;&gt;
-        &lt;!-- Custom styles for this template --&gt;
-        &lt;link href=&quot;asserts/css/signin.css&quot; th:href=&quot;@{/asserts/css/signin.css}&quot; rel=&quot;stylesheet&quot;&gt;
-    &lt;/head&gt;
-
-    &lt;body class=&quot;text-center&quot;&gt;
-        &lt;form class=&quot;form-signin&quot; action=&quot;dashboard.html&quot;&gt;
-            &lt;img class=&quot;mb-4&quot; th:src=&quot;@{/asserts/img/bootstrap-solid.svg}&quot; src=&quot;asserts/img/bootstrap-solid.svg&quot; alt=&quot;&quot; width=&quot;72&quot; height=&quot;72&quot;&gt;
-            &lt;h1 class=&quot;h3 mb-3 font-weight-normal&quot; th:text=&quot;#{login.tip}&quot;&gt;Please sign in&lt;/h1&gt;
-            &lt;label class=&quot;sr-only&quot; th:text=&quot;#{login.username}&quot;&gt;Username&lt;/label&gt;
-            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot; th:placeholder=&quot;#{login.username}&quot; required=&quot;&quot; autofocus=&quot;&quot;&gt;
-            &lt;label class=&quot;sr-only&quot; th:text=&quot;#{login.password}&quot;&gt;Password&lt;/label&gt;
-            &lt;input type=&quot;password&quot; class=&quot;form-control&quot; placeholder=&quot;Password&quot; th:placeholder=&quot;#{login.password}&quot; required=&quot;&quot;&gt;
-            &lt;div class=&quot;checkbox mb-3&quot;&gt;
-                &lt;label&gt;
-                  &lt;input type=&quot;checkbox&quot; value=&quot;remember-me&quot;/&gt; [[#{login.remember}]]
-        &lt;/label&gt;
-            &lt;/div&gt;
-            &lt;button class=&quot;btn btn-lg btn-primary btn-block&quot; type=&quot;submit&quot; th:text=&quot;#{login.btn}&quot;&gt;Sign in&lt;/button&gt;
-            &lt;p class=&quot;mt-5 mb-3 text-muted&quot;&gt;© 2017-2018&lt;/p&gt;
-            &lt;a class=&quot;btn btn-sm&quot;&gt;中文&lt;/a&gt;
-            &lt;a class=&quot;btn btn-sm&quot;&gt;English&lt;/a&gt;
-        &lt;/form&gt;
-
-    &lt;/body&gt;
-
-&lt;/html&gt;</code></pre>
-<p>效果：根据浏览器语言设置的信息切换了国际化；</p>
-<p>原理：</p>
-<p>​    国际化Locale（区域信息对象）；LocaleResolver（获取区域信息对象）；</p>
-<pre><code class="java">        @Bean
-        @ConditionalOnMissingBean
-        @ConditionalOnProperty(prefix = &quot;spring.mvc&quot;, name = &quot;locale&quot;)
-        public LocaleResolver localeResolver() {
-            if (this.mvcProperties
-                    .getLocaleResolver() == WebMvcProperties.LocaleResolver.FIXED) {
-                return new FixedLocaleResolver(this.mvcProperties.getLocale());
-            }
-            AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
-            localeResolver.setDefaultLocale(this.mvcProperties.getLocale());
-            return localeResolver;
-        }
-默认的就是根据请求头带来的区域信息获取Locale进行国际化</code></pre>
-<p>4）、点击链接切换国际化</p>
-<pre><code class="java">/**
- * 可以在连接上携带区域信息
- */
-public class MyLocaleResolver implements LocaleResolver {
-
-    @Override
-    public Locale resolveLocale(HttpServletRequest request) {
-        String l = request.getParameter(&quot;l&quot;);
-        Locale locale = Locale.getDefault();
-        if(!StringUtils.isEmpty(l)){
-            String[] split = l.split(&quot;_&quot;);
-            locale = new Locale(split[0],split[1]);
-        }
-        return locale;
-    }
-
-    @Override
-    public void setLocale(HttpServletRequest request, HttpServletResponse response, Locale locale) {
-
-    }
-}
-
-
- @Bean
-    public LocaleResolver localeResolver(){
-        return new MyLocaleResolver();
-    }
-}
-
-</code></pre>
-<h3 id="3）、登陆"><a href="#3）、登陆" class="headerlink" title="3）、登陆"></a>3）、登陆</h3><p>开发期间模板引擎页面修改以后，要实时生效</p>
-<p>1）、禁用模板引擎的缓存</p>
-<pre><code># 禁用缓存
-spring.thymeleaf.cache=false </code></pre><p>2）、页面修改完成以后ctrl+f9：重新编译；</p>
-<p>登陆错误消息的显示</p>
-<pre><code class="html">&lt;p style=&quot;color: red&quot; th:text=&quot;${msg}&quot; th:if=&quot;${not #strings.isEmpty(msg)}&quot;&gt;&lt;/p&gt;</code></pre>
-<h3 id="4）、拦截器进行登陆检查"><a href="#4）、拦截器进行登陆检查" class="headerlink" title="4）、拦截器进行登陆检查"></a>4）、拦截器进行登陆检查</h3><p>拦截器</p>
-<pre><code class="java">
-/**
- * 登陆检查，
- */
-public class LoginHandlerInterceptor implements HandlerInterceptor {
-    //目标方法执行之前
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object user = request.getSession().getAttribute(&quot;loginUser&quot;);
-        if(user == null){
-            //未登陆，返回登陆页面
-            request.setAttribute(&quot;msg&quot;,&quot;没有权限请先登陆&quot;);
-            request.getRequestDispatcher(&quot;/index.html&quot;).forward(request,response);
-            return false;
-        }else{
-            //已登陆，放行请求
-            return true;
-        }
-
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
-    }
-}
-</code></pre>
-<p>注册拦截器</p>
-<pre><code class="java">  //所有的WebMvcConfigurerAdapter组件都会一起起作用
-    @Bean //将组件注册在容器
-    public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
-        WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
-            @Override
-            public void addViewControllers(ViewControllerRegistry registry) {
-                registry.addViewController(&quot;/&quot;).setViewName(&quot;login&quot;);
-                registry.addViewController(&quot;/index.html&quot;).setViewName(&quot;login&quot;);
-                registry.addViewController(&quot;/main.html&quot;).setViewName(&quot;dashboard&quot;);
-            }
-
-            //注册拦截器
-            @Override
-            public void addInterceptors(InterceptorRegistry registry) {
-                //super.addInterceptors(registry);
-                //静态资源；  *.css , *.js
-                //SpringBoot已经做好了静态资源映射
-                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns(&quot;/**&quot;)
-                        .excludePathPatterns(&quot;/index.html&quot;,&quot;/&quot;,&quot;/user/login&quot;);
-            }
-        };
-        return adapter;
-    }</code></pre>
-<h3 id="5）、CRUD-员工列表"><a href="#5）、CRUD-员工列表" class="headerlink" title="5）、CRUD-员工列表"></a>5）、CRUD-员工列表</h3><p>实验要求：</p>
-<p>1）、RestfulCRUD：CRUD满足Rest风格；</p>
-<p>URI：  /资源名称/资源标识       HTTP请求方式区分对资源CRUD操作</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>普通CRUD（uri来区分操作）</th>
-<th>RestfulCRUD</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>查询</td>
-<td>getEmp</td>
-<td>emp—GET</td>
-</tr>
-<tr>
-<td>添加</td>
-<td>addEmp?xxx</td>
-<td>emp—POST</td>
-</tr>
-<tr>
-<td>修改</td>
-<td>updateEmp?id=xxx&amp;xxx=xx</td>
-<td>emp/{id}—PUT</td>
-</tr>
-<tr>
-<td>删除</td>
-<td>deleteEmp?id=1</td>
-<td>emp/{id}—DELETE</td>
-</tr>
-</tbody></table>
-<p>2）、实验的请求架构;</p>
-<table>
-<thead>
-<tr>
-<th>实验功能</th>
-<th>请求URI</th>
-<th>请求方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>查询所有员工</td>
-<td>emps</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>查询某个员工(来到修改页面)</td>
-<td>emp/1</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>来到添加页面</td>
-<td>emp</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>添加员工</td>
-<td>emp</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>来到修改页面（查出员工进行信息回显）</td>
-<td>emp/1</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>修改员工</td>
-<td>emp</td>
-<td>PUT</td>
-</tr>
-<tr>
-<td>删除员工</td>
-<td>emp/1</td>
-<td>DELETE</td>
-</tr>
-</tbody></table>
-<p>3）、员工列表：</p>
-<h4 id="thymeleaf公共页面元素抽取"><a href="#thymeleaf公共页面元素抽取" class="headerlink" title="thymeleaf公共页面元素抽取"></a>thymeleaf公共页面元素抽取</h4><pre><code class="html">1、抽取公共片段
-&lt;div th:fragment=&quot;copy&quot;&gt;
-&amp;copy; 2011 The Good Thymes Virtual Grocery
-&lt;/div&gt;
-
-2、引入公共片段
-&lt;div th:insert=&quot;~{footer :: copy}&quot;&gt;&lt;/div&gt;
-~{templatename::selector}：模板名::选择器
-~{templatename::fragmentname}:模板名::片段名
-
-3、默认效果：
-insert的公共片段在div标签中
-如果使用th:insert等属性进行引入，可以不用写~{}：
-行内写法可以加上：[[~{}]];[(~{})]；</code></pre>
-<p>三种引入公共片段的th属性：</p>
-<p><strong>th:insert</strong>：将公共片段整个插入到声明引入的元素中</p>
-<p><strong>th:replace</strong>：将声明引入的元素替换为公共片段</p>
-<p><strong>th:include</strong>：将被引入的片段的内容包含进这个标签中</p>
-<pre><code class="html">&lt;footer th:fragment=&quot;copy&quot;&gt;
-&amp;copy; 2011 The Good Thymes Virtual Grocery
-&lt;/footer&gt;
-
-引入方式
-&lt;div th:insert=&quot;footer :: copy&quot;&gt;&lt;/div&gt;
-&lt;div th:replace=&quot;footer :: copy&quot;&gt;&lt;/div&gt;
-&lt;div th:include=&quot;footer :: copy&quot;&gt;&lt;/div&gt;
-
-效果
-&lt;div&gt;
-    &lt;footer&gt;
-    &amp;copy; 2011 The Good Thymes Virtual Grocery
-    &lt;/footer&gt;
-&lt;/div&gt;
-
-&lt;footer&gt;
-&amp;copy; 2011 The Good Thymes Virtual Grocery
-&lt;/footer&gt;
-
-&lt;div&gt;
-&amp;copy; 2011 The Good Thymes Virtual Grocery
-&lt;/div&gt;</code></pre>
-<p>引入片段的时候传入参数： </p>
-<pre><code class="html">
-&lt;nav class=&quot;col-md-2 d-none d-md-block bg-light sidebar&quot; id=&quot;sidebar&quot;&gt;
-    &lt;div class=&quot;sidebar-sticky&quot;&gt;
-        &lt;ul class=&quot;nav flex-column&quot;&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link active&quot;
-                   th:class=&quot;${activeUri==&#39;main.html&#39;?&#39;nav-link active&#39;:&#39;nav-link&#39;}&quot;
-                   href=&quot;#&quot; th:href=&quot;@{/main.html}&quot;&gt;
-                    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; class=&quot;feather feather-home&quot;&gt;
-                        &lt;path d=&quot;M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z&quot;&gt;&lt;/path&gt;
-                        &lt;polyline points=&quot;9 22 9 12 15 12 15 22&quot;&gt;&lt;/polyline&gt;
-                    &lt;/svg&gt;
-                    Dashboard &lt;span class=&quot;sr-only&quot;&gt;(current)&lt;/span&gt;
-                &lt;/a&gt;
-            &lt;/li&gt;
-
-&lt;!--引入侧边栏;传入参数--&gt;
-&lt;div th:replace=&quot;commons/bar::#sidebar(activeUri=&#39;emps&#39;)&quot;&gt;&lt;/div&gt;</code></pre>
-<h3 id="6）、CRUD-员工添加"><a href="#6）、CRUD-员工添加" class="headerlink" title="6）、CRUD-员工添加"></a>6）、CRUD-员工添加</h3><p>添加页面</p>
-<pre><code class="html">&lt;form&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;LastName&lt;/label&gt;
-        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan&quot;&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;Email&lt;/label&gt;
-        &lt;input type=&quot;email&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan@atguigu.com&quot;&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;Gender&lt;/label&gt;&lt;br/&gt;
-        &lt;div class=&quot;form-check form-check-inline&quot;&gt;
-            &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot;  value=&quot;1&quot;&gt;
-            &lt;label class=&quot;form-check-label&quot;&gt;男&lt;/label&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-check form-check-inline&quot;&gt;
-            &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot;  value=&quot;0&quot;&gt;
-            &lt;label class=&quot;form-check-label&quot;&gt;女&lt;/label&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;department&lt;/label&gt;
-        &lt;select class=&quot;form-control&quot;&gt;
-            &lt;option&gt;1&lt;/option&gt;
-            &lt;option&gt;2&lt;/option&gt;
-            &lt;option&gt;3&lt;/option&gt;
-            &lt;option&gt;4&lt;/option&gt;
-            &lt;option&gt;5&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;Birth&lt;/label&gt;
-        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan&quot;&gt;
-    &lt;/div&gt;
-    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;添加&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-<p>提交的数据格式不对：生日：日期；</p>
-<p>2017-12-12；2017/12/12；2017.12.12；</p>
-<p>日期的格式化；SpringMVC将页面提交的值需要转换为指定的类型;</p>
-<p>2017-12-12—Date； 类型转换，格式化;</p>
-<p>默认日期是按照/的方式；</p>
-<h3 id="7）、CRUD-员工修改"><a href="#7）、CRUD-员工修改" class="headerlink" title="7）、CRUD-员工修改"></a>7）、CRUD-员工修改</h3><p>修改添加二合一表单</p>
-<pre><code class="html">&lt;!--需要区分是员工修改还是添加；--&gt;
-&lt;form th:action=&quot;@{/emp}&quot; method=&quot;post&quot;&gt;
-    &lt;!--发送put请求修改员工数据--&gt;
-    &lt;!--
-1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
-2、页面创建一个post表单
-3、创建一个input项，name=&quot;_method&quot;;值就是我们指定的请求方式
---&gt;
-    &lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;put&quot; th:if=&quot;${emp!=null}&quot;/&gt;
-    &lt;input type=&quot;hidden&quot; name=&quot;id&quot; th:if=&quot;${emp!=null}&quot; th:value=&quot;${emp.id}&quot;&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;LastName&lt;/label&gt;
-        &lt;input name=&quot;lastName&quot; type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan&quot; th:value=&quot;${emp!=null}?${emp.lastName}&quot;&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;Email&lt;/label&gt;
-        &lt;input name=&quot;email&quot; type=&quot;email&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan@atguigu.com&quot; th:value=&quot;${emp!=null}?${emp.email}&quot;&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;Gender&lt;/label&gt;&lt;br/&gt;
-        &lt;div class=&quot;form-check form-check-inline&quot;&gt;
-            &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;1&quot; th:checked=&quot;${emp!=null}?${emp.gender==1}&quot;&gt;
-            &lt;label class=&quot;form-check-label&quot;&gt;男&lt;/label&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-check form-check-inline&quot;&gt;
-            &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;0&quot; th:checked=&quot;${emp!=null}?${emp.gender==0}&quot;&gt;
-            &lt;label class=&quot;form-check-label&quot;&gt;女&lt;/label&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;department&lt;/label&gt;
-        &lt;!--提交的是部门的id--&gt;
-        &lt;select class=&quot;form-control&quot; name=&quot;department.id&quot;&gt;
-            &lt;option th:selected=&quot;${emp!=null}?${dept.id == emp.department.id}&quot; th:value=&quot;${dept.id}&quot; th:each=&quot;dept:${depts}&quot; th:text=&quot;${dept.departmentName}&quot;&gt;1&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label&gt;Birth&lt;/label&gt;
-        &lt;input name=&quot;birth&quot; type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan&quot; th:value=&quot;${emp!=null}?${#dates.format(emp.birth, &#39;yyyy-MM-dd HH:mm&#39;)}&quot;&gt;
-    &lt;/div&gt;
-    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot; th:text=&quot;${emp!=null}?&#39;修改&#39;:&#39;添加&#39;&quot;&gt;添加&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-<h3 id="8）、CRUD-员工删除"><a href="#8）、CRUD-员工删除" class="headerlink" title="8）、CRUD-员工删除"></a>8）、CRUD-员工删除</h3><pre><code class="html">&lt;tr th:each=&quot;emp:${emps}&quot;&gt;
-    &lt;td th:text=&quot;${emp.id}&quot;&gt;&lt;/td&gt;
-    &lt;td&gt;[[${emp.lastName}]]&lt;/td&gt;
-    &lt;td th:text=&quot;${emp.email}&quot;&gt;&lt;/td&gt;
-    &lt;td th:text=&quot;${emp.gender}==0?&#39;女&#39;:&#39;男&#39;&quot;&gt;&lt;/td&gt;
-    &lt;td th:text=&quot;${emp.department.departmentName}&quot;&gt;&lt;/td&gt;
-    &lt;td th:text=&quot;${#dates.format(emp.birth, &#39;yyyy-MM-dd HH:mm&#39;)}&quot;&gt;&lt;/td&gt;
-    &lt;td&gt;
-        &lt;a class=&quot;btn btn-sm btn-primary&quot; th:href=&quot;@{/emp/}+${emp.id}&quot;&gt;编辑&lt;/a&gt;
-        &lt;button th:attr=&quot;del_uri=@{/emp/}+${emp.id}&quot; class=&quot;btn btn-sm btn-danger deleteBtn&quot;&gt;删除&lt;/button&gt;
-    &lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;script&gt;
-    $(&quot;.deleteBtn&quot;).click(function(){
-        //删除当前员工的
-        $(&quot;#deleteEmpForm&quot;).attr(&quot;action&quot;,$(this).attr(&quot;del_uri&quot;)).submit();
-        return false;
-    });
-&lt;/script&gt;</code></pre>
-
+        
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
     </div>
@@ -1254,12 +800,12 @@ insert的公共片段在div标签中
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>SpringBoot CRUD实践 （国际化，登录拦截）</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">3.1k</span></p>
+    <p><span class="copy-title">文章标题:</span>IP、子网掩码、网关</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-20, 10:46:09</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-20, 10:53:35</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/20/SpringBoot-CRUD实践（国际化，登录拦截）/" title="SpringBoot CRUD实践 （国际化，登录拦截）">http://yoursite.com/2019/09/20/SpringBoot-CRUD实践（国际化，登录拦截）/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-26, 15:31:37</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-26, 15:32:53</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/26/IP、子网掩码、网关/" title="IP、子网掩码、网关">http://yoursite.com/2019/10/26/IP、子网掩码、网关/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
