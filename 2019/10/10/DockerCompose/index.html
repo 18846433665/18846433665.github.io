@@ -227,7 +227,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="43">
-<input type="hidden" id="yelog_site_word_count" value="52.5k">
+<input type="hidden" id="yelog_site_word_count" value="52.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -275,6 +275,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">DockerFile</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">Docker基础</a>
     </li>
     
@@ -284,10 +288,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color1">Feign</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">DockerFile</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -303,11 +303,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">mac_Jdk</a>
+        <a href="javascript:" class="color3">Linux命令</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Linux命令</a>
+        <a href="javascript:" class="color3">mac_Jdk</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -339,11 +339,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
+        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
+        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -399,11 +399,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
+        <a href="javascript:" class="color5">Thymeleaf</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Thymeleaf</a>
+        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -812,12 +812,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-10 18:48:51'>2019-10-10 18:21</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-28 22:18:08'>2019-10-10 18:21</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:394</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -836,7 +836,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、DockerCompose简介"><span class="toc-text">一、DockerCompose简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、DockerCompose使用"><span class="toc-text">二、DockerCompose使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-DockerCompose-安装和卸载"><span class="toc-text">1. DockerCompose 安装和卸载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载"><span class="toc-text">卸载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DockerCompose-使用"><span class="toc-text">2.DockerCompose 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建文件夹并创建docker-compose-yml文件"><span class="toc-text">新建文件夹并创建docker-compose.yml文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行compose文件"><span class="toc-text">执行compose文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭compse应用"><span class="toc-text">关闭compse应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看运行日志"><span class="toc-text">查看运行日志</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、DockerCompose部署应用"><span class="toc-text">三、DockerCompose部署应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#部署Tomcat"><span class="toc-text">部署Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署Mysql"><span class="toc-text">部署Mysql</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -851,7 +851,68 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="一、DockerCompose简介"><a href="#一、DockerCompose简介" class="headerlink" title="一、DockerCompose简介"></a>一、DockerCompose简介</h1><ul>
+<li>Docker Compose 是 Docker 官方编排（Orchestration）项目之一，负责快速的部署分布式应用。</li>
+<li>其代码目前在 <a href="https://github.com/docker/compose" target="_blank" rel="noopener">https://github.com/docker/compose</a> 上开源。</li>
+<li>它允许用户通过一个单独的 docker-compose.yml 模板文件（YAML 格式）来定义一组相关联的应用容器为一个项目（project）。</li>
+</ul>
+<p><strong>总结</strong>：dockerCompse就是把操作docker的命令用yaml文件的形式表达，一方面可以启动多个容器，同时也方便复用，不需要重复复制粘贴命令。</p>
+<h1 id="二、DockerCompose使用"><a href="#二、DockerCompose使用" class="headerlink" title="二、DockerCompose使用"></a>二、DockerCompose使用</h1><h2 id="1-DockerCompose-安装和卸载"><a href="#1-DockerCompose-安装和卸载" class="headerlink" title="1. DockerCompose 安装和卸载"></a>1. DockerCompose 安装和卸载</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在 Linux 上的也安装十分简单，从 官方 <a href="https://github.com/docker/compose/releases" target="_blank" rel="noopener">GitHub Release</a> 处直接下载编译好的二进制文件即可。<br>例如，在 Linux 64 位系统上直接下载对应的二进制包。</p>
+<pre><code class="shell">$ sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose</code></pre>
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><pre><code class="shell">$ sudo rm /usr/local/bin/docker-compose</code></pre>
+<h2 id="2-DockerCompose-使用"><a href="#2-DockerCompose-使用" class="headerlink" title="2.DockerCompose 使用"></a>2.DockerCompose 使用</h2><h3 id="新建文件夹并创建docker-compose-yml文件"><a href="#新建文件夹并创建docker-compose-yml文件" class="headerlink" title="新建文件夹并创建docker-compose.yml文件"></a>新建文件夹并创建docker-compose.yml文件</h3><pre><code class="shell">mkdir tomcat</code></pre>
+<pre><code class="yaml">version: `3.1`
+services:
+   tomcat:
+           restart: always
+           image: tomcat
+           container_name: tomcat
+           prots:
+               - 8080:8080
+           volumes:
+                  - /data</code></pre>
+<h3 id="执行compose文件"><a href="#执行compose文件" class="headerlink" title="执行compose文件"></a>执行compose文件</h3><pre><code class="shell">docker-compose up</code></pre>
+<h3 id="关闭compse应用"><a href="#关闭compse应用" class="headerlink" title="关闭compse应用"></a>关闭compse应用</h3><pre><code class="shell">docker-compose down</code></pre>
+<h3 id="查看运行日志"><a href="#查看运行日志" class="headerlink" title="查看运行日志"></a>查看运行日志</h3><pre><code class="shell">docker-compose logs</code></pre>
+<h1 id="三、DockerCompose部署应用"><a href="#三、DockerCompose部署应用" class="headerlink" title="三、DockerCompose部署应用"></a>三、DockerCompose部署应用</h1><h2 id="部署Tomcat"><a href="#部署Tomcat" class="headerlink" title="部署Tomcat"></a>部署Tomcat</h2><pre><code class="yaml">version: `3.1`
+services:
+    tomcat:
+        restart: always
+        image: tomcat
+        container_name: tomcat
+        prots:
+             - 8080:8080
+         volumes:
+             - ./webapps:/usr/local/tomcat/webapps
+         environment:
+              TZ: Asia/Shanghai</code></pre>
+<p><code>注释：</code>volumes数据卷数据持久化<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572272207236.png" alt="数据卷"><br>TZ：时区</p>
+<h2 id="部署Mysql"><a href="#部署Mysql" class="headerlink" title="部署Mysql"></a>部署Mysql</h2><p>compose文件</p>
+<pre><code class="yaml">version: `3.1`
+service: 
+    db:
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456
+        command:
+            --default-authentication-plugin=mysql_native_password
+            --character-set-server=utf8mb4
+            --collation-server=utf8mb4_general_ci
+            --explicit_defaults_for_timestamp=true
+            --lower_case_table_names=1
+        ports:
+            - 3306:3306
+        volumes:
+        - ./data:/var/lib/mysql
+    # mysql 的web客户端php
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
     </div>
@@ -865,10 +926,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>DockerCompose</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">394</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-10, 18:21:55</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-10, 18:48:51</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-28, 22:18:08</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/10/DockerCompose/" title="DockerCompose">http://yoursite.com/2019/10/10/DockerCompose/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -951,7 +1012,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#DockerCompose','#GitLab','#Harbor','#Nexus','#Docker基础','#Docker命令','#Feign','#DockerFile','#博客','#Intellij破解','#k8s','#mac_Jdk','#Linux命令','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot启动原理源码','#SpringBoot任务异步、定时、邮件','#SpringBoot自定义Starter','#SpringCloud_Config','#Zuul','#小书匠MarkDown图床配置','#微服务概述','#Eureka','#Hystrix','#网络','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#DockerCompose','#GitLab','#Harbor','#Nexus','#DockerFile','#Docker基础','#Docker命令','#Feign','#博客','#Intellij破解','#k8s','#Linux命令','#mac_Jdk','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#SpringCloud_Config','#Zuul','#小书匠MarkDown图床配置','#微服务概述','#Eureka','#Hystrix','#网络','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
