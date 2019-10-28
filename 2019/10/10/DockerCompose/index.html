@@ -6,15 +6,24 @@
   <meta name="keywords" content=" DockerCompose ">
   <meta name="description" content="DockerCompose | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="一、概览Harbor是Docker的镜像私服跟maven的Nexus类似架构如图 二、安装官网下载：https://github.com/goharbor/harbor 1.解压安装包tar -zxvf harbor-offline-installer-v1.8.0.tgz 2.修改配置文件vi harbor.yml #修改为域名或你的服务器IP hostname: 192.168.141.150">
 <meta name="keywords" content="Harbor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DockerCompose搭建Harbor以及使用">
 <meta property="og:url" content="http://yoursite.com/2019/10/28/DockerCompose搭建Harbor以及使用/index.html">
 <meta property="og:site_name" content="XuShengcai">
+<meta property="og:description" content="一、概览Harbor是Docker的镜像私服跟maven的Nexus类似架构如图 二、安装官网下载：https://github.com/goharbor/harbor 1.解压安装包tar -zxvf harbor-offline-installer-v1.8.0.tgz 2.修改配置文件vi harbor.yml #修改为域名或你的服务器IP hostname: 192.168.141.150">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-28T13:21:17.501Z">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572275903062.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572276291224.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572276668637.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572276802498.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572277112311.png">
+<meta property="og:updated_time" content="2019-10-28T15:39:50.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DockerCompose搭建Harbor以及使用">
+<meta name="twitter:description" content="一、概览Harbor是Docker的镜像私服跟maven的Nexus类似架构如图 二、安装官网下载：https://github.com/goharbor/harbor 1.解压安装包tar -zxvf harbor-offline-installer-v1.8.0.tgz 2.修改配置文件vi harbor.yml #修改为域名或你的服务器IP hostname: 192.168.141.150">
+<meta name="twitter:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572275903062.png">
 
 
 <link rel="icon" href="/img/sender.jpeg">
@@ -227,7 +236,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="43">
-<input type="hidden" id="yelog_site_word_count" value="52.9k">
+<input type="hidden" id="yelog_site_word_count" value="53.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -399,11 +408,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Thymeleaf</a>
+        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
+        <a href="javascript:" class="color5">Thymeleaf</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -812,12 +821,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-28 22:18:08'>2019-10-10 18:21</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-28 22:39:33'>2019-10-10 18:21</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:394</span>
+        <span>字数:396</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -872,9 +881,9 @@ services:
                - 8080:8080
            volumes:
                   - /data</code></pre>
-<h3 id="执行compose文件"><a href="#执行compose文件" class="headerlink" title="执行compose文件"></a>执行compose文件</h3><pre><code class="shell">docker-compose up</code></pre>
+<h3 id="执行compose文件"><a href="#执行compose文件" class="headerlink" title="执行compose文件"></a>执行compose文件</h3><pre><code class="shell">docker-compose up -d</code></pre>
 <h3 id="关闭compse应用"><a href="#关闭compse应用" class="headerlink" title="关闭compse应用"></a>关闭compse应用</h3><pre><code class="shell">docker-compose down</code></pre>
-<h3 id="查看运行日志"><a href="#查看运行日志" class="headerlink" title="查看运行日志"></a>查看运行日志</h3><pre><code class="shell">docker-compose logs</code></pre>
+<h3 id="查看运行日志"><a href="#查看运行日志" class="headerlink" title="查看运行日志"></a>查看运行日志</h3><pre><code class="shell">docker-compose logs -f</code></pre>
 <h1 id="三、DockerCompose部署应用"><a href="#三、DockerCompose部署应用" class="headerlink" title="三、DockerCompose部署应用"></a>三、DockerCompose部署应用</h1><h2 id="部署Tomcat"><a href="#部署Tomcat" class="headerlink" title="部署Tomcat"></a>部署Tomcat</h2><pre><code class="yaml">version: `3.1`
 services:
     tomcat:
@@ -926,10 +935,10 @@ service:
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>DockerCompose</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">394</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">396</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-10, 18:21:55</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-28, 22:18:08</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-28, 22:39:33</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/10/DockerCompose/" title="DockerCompose">http://yoursite.com/2019/10/10/DockerCompose/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -1012,7 +1021,7 @@ service:
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#DockerCompose','#GitLab','#Harbor','#Nexus','#DockerFile','#Docker基础','#Docker命令','#Feign','#博客','#Intellij破解','#k8s','#Linux命令','#mac_Jdk','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#SpringCloud_Config','#Zuul','#小书匠MarkDown图床配置','#微服务概述','#Eureka','#Hystrix','#网络','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
+            'data': ['#DockerCompose','#GitLab','#Harbor','#Nexus','#DockerFile','#Docker基础','#Docker命令','#Feign','#博客','#Intellij破解','#k8s','#Linux命令','#mac_Jdk','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#SpringCloud_Config','#Zuul','#小书匠MarkDown图床配置','#微服务概述','#Eureka','#Hystrix','#网络','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
