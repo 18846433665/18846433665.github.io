@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>DockerCompose网络设置</title>
+      <link href="/2019/10/29/DockerCompose%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2019/10/29/DockerCompose%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>Docker 每次启动都会创建一个私有的网络，如何使不同的容器处在同一网络，从而可以通过容器名称就可以实现互联。</p><h1 id="二、创建自定义网络"><a href="#二、创建自定义网络" class="headerlink" title="二、创建自定义网络"></a>二、创建自定义网络</h1><p>我们预先创建一个名字为myapp的网络，让Compose加入这个新创建的网络，使所有Compose可以通信，此时使用external选项。</p><pre><code class="shell"># 创建网络docker network create &lt;Network Name&gt;# 查看已有网络docker network list</code></pre><p>compose配置使用自定义网络</p><pre><code class="yaml">networks:    default:        external:            name: myapp</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker 网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DockerCompose搭建Harbor以及使用</title>
       <link href="/2019/10/28/DockerCompose%E6%90%AD%E5%BB%BAHarbor%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
       <url>/2019/10/28/DockerCompose%E6%90%AD%E5%BB%BAHarbor%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
