@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>SpringBoot整合TkMybatis以及自动代码生成</title>
+      <link href="/2019/10/29/SpringBoot%E6%95%B4%E5%90%88TkMybatis%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%8A%A8%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/"/>
+      <url>/2019/10/29/SpringBoot%E6%95%B4%E5%90%88TkMybatis%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%8A%A8%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> SpringBoot </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> TkMybatis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HikariCP连接池-SpringBoot</title>
+      <link href="/2019/10/29/HikariCP%E8%BF%9E%E6%8E%A5%E6%B1%A0-SpringBoot/"/>
+      <url>/2019/10/29/HikariCP%E8%BF%9E%E6%8E%A5%E6%B1%A0-SpringBoot/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 连接池 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> HikariCP连接池 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Jenkins安装与使用</title>
       <link href="/2019/10/29/Jenkins%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
       <url>/2019/10/29/Jenkins%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
