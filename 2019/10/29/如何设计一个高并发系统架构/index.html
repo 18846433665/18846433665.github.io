@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>Hexo 使用简介 | XuShengcai</title>
-  <meta name="keywords" content=" 博客 ">
-  <meta name="description" content="Hexo 使用简介 | XuShengcai">
+  <title>如何设计一个高并发系统架构 | XuShengcai</title>
+  <meta name="keywords" content=" 高并发架构设计 ">
+  <meta name="description" content="如何设计一个高并发系统架构 | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="一、设计高并发系统架构可以优化的方案1.应用拆分将单体应用拆分成多个应用，应用之间互相调用rpc或者rest 每个应用有自己的数据库，从而提高并发 2.缓存对于读操作较多的场景，可以通过缓存来提高读的效率 3.MQ如果业务频繁操作数据库，可以利用MQ来异步处理。 4.ES简单的查询可以通过ES来支持高并发 5.分库分表最后可以通过分库分表的方式来实现高并发。">
 <meta name="keywords" content="高并发架构设计">
@@ -875,38 +875,36 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Hexo使用简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-如何设计一个高并发系统架构" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hexo 使用简介</h1>
+        <h1 class="article-title">如何设计一个高并发系统架构</h1>
     
     <div class="article-meta">
-        
-        <span class="top"><a href="javascript:">置顶</a></span>
         
         
         
         <span class="book">
             
-                <a href="javascript:" data-rel="博客">博客</a>
+                <a href="javascript:" data-rel="面试">面试</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">博客</a>
+            <a href="javascript:" class="color3">高并发架构设计</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-18 20:25:45'>2019-09-17 00:43</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-29 22:01:26'>2019-10-29 21:32</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:42</span>
+        <span>字数:152</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -925,7 +923,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、设计高并发系统架构可以优化的方案"><span class="toc-text">一、设计高并发系统架构可以优化的方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-应用拆分"><span class="toc-text">1.应用拆分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-缓存"><span class="toc-text">2.缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-MQ"><span class="toc-text">3.MQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-ES"><span class="toc-text">4.ES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-分库分表"><span class="toc-text">5.分库分表</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -940,15 +938,11 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>!</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="一、设计高并发系统架构可以优化的方案"><a href="#一、设计高并发系统架构可以优化的方案" class="headerlink" title="一、设计高并发系统架构可以优化的方案"></a>一、设计高并发系统架构可以优化的方案</h1><h2 id="1-应用拆分"><a href="#1-应用拆分" class="headerlink" title="1.应用拆分"></a>1.应用拆分</h2><p>将单体应用拆分成多个应用，应用之间互相调用rpc或者rest 每个应用有自己的数据库，从而提高并发</p>
+<h2 id="2-缓存"><a href="#2-缓存" class="headerlink" title="2.缓存"></a>2.缓存</h2><p>对于读操作较多的场景，可以通过缓存来提高读的效率</p>
+<h2 id="3-MQ"><a href="#3-MQ" class="headerlink" title="3.MQ"></a>3.MQ</h2><p>如果业务频繁操作数据库，可以利用MQ来异步处理。</p>
+<h2 id="4-ES"><a href="#4-ES" class="headerlink" title="4.ES"></a>4.ES</h2><p>简单的查询可以通过ES来支持高并发</p>
+<h2 id="5-分库分表"><a href="#5-分库分表" class="headerlink" title="5.分库分表"></a>5.分库分表</h2><p>最后可以通过分库分表的方式来实现高并发。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
@@ -962,12 +956,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Hexo 使用简介</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">42</span></p>
+    <p><span class="copy-title">文章标题:</span>如何设计一个高并发系统架构</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">152</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-17, 00:43:29</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-18, 20:25:45</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/17/Hexo使用简介/" title="Hexo 使用简介">http://yoursite.com/2019/09/17/Hexo使用简介/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-29, 21:32:57</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-29, 22:01:26</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/29/如何设计一个高并发系统架构/" title="如何设计一个高并发系统架构">http://yoursite.com/2019/10/29/如何设计一个高并发系统架构/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
