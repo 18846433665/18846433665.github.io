@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Mysql分库分表类问题</title>
+      <link href="/2019/10/29/Mysql%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E7%B1%BB%E9%97%AE%E9%A2%98/"/>
+      <url>/2019/10/29/Mysql%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E7%B1%BB%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）"><a href="#一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）" class="headerlink" title="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）"></a>一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）</h1><p>在高并发的情况下会有3个问题：<br>1.单机Mysql并发扛不住<br>2.Mysql磁盘快满了<br>3.Mysql单标数据量太大了，Sql慢</p><h1 id="二、用过哪些分库分表中间件"><a href="#二、用过哪些分库分表中间件" class="headerlink" title="二、用过哪些分库分表中间件"></a>二、用过哪些分库分表中间件</h1><p>cobar、TDDL、atlas、sharding-jdbc、mycat</p><h1 id="三、不同的分库分表中间件有什么优缺点"><a href="#三、不同的分库分表中间件有什么优缺点" class="headerlink" title="三、不同的分库分表中间件有什么优缺点"></a>三、不同的分库分表中间件有什么优缺点</h1><p>数据库中间件分为两类：proxy和client端的</p><ul><li>cobar：阿里b2b团队开发，现在不怎么维护了 proxy</li><li>TDDL:  淘宝团队开发的，现在不怎么用 client</li><li>atlas：360团队在用的，基本不怎么更新了，好一点</li><li>sharding-jdbc: client层的解决方案，比较活跃，优点就是比较轻量级，缺点耦合度太高</li><li>mycat：proxy层解决方案，比较活跃，优点是设计模式比较好，对用户透明，缺点维护成本大<h1 id="四、如何对数据库进行垂直和水平拆分的"><a href="#四、如何对数据库进行垂直和水平拆分的" class="headerlink" title="四、如何对数据库进行垂直和水平拆分的"></a>四、如何对数据库进行垂直和水平拆分的</h1></li><li>垂直：列的拆分</li><li>水平：数据的拆分</li></ul><p>分库主要是承载并发<br>分表主要是分散数据量</p><p>一般都是指水平拆分<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572360485544.png" alt="水平拆分"></p><p>水平拆分的算法选择两种方式：<br>1.id Hash算法    好处就是可以平均请求压力，缺点是扩容比较麻烦<br>2.时间range分，缺点就是大部分请求都是看最新的数据</p><h1 id="五、单表如何动态切换到分库分表上"><a href="#五、单表如何动态切换到分库分表上" class="headerlink" title="五、单表如何动态切换到分库分表上"></a>五、单表如何动态切换到分库分表上</h1><p>两种方案：<br>1.停机分库分表</p><ul><li>单独的job进行数据分发</li><li>更改程序配置，更换数据源到新的中间件上</li></ul><p>2.不停机双写方案<br> <img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572362393692.png" alt="方案"> </p><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572362474241.png" alt="方案"></p><p>其实就是通过后台的导数程序现把数据备份完成，然后在对比数据，当数据完全一致后即切换完成。</p><h1 id="六、如何设计可以动态扩缩容的分库分表方案"><a href="#六、如何设计可以动态扩缩容的分库分表方案" class="headerlink" title="六、如何设计可以动态扩缩容的分库分表方案"></a>六、如何设计可以动态扩缩容的分库分表方案</h1><p>步骤：<br>1.选择中间件<br>2.设计方案，多少库，多少表<br>3.基于中间件测试能否正常读写<br>4.完成单库到分库分表的迁移，双写方案<br>5.完成</p><p>再次扩容方案：<br>1.停机扩容<br>2.优化后的方案<br>预先创建好够用的库和表。<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572363542586.png" alt="32库和32表取模路由规则"></p><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366056614.png" alt="扩容方式介绍"></p><p>步骤：<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366324498.png" alt="步骤"></p><h1 id="七、分库分表之后，id主键如何处理"><a href="#七、分库分表之后，id主键如何处理" class="headerlink" title="七、分库分表之后，id主键如何处理"></a>七、分库分表之后，id主键如何处理</h1><h2 id="1-数据库自增ID"><a href="#1-数据库自增ID" class="headerlink" title="1.数据库自增ID"></a>1.数据库自增ID</h2><p>适合数据量大，但是并发不高<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366575411.png" alt></p><h2 id="2-uuid"><a href="#2-uuid" class="headerlink" title="2.uuid"></a>2.uuid</h2><p>缺点就是太长了，不适合做主键<br>优点就是简单</p><h2 id="3-获取系统当前时间"><a href="#3-获取系统当前时间" class="headerlink" title="3.获取系统当前时间"></a>3.获取系统当前时间</h2><p>时间戳和业务字段结合使用</p><h2 id="4-snowflake算法"><a href="#4-snowflake算法" class="headerlink" title="4.snowflake算法"></a>4.snowflake算法</h2><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366832321.png" alt></p><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367027857.png" alt="结构"></p><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367092179.png" alt="解释"></p><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367221542.png" alt="实现步骤"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 分库分表面试题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何设计一个高并发系统架构</title>
       <link href="/2019/10/29/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/"/>
       <url>/2019/10/29/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/</url>

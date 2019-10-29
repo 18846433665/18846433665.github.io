@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>SpringBoot 内嵌容器个性化配置和外部容器配置及原理 | XuShengcai</title>
-  <meta name="keywords" content=" SpringBoot内嵌容器个性化 ">
-  <meta name="description" content="SpringBoot 内嵌容器个性化配置和外部容器配置及原理 | XuShengcai">
+  <title>Mysql分库分表类问题 | XuShengcai</title>
+  <meta name="keywords" content=" 分库分表面试题 ">
+  <meta name="description" content="Mysql分库分表类问题 | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）在高并发的情况下会有3个问题：1.单机Mysql并发扛不住2.Mysql磁盘快满了3.Mysql单标数据量太大了，Sql慢 二、用过哪些分库分表中间件cobar、TDDL、atlas、sharding-jdbc、mycat 三、不同的分库分表中间件有什么优缺点数据库中间件分为两类：proxy和client端的  cobar：阿里b2b团">
 <meta name="keywords" content="分库分表面试题">
@@ -899,9 +899,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-SpringBoot-内嵌容器个性化配置和外部容器配置及原理" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Mysql分库分表类问题" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">SpringBoot 内嵌容器个性化配置和外部容器配置及原理</h1>
+        <h1 class="article-title">Mysql分库分表类问题</h1>
     
     <div class="article-meta">
         
@@ -909,26 +909,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="SpringBoot">SpringBoot</a>
+                <a href="javascript:" data-rel="面试">面试</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">SpringBoot内嵌容器个性化</a>
+            <a href="javascript:" class="color3">分库分表面试题</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-20 11:08:15'>2019-09-19 23:46</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-30 00:40:56'>2019-10-29 22:05</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2.6k</span>
+        <span>字数:631</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -947,7 +947,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置嵌入式Servlet容器"><span class="toc-text">配置嵌入式Servlet容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1）、如何定制和修改Servlet容器的相关配置；"><span class="toc-text">1）、如何定制和修改Servlet容器的相关配置；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2）、注册Servlet三大组件【Servlet、Filter、Listener】"><span class="toc-text">2）、注册Servlet三大组件【Servlet、Filter、Listener】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3）、替换为其他嵌入式Servlet容器"><span class="toc-text">3）、替换为其他嵌入式Servlet容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4）、嵌入式Servlet容器自动配置原理；"><span class="toc-text">4）、嵌入式Servlet容器自动配置原理；</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用外置的Servlet容器"><span class="toc-text">使用外置的Servlet容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）"><span class="toc-text">一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、用过哪些分库分表中间件"><span class="toc-text">二、用过哪些分库分表中间件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、不同的分库分表中间件有什么优缺点"><span class="toc-text">三、不同的分库分表中间件有什么优缺点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、如何对数据库进行垂直和水平拆分的"><span class="toc-text">四、如何对数据库进行垂直和水平拆分的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、单表如何动态切换到分库分表上"><span class="toc-text">五、单表如何动态切换到分库分表上</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、如何设计可以动态扩缩容的分库分表方案"><span class="toc-text">六、如何设计可以动态扩缩容的分库分表方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、分库分表之后，id主键如何处理"><span class="toc-text">七、分库分表之后，id主键如何处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数据库自增ID"><span class="toc-text">1.数据库自增ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-uuid"><span class="toc-text">2.uuid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-获取系统当前时间"><span class="toc-text">3.获取系统当前时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-snowflake算法"><span class="toc-text">4.snowflake算法</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -962,446 +962,40 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="配置嵌入式Servlet容器"><a href="#配置嵌入式Servlet容器" class="headerlink" title="配置嵌入式Servlet容器"></a>配置嵌入式Servlet容器</h2><p>SpringBoot默认使用Tomcat作为嵌入式的Servlet容器；</p>
-<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948747402.png" alt></p>
-<p>问题？</p>
-<h3 id="1）、如何定制和修改Servlet容器的相关配置；"><a href="#1）、如何定制和修改Servlet容器的相关配置；" class="headerlink" title="1）、如何定制和修改Servlet容器的相关配置；"></a>1）、如何定制和修改Servlet容器的相关配置；</h3><p>1、修改和server有关的配置（ServerProperties【也是EmbeddedServletContainerCustomizer】）；</p>
-<pre><code class="properties">server.port=8081
-server.context-path=/crud
-
-server.tomcat.uri-encoding=UTF-8
-
-//通用的Servlet容器设置
-server.xxx
-//Tomcat的设置
-server.tomcat.xxx</code></pre>
-<p>2、编写一个<strong>EmbeddedServletContainerCustomizer</strong>：嵌入式的Servlet容器的定制器；来修改Servlet容器的配置</p>
-<pre><code class="java">@Bean  //一定要将这个定制器加入到容器中
-public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer(){
-    return new EmbeddedServletContainerCustomizer() {
-
-        //定制嵌入式的Servlet容器相关的规则
-        @Override
-        public void customize(ConfigurableEmbeddedServletContainer container) {
-            container.setPort(8083);
-        }
-    };
-}</code></pre>
-<h3 id="2）、注册Servlet三大组件【Servlet、Filter、Listener】"><a href="#2）、注册Servlet三大组件【Servlet、Filter、Listener】" class="headerlink" title="2）、注册Servlet三大组件【Servlet、Filter、Listener】"></a>2）、注册Servlet三大组件【Servlet、Filter、Listener】</h3><p>由于SpringBoot默认是以jar包的方式启动嵌入式的Servlet容器来启动SpringBoot的web应用，没有web.xml文件。</p>
-<p>注册三大组件用以下方式</p>
-<p>ServletRegistrationBean</p>
-<pre><code class="java">//注册三大组件
-@Bean
-public ServletRegistrationBean myServlet(){
-    ServletRegistrationBean registrationBean = new ServletRegistrationBean(new MyServlet(),&quot;/myServlet&quot;);
-    return registrationBean;
-}
-</code></pre>
-<p>FilterRegistrationBean</p>
-<pre><code class="java">@Bean
-public FilterRegistrationBean myFilter(){
-    FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-    registrationBean.setFilter(new MyFilter());
-    registrationBean.setUrlPatterns(Arrays.asList(&quot;/hello&quot;,&quot;/myServlet&quot;));
-    return registrationBean;
-}</code></pre>
-<p>ServletListenerRegistrationBean</p>
-<pre><code class="java">@Bean
-public ServletListenerRegistrationBean myListener(){
-    ServletListenerRegistrationBean&lt;MyListener&gt; registrationBean = new ServletListenerRegistrationBean&lt;&gt;(new MyListener());
-    return registrationBean;
-}</code></pre>
-<p>SpringBoot帮我们自动SpringMVC的时候，自动的注册SpringMVC的前端控制器；DIspatcherServlet；</p>
-<p>DispatcherServletAutoConfiguration中：</p>
-<pre><code class="java">@Bean(name = DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME)
-@ConditionalOnBean(value = DispatcherServlet.class, name = DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
-public ServletRegistrationBean dispatcherServletRegistration(
-      DispatcherServlet dispatcherServlet) {
-   ServletRegistrationBean registration = new ServletRegistrationBean(
-         dispatcherServlet, this.serverProperties.getServletMapping());
-    //默认拦截： /  所有请求；包静态资源，但是不拦截jsp请求；   /*会拦截jsp
-    //可以通过server.servletPath来修改SpringMVC前端控制器默认拦截的请求路径
-
-   registration.setName(DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
-   registration.setLoadOnStartup(
-         this.webMvcProperties.getServlet().getLoadOnStartup());
-   if (this.multipartConfig != null) {
-      registration.setMultipartConfig(this.multipartConfig);
-   }
-   return registration;
-}
-</code></pre>
-<p>2）、SpringBoot能不能支持其他的Servlet容器；</p>
-<h3 id="3）、替换为其他嵌入式Servlet容器"><a href="#3）、替换为其他嵌入式Servlet容器" class="headerlink" title="3）、替换为其他嵌入式Servlet容器"></a>3）、替换为其他嵌入式Servlet容器</h3><p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948715555.png" alt></p>
-<p>默认支持：</p>
-<p>Tomcat（默认使用）</p>
-<pre><code class="xml">&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-   引入web模块默认就是使用嵌入式的Tomcat作为Servlet容器；
-&lt;/dependency&gt;</code></pre>
-<p>Jetty</p>
-<pre><code class="xml">&lt;!-- 引入web模块 --&gt;
-&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-   &lt;exclusions&gt;
-      &lt;exclusion&gt;
-         &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;/exclusion&gt;
-   &lt;/exclusions&gt;
-&lt;/dependency&gt;
-
-&lt;!--引入其他的Servlet容器--&gt;
-&lt;dependency&gt;
-   &lt;artifactId&gt;spring-boot-starter-jetty&lt;/artifactId&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-&lt;/dependency&gt;</code></pre>
-<p>Undertow</p>
-<pre><code class="xml">&lt;!-- 引入web模块 --&gt;
-&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-   &lt;exclusions&gt;
-      &lt;exclusion&gt;
-         &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;/exclusion&gt;
-   &lt;/exclusions&gt;
-&lt;/dependency&gt;
-
-&lt;!--引入其他的Servlet容器--&gt;
-&lt;dependency&gt;
-   &lt;artifactId&gt;spring-boot-starter-undertow&lt;/artifactId&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-&lt;/dependency&gt;</code></pre>
-<h3 id="4）、嵌入式Servlet容器自动配置原理；"><a href="#4）、嵌入式Servlet容器自动配置原理；" class="headerlink" title="4）、嵌入式Servlet容器自动配置原理；"></a>4）、嵌入式Servlet容器自动配置原理；</h3><p>EmbeddedServletContainerAutoConfiguration：嵌入式的Servlet容器自动配置？</p>
-<pre><code class="java">@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
-@Configuration
-@ConditionalOnWebApplication
-@Import(BeanPostProcessorsRegistrar.class)
-//导入BeanPostProcessorsRegistrar：Spring注解版；给容器中导入一些组件
-//导入了EmbeddedServletContainerCustomizerBeanPostProcessor：
-//后置处理器：bean初始化前后（创建完对象，还没赋值赋值）执行初始化工作
-public class EmbeddedServletContainerAutoConfiguration {
-
-    @Configuration
-    @ConditionalOnClass({ Servlet.class, Tomcat.class })//判断当前是否引入了Tomcat依赖；
-    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)//判断当前容器没有用户自己定义EmbeddedServletContainerFactory：嵌入式的Servlet容器工厂；作用：创建嵌入式的Servlet容器
-    public static class EmbeddedTomcat {
-
-        @Bean
-        public TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory() {
-            return new TomcatEmbeddedServletContainerFactory();
-        }
-
-    }
-
-    /**
-     * Nested configuration if Jetty is being used.
-     */
-    @Configuration
-    @ConditionalOnClass({ Servlet.class, Server.class, Loader.class,
-            WebAppContext.class })
-    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)
-    public static class EmbeddedJetty {
-
-        @Bean
-        public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory() {
-            return new JettyEmbeddedServletContainerFactory();
-        }
-
-    }
-
-    /**
-     * Nested configuration if Undertow is being used.
-     */
-    @Configuration
-    @ConditionalOnClass({ Servlet.class, Undertow.class, SslClientAuthMode.class })
-    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)
-    public static class EmbeddedUndertow {
-
-        @Bean
-        public UndertowEmbeddedServletContainerFactory undertowEmbeddedServletContainerFactory() {
-            return new UndertowEmbeddedServletContainerFactory();
-        }
-
-    }</code></pre>
-<p>1）、EmbeddedServletContainerFactory（嵌入式Servlet容器工厂）</p>
-<pre><code class="java">public interface EmbeddedServletContainerFactory {
-
-   //获取嵌入式的Servlet容器
-   EmbeddedServletContainer getEmbeddedServletContainer(
-         ServletContextInitializer... initializers);
-
-}</code></pre>
-<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948645009.png" alt></p>
-<p>2）、EmbeddedServletContainer：（嵌入式的Servlet容器）</p>
-<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948682495.png" alt></p>
-<p>3）、以<strong>TomcatEmbeddedServletContainerFactory</strong>为例</p>
-<pre><code class="java">@Override
-public EmbeddedServletContainer getEmbeddedServletContainer(
-      ServletContextInitializer... initializers) {
-    //创建一个Tomcat
-   Tomcat tomcat = new Tomcat();
-
-    //配置Tomcat的基本环节
-   File baseDir = (this.baseDirectory != null ? this.baseDirectory
-         : createTempDir(&quot;tomcat&quot;));
-   tomcat.setBaseDir(baseDir.getAbsolutePath());
-   Connector connector = new Connector(this.protocol);
-   tomcat.getService().addConnector(connector);
-   customizeConnector(connector);
-   tomcat.setConnector(connector);
-   tomcat.getHost().setAutoDeploy(false);
-   configureEngine(tomcat.getEngine());
-   for (Connector additionalConnector : this.additionalTomcatConnectors) {
-      tomcat.getService().addConnector(additionalConnector);
-   }
-   prepareContext(tomcat.getHost(), initializers);
-
-    //将配置好的Tomcat传入进去，返回一个EmbeddedServletContainer；并且启动Tomcat服务器
-   return getTomcatEmbeddedServletContainer(tomcat);
-}</code></pre>
-<p>4）、我们对嵌入式容器的配置修改是怎么生效？</p>
-<pre><code>ServerProperties、EmbeddedServletContainerCustomizer</code></pre><p><strong>EmbeddedServletContainerCustomizer</strong>：定制器帮我们修改了Servlet容器的配置？</p>
-<p>怎么修改的原理？</p>
-<p>5）、容器中导入了<strong>EmbeddedServletContainerCustomizerBeanPostProcessor</strong></p>
-<pre><code class="java">//初始化之前
-@Override
-public Object postProcessBeforeInitialization(Object bean, String beanName)
-      throws BeansException {
-    //如果当前初始化的是一个ConfigurableEmbeddedServletContainer类型的组件
-   if (bean instanceof ConfigurableEmbeddedServletContainer) {
-       //
-      postProcessBeforeInitialization((ConfigurableEmbeddedServletContainer) bean);
-   }
-   return bean;
-}
-
-private void postProcessBeforeInitialization(
-            ConfigurableEmbeddedServletContainer bean) {
-    //获取所有的定制器，调用每一个定制器的customize方法来给Servlet容器进行属性赋值；
-    for (EmbeddedServletContainerCustomizer customizer : getCustomizers()) {
-        customizer.customize(bean);
-    }
-}
-
-private Collection&lt;EmbeddedServletContainerCustomizer&gt; getCustomizers() {
-    if (this.customizers == null) {
-        // Look up does not include the parent context
-        this.customizers = new ArrayList&lt;EmbeddedServletContainerCustomizer&gt;(
-            this.beanFactory
-            //从容器中获取所有这葛类型的组件：EmbeddedServletContainerCustomizer
-            //定制Servlet容器，给容器中可以添加一个EmbeddedServletContainerCustomizer类型的组件
-            .getBeansOfType(EmbeddedServletContainerCustomizer.class,
-                            false, false)
-            .values());
-        Collections.sort(this.customizers, AnnotationAwareOrderComparator.INSTANCE);
-        this.customizers = Collections.unmodifiableList(this.customizers);
-    }
-    return this.customizers;
-}
-
-ServerProperties也是定制器</code></pre>
-<p>步骤：</p>
-<p>1）、SpringBoot根据导入的依赖情况，给容器中添加相应的EmbeddedServletContainerFactory【TomcatEmbeddedServletContainerFactory】</p>
-<p>2）、容器中某个组件要创建对象就会惊动后置处理器；EmbeddedServletContainerCustomizerBeanPostProcessor；</p>
-<p>只要是嵌入式的Servlet容器工厂，后置处理器就工作；</p>
-<p>3）、后置处理器，从容器中获取所有的<strong>EmbeddedServletContainerCustomizer</strong>，调用定制器的定制方法</p>
-<p>###5）、嵌入式Servlet容器启动原理；</p>
-<p>什么时候创建嵌入式的Servlet容器工厂？什么时候获取嵌入式的Servlet容器并启动Tomcat；</p>
-<p>获取嵌入式的Servlet容器工厂：</p>
-<p>1）、SpringBoot应用启动运行run方法</p>
-<p>2）、refreshContext(context);SpringBoot刷新IOC容器【创建IOC容器对象，并初始化容器，创建容器中的每一个组件】；如果是web应用创建<strong>AnnotationConfigEmbeddedWebApplicationContext</strong>，否则：<strong>AnnotationConfigApplicationContext</strong></p>
-<p>3）、refresh(context);<strong>刷新刚才创建好的ioc容器；</strong></p>
-<pre><code class="java">public void refresh() throws BeansException, IllegalStateException {
-   synchronized (this.startupShutdownMonitor) {
-      // Prepare this context for refreshing.
-      prepareRefresh();
-
-      // Tell the subclass to refresh the internal bean factory.
-      ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
-
-      // Prepare the bean factory for use in this context.
-      prepareBeanFactory(beanFactory);
-
-      try {
-         // Allows post-processing of the bean factory in context subclasses.
-         postProcessBeanFactory(beanFactory);
-
-         // Invoke factory processors registered as beans in the context.
-         invokeBeanFactoryPostProcessors(beanFactory);
-
-         // Register bean processors that intercept bean creation.
-         registerBeanPostProcessors(beanFactory);
-
-         // Initialize message source for this context.
-         initMessageSource();
-
-         // Initialize event multicaster for this context.
-         initApplicationEventMulticaster();
-
-         // Initialize other special beans in specific context subclasses.
-         onRefresh();
-
-         // Check for listener beans and register them.
-         registerListeners();
-
-         // Instantiate all remaining (non-lazy-init) singletons.
-         finishBeanFactoryInitialization(beanFactory);
-
-         // Last step: publish corresponding event.
-         finishRefresh();
-      }
-
-      catch (BeansException ex) {
-         if (logger.isWarnEnabled()) {
-            logger.warn(&quot;Exception encountered during context initialization - &quot; +
-                  &quot;cancelling refresh attempt: &quot; + ex);
-         }
-
-         // Destroy already created singletons to avoid dangling resources.
-         destroyBeans();
-
-         // Reset &#39;active&#39; flag.
-         cancelRefresh(ex);
-
-         // Propagate exception to caller.
-         throw ex;
-      }
-
-      finally {
-         // Reset common introspection caches in Spring&#39;s core, since we
-         // might not ever need metadata for singleton beans anymore...
-         resetCommonCaches();
-      }
-   }
-}</code></pre>
-<p>4）、  onRefresh(); web的ioc容器重写了onRefresh方法</p>
-<p>5）、webioc容器会创建嵌入式的Servlet容器；<strong>createEmbeddedServletContainer</strong>();</p>
-<p><strong>6）、获取嵌入式的Servlet容器工厂：</strong></p>
-<p>EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFactory();</p>
-<p>​    从ioc容器中获取EmbeddedServletContainerFactory 组件；<strong>TomcatEmbeddedServletContainerFactory</strong>创建对象，后置处理器一看是这个对象，就获取所有的定制器来先定制Servlet容器的相关配置；</p>
-<p>7）、<strong>使用容器工厂获取嵌入式的Servlet容器</strong>：this.embeddedServletContainer = containerFactory      .getEmbeddedServletContainer(getSelfInitializer());</p>
-<p>8）、嵌入式的Servlet容器创建对象并启动Servlet容器；</p>
-<p><strong>先启动嵌入式的Servlet容器，再将ioc容器中剩下没有创建出的对象获取出来；</strong></p>
-<p><strong><code>IOC容器启动创建嵌入式的Servlet容器</code></strong></p>
-<h2 id="使用外置的Servlet容器"><a href="#使用外置的Servlet容器" class="headerlink" title="使用外置的Servlet容器"></a>使用外置的Servlet容器</h2><p>嵌入式Servlet容器：应用打成可执行的jar</p>
-<p>​        优点：简单、便携；</p>
-<p>​        缺点：默认不支持JSP、优化定制比较复杂（使用定制器【ServerProperties、自定义EmbeddedServletContainerCustomizer】，自己编写嵌入式Servlet容器的创建工厂【EmbeddedServletContainerFactory】）；</p>
-<p>外置的Servlet容器：外面安装Tomcat—应用war包的方式打包；</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1）、必须创建一个war项目；（利用idea创建好目录结构）</p>
-<p>2）、将嵌入式的Tomcat指定为provided；</p>
-<pre><code class="xml">&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-   &lt;scope&gt;provided&lt;/scope&gt;
-&lt;/dependency&gt;</code></pre>
-<p>3）、必须编写一个<strong>SpringBootServletInitializer</strong>的子类，并调用configure方法</p>
-<pre><code class="java">public class ServletInitializer extends SpringBootServletInitializer {
-
-   @Override
-   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-       //传入SpringBoot应用的主程序
-      return application.sources(SpringBoot04WebJspApplication.class);
-   }
-
-}</code></pre>
-<p>4）、启动服务器就可以使用；</p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>jar包：执行SpringBoot主类的main方法，启动ioc容器，创建嵌入式的Servlet容器；</p>
-<p>war包：启动服务器，<strong>服务器启动SpringBoot应用</strong>【SpringBootServletInitializer】，启动ioc容器；</p>
-<p>servlet3.0（Spring注解版）：</p>
-<p>8.2.4 Shared libraries / runtimes pluggability：</p>
-<p>规则：</p>
-<p>​    1）、服务器启动（web应用启动）会创建当前web应用里面每一个jar包里面ServletContainerInitializer实例：</p>
-<p>​    2）、ServletContainerInitializer的实现放在jar包的META-INF/services文件夹下，有一个名为javax.servlet.ServletContainerInitializer的文件，内容就是ServletContainerInitializer的实现类的全类名</p>
-<p>​    3）、还可以使用@HandlesTypes，在应用启动的时候加载我们感兴趣的类；</p>
-<p>流程：</p>
-<p>1）、启动Tomcat</p>
-<p>2）、org\springframework\spring-web\4.3.14.RELEASE\spring-web-4.3.14.RELEASE.jar!\META-INF\services\javax.servlet.ServletContainerInitializer：</p>
-<p>Spring的web模块里面有这个文件：<strong>org.springframework.web.SpringServletContainerInitializer</strong></p>
-<p>3）、SpringServletContainerInitializer将@HandlesTypes(WebApplicationInitializer.class)标注的所有这个类型的类都传入到onStartup方法的Set&lt;Class&lt;?&gt;&gt;；为这些WebApplicationInitializer类型的类创建实例；</p>
-<p>4）、每一个WebApplicationInitializer都调用自己的onStartup；</p>
-<p><img src="https://www.github.com/18846433665/hexoimg/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1568948799385.png" alt></p>
-<p>5）、相当于我们的SpringBootServletInitializer的类会被创建对象，并执行onStartup方法</p>
-<p>6）、SpringBootServletInitializer实例执行onStartup的时候会createRootApplicationContext；创建容器</p>
-<pre><code class="java">protected WebApplicationContext createRootApplicationContext(
-      ServletContext servletContext) {
-    //1、创建SpringApplicationBuilder
-   SpringApplicationBuilder builder = createSpringApplicationBuilder();
-   StandardServletEnvironment environment = new StandardServletEnvironment();
-   environment.initPropertySources(servletContext, null);
-   builder.environment(environment);
-   builder.main(getClass());
-   ApplicationContext parent = getExistingRootWebApplicationContext(servletContext);
-   if (parent != null) {
-      this.logger.info(&quot;Root context already created (using as parent).&quot;);
-      servletContext.setAttribute(
-            WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, null);
-      builder.initializers(new ParentContextApplicationContextInitializer(parent));
-   }
-   builder.initializers(
-         new ServletContextApplicationContextInitializer(servletContext));
-   builder.contextClass(AnnotationConfigEmbeddedWebApplicationContext.class);
-
-    //调用configure方法，子类重写了这个方法，将SpringBoot的主程序类传入了进来
-   builder = configure(builder);
-
-    //使用builder创建一个Spring应用
-   SpringApplication application = builder.build();
-   if (application.getSources().isEmpty() &amp;&amp; AnnotationUtils
-         .findAnnotation(getClass(), Configuration.class) != null) {
-      application.getSources().add(getClass());
-   }
-   Assert.state(!application.getSources().isEmpty(),
-         &quot;No SpringApplication sources have been defined. Either override the &quot;
-               + &quot;configure method or add an @Configuration annotation&quot;);
-   // Ensure error pages are registered
-   if (this.registerErrorPageFilter) {
-      application.getSources().add(ErrorPageFilterConfiguration.class);
-   }
-    //启动Spring应用
-   return run(application);
-}</code></pre>
-<p>7）、Spring的应用就启动并且创建IOC容器</p>
-<pre><code class="java">public ConfigurableApplicationContext run(String... args) {
-   StopWatch stopWatch = new StopWatch();
-   stopWatch.start();
-   ConfigurableApplicationContext context = null;
-   FailureAnalyzers analyzers = null;
-   configureHeadlessProperty();
-   SpringApplicationRunListeners listeners = getRunListeners(args);
-   listeners.starting();
-   try {
-      ApplicationArguments applicationArguments = new DefaultApplicationArguments(
-            args);
-      ConfigurableEnvironment environment = prepareEnvironment(listeners,
-            applicationArguments);
-      Banner printedBanner = printBanner(environment);
-      context = createApplicationContext();
-      analyzers = new FailureAnalyzers(context);
-      prepareContext(context, environment, listeners, applicationArguments,
-            printedBanner);
-
-       //刷新IOC容器
-      refreshContext(context);
-      afterRefresh(context, applicationArguments);
-      listeners.finished(context, null);
-      stopWatch.stop();
-      if (this.logStartupInfo) {
-         new StartupInfoLogger(this.mainApplicationClass)
-               .logStarted(getApplicationLog(), stopWatch);
-      }
-      return context;
-   }
-   catch (Throwable ex) {
-      handleRunFailure(context, listeners, analyzers, ex);
-      throw new IllegalStateException(ex);
-   }
-}</code></pre>
-<p><strong><code>启动Servlet容器，再启动SpringBoot应用</code></strong></p>
+        <h1 id="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）"><a href="#一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）" class="headerlink" title="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）"></a>一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）</h1><p>在高并发的情况下会有3个问题：<br>1.单机Mysql并发扛不住<br>2.Mysql磁盘快满了<br>3.Mysql单标数据量太大了，Sql慢</p>
+<h1 id="二、用过哪些分库分表中间件"><a href="#二、用过哪些分库分表中间件" class="headerlink" title="二、用过哪些分库分表中间件"></a>二、用过哪些分库分表中间件</h1><p>cobar、TDDL、atlas、sharding-jdbc、mycat</p>
+<h1 id="三、不同的分库分表中间件有什么优缺点"><a href="#三、不同的分库分表中间件有什么优缺点" class="headerlink" title="三、不同的分库分表中间件有什么优缺点"></a>三、不同的分库分表中间件有什么优缺点</h1><p>数据库中间件分为两类：proxy和client端的</p>
+<ul>
+<li>cobar：阿里b2b团队开发，现在不怎么维护了 proxy</li>
+<li>TDDL:  淘宝团队开发的，现在不怎么用 client</li>
+<li>atlas：360团队在用的，基本不怎么更新了，好一点</li>
+<li>sharding-jdbc: client层的解决方案，比较活跃，优点就是比较轻量级，缺点耦合度太高</li>
+<li>mycat：proxy层解决方案，比较活跃，优点是设计模式比较好，对用户透明，缺点维护成本大<h1 id="四、如何对数据库进行垂直和水平拆分的"><a href="#四、如何对数据库进行垂直和水平拆分的" class="headerlink" title="四、如何对数据库进行垂直和水平拆分的"></a>四、如何对数据库进行垂直和水平拆分的</h1></li>
+<li>垂直：列的拆分</li>
+<li>水平：数据的拆分</li>
+</ul>
+<p>分库主要是承载并发<br>分表主要是分散数据量</p>
+<p>一般都是指水平拆分<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572360485544.png" alt="水平拆分"></p>
+<p>水平拆分的算法选择两种方式：<br>1.id Hash算法    好处就是可以平均请求压力，缺点是扩容比较麻烦<br>2.时间range分，缺点就是大部分请求都是看最新的数据</p>
+<h1 id="五、单表如何动态切换到分库分表上"><a href="#五、单表如何动态切换到分库分表上" class="headerlink" title="五、单表如何动态切换到分库分表上"></a>五、单表如何动态切换到分库分表上</h1><p>两种方案：<br>1.停机分库分表</p>
+<ul>
+<li>单独的job进行数据分发</li>
+<li>更改程序配置，更换数据源到新的中间件上</li>
+</ul>
+<p>2.不停机双写方案<br> <img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572362393692.png" alt="方案"> </p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572362474241.png" alt="方案"></p>
+<p>其实就是通过后台的导数程序现把数据备份完成，然后在对比数据，当数据完全一致后即切换完成。</p>
+<h1 id="六、如何设计可以动态扩缩容的分库分表方案"><a href="#六、如何设计可以动态扩缩容的分库分表方案" class="headerlink" title="六、如何设计可以动态扩缩容的分库分表方案"></a>六、如何设计可以动态扩缩容的分库分表方案</h1><p>步骤：<br>1.选择中间件<br>2.设计方案，多少库，多少表<br>3.基于中间件测试能否正常读写<br>4.完成单库到分库分表的迁移，双写方案<br>5.完成</p>
+<p>再次扩容方案：<br>1.停机扩容<br>2.优化后的方案<br>预先创建好够用的库和表。<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572363542586.png" alt="32库和32表取模路由规则"></p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366056614.png" alt="扩容方式介绍"></p>
+<p>步骤：<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366324498.png" alt="步骤"></p>
+<h1 id="七、分库分表之后，id主键如何处理"><a href="#七、分库分表之后，id主键如何处理" class="headerlink" title="七、分库分表之后，id主键如何处理"></a>七、分库分表之后，id主键如何处理</h1><h2 id="1-数据库自增ID"><a href="#1-数据库自增ID" class="headerlink" title="1.数据库自增ID"></a>1.数据库自增ID</h2><p>适合数据量大，但是并发不高<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366575411.png" alt></p>
+<h2 id="2-uuid"><a href="#2-uuid" class="headerlink" title="2.uuid"></a>2.uuid</h2><p>缺点就是太长了，不适合做主键<br>优点就是简单</p>
+<h2 id="3-获取系统当前时间"><a href="#3-获取系统当前时间" class="headerlink" title="3.获取系统当前时间"></a>3.获取系统当前时间</h2><p>时间戳和业务字段结合使用</p>
+<h2 id="4-snowflake算法"><a href="#4-snowflake算法" class="headerlink" title="4.snowflake算法"></a>4.snowflake算法</h2><p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366832321.png" alt></p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367027857.png" alt="结构"></p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367092179.png" alt="解释"></p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367221542.png" alt="实现步骤"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
@@ -1415,12 +1009,12 @@ ServerProperties也是定制器</code></pre>
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>SpringBoot 内嵌容器个性化配置和外部容器配置及原理</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">2.6k</span></p>
+    <p><span class="copy-title">文章标题:</span>Mysql分库分表类问题</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">631</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-19, 23:46:07</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-20, 11:08:15</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/19/SpringBoot-内嵌容器个性化配置和外部容器配置及原理/" title="SpringBoot 内嵌容器个性化配置和外部容器配置及原理">http://yoursite.com/2019/09/19/SpringBoot-内嵌容器个性化配置和外部容器配置及原理/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-29, 22:05:19</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-30, 00:40:56</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/29/Mysql分库分表类问题/" title="Mysql分库分表类问题">http://yoursite.com/2019/10/29/Mysql分库分表类问题/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
