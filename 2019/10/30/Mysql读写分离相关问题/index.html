@@ -6,15 +6,27 @@
   <meta name="keywords" content=" Mysql读写分离面试 ">
   <meta name="description" content="Mysql读写分离相关问题 | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="一、为什么Mysql要读写分离场景： 什么情况下缓存读不到数据  缓存刚加上去的时候 缓存的内存塞满了  二、如何实现Mysql的读写分离,主从复制的原理原生就支持主从复制      问题1：从库同步数据的过程是串行化的，也就是说主库上并行的操作，从库是串行执行。所以高并发场景下会有数据延时的问题。 注释：主库写并发1000/s，从库延时几sm、如果是2000/s，从库延时几十ms 问题2：主库宕">
 <meta name="keywords" content="Mysql读写分离面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql读写分离相关问题">
 <meta property="og:url" content="http://yoursite.com/2019/10/30/Mysql读写分离相关问题/index.html">
 <meta property="og:site_name" content="XuShengcai">
+<meta property="og:description" content="一、为什么Mysql要读写分离场景： 什么情况下缓存读不到数据  缓存刚加上去的时候 缓存的内存塞满了  二、如何实现Mysql的读写分离,主从复制的原理原生就支持主从复制      问题1：从库同步数据的过程是串行化的，也就是说主库上并行的操作，从库是串行执行。所以高并发场景下会有数据延时的问题。 注释：主库写并发1000/s，从库延时几sm、如果是2000/s，从库延时几十ms 问题2：主库宕">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-29T16:43:59.491Z">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572406837331.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572345724288.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572345985183.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572347468077.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572349209906.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572350391950.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572408476473.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572408506152.png">
+<meta property="og:updated_time" content="2019-10-30T04:09:24.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql读写分离相关问题">
+<meta name="twitter:description" content="一、为什么Mysql要读写分离场景： 什么情况下缓存读不到数据  缓存刚加上去的时候 缓存的内存塞满了  二、如何实现Mysql的读写分离,主从复制的原理原生就支持主从复制      问题1：从库同步数据的过程是串行化的，也就是说主库上并行的操作，从库是串行执行。所以高并发场景下会有数据延时的问题。 注释：主库写并发1000/s，从库延时几sm、如果是2000/s，从库延时几十ms 问题2：主库宕">
+<meta name="twitter:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572406837331.png">
 
 
 <link rel="icon" href="/img/sender.jpeg">
@@ -91,14 +103,6 @@
     
         
             
-            <li><div data-rel="Docker">Docker<small>(5)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="私服">私服<small>(3)</small></div>
                 
             </li>
@@ -107,7 +111,7 @@
     
         
             
-            <li><div data-rel="SpringCloud">SpringCloud<small>(7)</small></div>
+            <li><div data-rel="Docker">Docker<small>(5)</small></div>
                 
             </li>
             
@@ -123,7 +127,7 @@
     
         
             
-            <li><div data-rel="连接池">连接池<small>(1)</small></div>
+            <li><div data-rel="SpringCloud">SpringCloud<small>(7)</small></div>
                 
             </li>
             
@@ -131,7 +135,7 @@
     
         
             
-            <li><div data-rel="开发环境">开发环境<small>(2)</small></div>
+            <li><div data-rel="连接池">连接池<small>(1)</small></div>
                 
             </li>
             
@@ -148,6 +152,14 @@
         
             
             <li><div data-rel="Linux">Linux<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="开发环境">开发环境<small>(2)</small></div>
                 
             </li>
             
@@ -219,7 +231,7 @@
     
         
             
-            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+            <li><div data-rel="缓存">缓存<small>(1)</small></div>
                 
             </li>
             
@@ -227,7 +239,7 @@
     
         
             
-            <li><div data-rel="缓存">缓存<small>(1)</small></div>
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
                 
             </li>
             
@@ -251,7 +263,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="50">
-<input type="hidden" id="yelog_site_word_count" value="62.5k">
+<input type="hidden" id="yelog_site_word_count" value="62.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -283,10 +295,6 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">DockerCompose</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">GitLab</a>
     </li>
     
@@ -295,11 +303,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Docker 网络</a>
+        <a href="javascript:" class="color1">Nexus</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Nexus</a>
+        <a href="javascript:" class="color4">DockerCompose</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Docker 网络</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -315,19 +327,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Feign</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">HikariCP连接池</a>
+        <a href="javascript:" class="color1">Feign</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Intellij破解</a>
+        <a href="javascript:" class="color2">HikariCP连接池</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -339,7 +347,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">mac_Jdk</a>
+        <a href="javascript:" class="color1">Intellij破解</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Mysql读写分离面试</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -347,7 +359,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Mysql读写分离面试</a>
+        <a href="javascript:" class="color3">mac_Jdk</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -391,15 +403,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringCloud_Config</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Zuul</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringCloud_Config</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -411,11 +423,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Eureka</a>
+        <a href="javascript:" class="color3">Hystrix</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Hystrix</a>
+        <a href="javascript:" class="color2">Eureka</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -431,15 +443,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -447,11 +455,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Thymeleaf</a>
+        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">SpringBoot日志</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Thymeleaf</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -463,11 +475,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">TkMybatis</a>
+        <a href="javascript:" class="color3">SpringBoot配置</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot配置</a>
+        <a href="javascript:" class="color5">TkMybatis</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -920,12 +932,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-30 00:43:59'>2019-10-30 00:43</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-30 12:09:24'>2019-10-30 00:43</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:321</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -944,7 +956,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、为什么Mysql要读写分离"><span class="toc-text">一、为什么Mysql要读写分离</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、如何实现Mysql的读写分离-主从复制的原理"><span class="toc-text">二、如何实现Mysql的读写分离,主从复制的原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、如何解决主从同步的延时问题"><span class="toc-text">三、如何解决主从同步的延时问题</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -959,7 +971,34 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="一、为什么Mysql要读写分离"><a href="#一、为什么Mysql要读写分离" class="headerlink" title="一、为什么Mysql要读写分离"></a>一、为什么Mysql要读写分离</h1><p>场景：<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572406837331.png" alt="场景"></p>
+<p>什么情况下缓存读不到数据</p>
+<ul>
+<li>缓存刚加上去的时候</li>
+<li>缓存的内存塞满了</li>
+</ul>
+<h1 id="二、如何实现Mysql的读写分离-主从复制的原理"><a href="#二、如何实现Mysql的读写分离-主从复制的原理" class="headerlink" title="二、如何实现Mysql的读写分离,主从复制的原理"></a>二、如何实现Mysql的读写分离,主从复制的原理</h1><p>原生就支持主从复制</p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572345724288.png" alt></p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572345985183.png" alt></p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572347468077.png" alt="enter description here"></p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572349209906.png" alt></p>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572350391950.png" alt></p>
+<p>问题1：从库同步数据的过程是串行化的，也就是说主库上并行的操作，从库是串行执行。所以高并发场景下会有数据延时的问题。</p>
+<p>注释：主库写并发1000/s，从库延时几sm、如果是2000/s，从库延时几十ms</p>
+<p>问题2：主库宕机，数据没有同步到从库，有可能造成数据丢失</p>
+<p>mysql提供两种解决方案：</p>
+<ul>
+<li>半同步复制，解决数据丢失问题。强行ack，类似于三次握手概念  （semi-sync）</li>
+<li>并行复制，解决数据延时问题。</li>
+</ul>
+<h1 id="三、如何解决主从同步的延时问题"><a href="#三、如何解决主从同步的延时问题" class="headerlink" title="三、如何解决主从同步的延时问题"></a>三、如何解决主从同步的延时问题</h1><ul>
+<li>show status 命令可以通过 Sendconds_Behind_Master 可以看到主从复制延时落后的几ms</li>
+<li>可以使用mysql的并行复制</li>
+<li>分库来添加多个主库实现降低延时的目的</li>
+<li>如果必须要同步的话，就需要采用中间件来强制读取主库来实现数据的强一致性<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572408476473.png" alt></li>
+</ul>
+<p><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572408506152.png" alt></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
     </div>
@@ -973,10 +1012,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>Mysql读写分离相关问题</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">321</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-30, 00:43:25</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-30, 00:43:59</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-30, 12:09:24</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/30/Mysql读写分离相关问题/" title="Mysql读写分离相关问题">http://yoursite.com/2019/10/30/Mysql读写分离相关问题/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -1059,7 +1098,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#DockerCompose','#GitLab','#Harbor','#Docker 网络','#Nexus','#DockerFile','#Docker基础','#Docker命令','#Feign','#博客','#HikariCP连接池','#Intellij破解','#k8s','#Linux命令','#mac_Jdk','#分库分表面试题','#Mysql读写分离面试','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#SpringCloud_Config','#Zuul','#小书匠MarkDown图床配置','#微服务概述','#高并发架构设计','#Eureka','#Hystrix','#网络','#Jenkins','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBootHelloWorld','#SpringBoot使用缓存(JCache/Redis)','#Spring安全Security','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#TkMybatis','#SpringBoot配置','#SpringBoot',],
+            'data': ['#GitLab','#Harbor','#Nexus','#DockerCompose','#Docker 网络','#DockerFile','#Docker基础','#Docker命令','#博客','#Feign','#HikariCP连接池','#k8s','#Linux命令','#Intellij破解','#Mysql读写分离面试','#分库分表面试题','#mac_Jdk','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#Zuul','#小书匠MarkDown图床配置','#SpringCloud_Config','#微服务概述','#高并发架构设计','#Hystrix','#Eureka','#网络','#Jenkins','#SpringBoot订制错误响应','#SpringBoot使用缓存(JCache/Redis)','#SpringBoot与消息队列','#Spring安全Security','#SpringBootHelloWorld','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#TkMybatis','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
