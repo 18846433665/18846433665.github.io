@@ -6,27 +6,30 @@
   <meta name="keywords" content=" 博客 ">
   <meta name="description" content="hexo博客搭建过程 | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="一、为什么Mysql要读写分离场景： 什么情况下缓存读不到数据  缓存刚加上去的时候 缓存的内存塞满了  二、如何实现Mysql的读写分离,主从复制的原理原生就支持主从复制      问题1：从库同步数据的过程是串行化的，也就是说主库上并行的操作，从库是串行执行。所以高并发场景下会有数据延时的问题。 注释：主库写并发1000/s，从库延时几sm、如果是2000/s，从库延时几十ms 问题2：主库宕">
-<meta name="keywords" content="Mysql读写分离面试">
+<meta name="description" content="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）在高并发的情况下会有3个问题：1.单机Mysql并发扛不住2.Mysql磁盘快满了3.Mysql单标数据量太大了，Sql慢 二、用过哪些分库分表中间件cobar、TDDL、atlas、sharding-jdbc、mycat 三、不同的分库分表中间件有什么优缺点数据库中间件分为两类：proxy和client端的  cobar：阿里b2b团">
+<meta name="keywords" content="分库分表面试题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql读写分离相关问题">
-<meta property="og:url" content="http://yoursite.com/2019/10/30/Mysql读写分离相关问题/index.html">
+<meta property="og:title" content="Mysql分库分表类问题">
+<meta property="og:url" content="http://yoursite.com/2019/10/29/Mysql分库分表类问题/index.html">
 <meta property="og:site_name" content="XuShengcai">
-<meta property="og:description" content="一、为什么Mysql要读写分离场景： 什么情况下缓存读不到数据  缓存刚加上去的时候 缓存的内存塞满了  二、如何实现Mysql的读写分离,主从复制的原理原生就支持主从复制      问题1：从库同步数据的过程是串行化的，也就是说主库上并行的操作，从库是串行执行。所以高并发场景下会有数据延时的问题。 注释：主库写并发1000/s，从库延时几sm、如果是2000/s，从库延时几十ms 问题2：主库宕">
+<meta property="og:description" content="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）在高并发的情况下会有3个问题：1.单机Mysql并发扛不住2.Mysql磁盘快满了3.Mysql单标数据量太大了，Sql慢 二、用过哪些分库分表中间件cobar、TDDL、atlas、sharding-jdbc、mycat 三、不同的分库分表中间件有什么优缺点数据库中间件分为两类：proxy和client端的  cobar：阿里b2b团">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572406837331.png">
-<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572345724288.png">
-<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572345985183.png">
-<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572347468077.png">
-<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572349209906.png">
-<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572350391950.png">
-<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572408476473.png">
-<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572408506152.png">
-<meta property="og:updated_time" content="2019-10-30T04:09:24.748Z">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572360485544.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572362393692.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572362474241.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572363542586.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366056614.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366324498.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366575411.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366832321.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367027857.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367092179.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367221542.png">
+<meta property="og:updated_time" content="2019-10-29T16:43:29.436Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql读写分离相关问题">
-<meta name="twitter:description" content="一、为什么Mysql要读写分离场景： 什么情况下缓存读不到数据  缓存刚加上去的时候 缓存的内存塞满了  二、如何实现Mysql的读写分离,主从复制的原理原生就支持主从复制      问题1：从库同步数据的过程是串行化的，也就是说主库上并行的操作，从库是串行执行。所以高并发场景下会有数据延时的问题。 注释：主库写并发1000/s，从库延时几sm、如果是2000/s，从库延时几十ms 问题2：主库宕">
-<meta name="twitter:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572406837331.png">
+<meta name="twitter:title" content="Mysql分库分表类问题">
+<meta name="twitter:description" content="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）在高并发的情况下会有3个问题：1.单机Mysql并发扛不住2.Mysql磁盘快满了3.Mysql单标数据量太大了，Sql慢 二、用过哪些分库分表中间件cobar、TDDL、atlas、sharding-jdbc、mycat 三、不同的分库分表中间件有什么优缺点数据库中间件分为两类：proxy和client端的  cobar：阿里b2b团">
+<meta name="twitter:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572360485544.png">
 
 
 <link rel="icon" href="/img/sender.jpeg">
@@ -99,15 +102,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(50)</small></div></li>
-    
-        
-            
-            <li><div data-rel="Docker">Docker<small>(5)</small></div>
-                
-            </li>
-            
-        
+    <li><div class="all active">全部文章<small>(51)</small></div></li>
     
         
             
@@ -119,7 +114,7 @@
     
         
             
-            <li><div data-rel="博客">博客<small>(3)</small></div>
+            <li><div data-rel="Docker">Docker<small>(5)</small></div>
                 
             </li>
             
@@ -135,7 +130,7 @@
     
         
             
-            <li><div data-rel="连接池">连接池<small>(1)</small></div>
+            <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
             
@@ -151,7 +146,7 @@
     
         
             
-            <li><div data-rel="Linux">Linux<small>(1)</small></div>
+            <li><div data-rel="连接池">连接池<small>(1)</small></div>
                 
             </li>
             
@@ -167,7 +162,7 @@
     
         
             
-            <li><div data-rel="面试">面试<small>(3)</small></div>
+            <li><div data-rel="Linux">Linux<small>(1)</small></div>
                 
             </li>
             
@@ -183,7 +178,7 @@
     
         
             
-            <li><div data-rel="分布式">分布式<small>(1)</small></div>
+            <li><div data-rel="面试">面试<small>(3)</small></div>
                 
             </li>
             
@@ -199,7 +194,7 @@
     
         
             
-            <li><div data-rel="异步任务">异步任务<small>(1)</small></div>
+            <li><div data-rel="分布式">分布式<small>(1)</small></div>
                 
             </li>
             
@@ -208,6 +203,22 @@
         
             
             <li><div data-rel="检索">检索<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="异步任务">异步任务<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="版本控制">版本控制<small>(1)</small></div>
                 
             </li>
             
@@ -262,8 +273,8 @@
     </div>
     <div></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="50">
-<input type="hidden" id="yelog_site_word_count" value="64.6k">
+<input type="hidden" id="yelog_site_posts_number" value="51">
+<input type="hidden" id="yelog_site_word_count" value="67k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -295,14 +306,6 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">DockerCompose</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">GitLab</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">Harbor</a>
     </li>
     
@@ -311,7 +314,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">DockerFile</a>
+        <a href="javascript:" class="color4">DockerCompose</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">GitLab</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -319,7 +326,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">Docker基础</a>
+        <a href="javascript:" class="color1">DockerFile</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -327,7 +334,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color4">Docker基础</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -335,7 +342,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">HikariCP连接池</a>
+        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -343,7 +350,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Linux命令</a>
+        <a href="javascript:" class="color2">HikariCP连接池</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -351,15 +358,11 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Linux命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">mac_Jdk</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Mysql读写分离面试</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">分库分表面试题</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -375,7 +378,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
+        <a href="javascript:" class="color3">分库分表面试题</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -383,15 +386,23 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Mysql读写分离面试</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">SpringBoot和JDBC和Mybatis和Druid</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
+        <a href="javascript:" class="color5">Elasticsearch和SpringBoot</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Elasticsearch和SpringBoot</a>
+        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -411,15 +422,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringCloud_Config</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">高并发架构设计</a>
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringCloud_Config</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">微服务概述</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">git</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -459,11 +474,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
+        <a href="javascript:" class="color5">Thymeleaf</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Thymeleaf</a>
+        <a href="javascript:" class="color3">SpringBoot日志</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -518,6 +533,14 @@
            data-author="" >
             <span class="post-title" title="markdown 高效编写工具小书匠配置介绍">markdown 高效编写工具小书匠配置介绍</span>
             <span class="post-date" title="2019-09-17 12:57:31">2019/09/17</span>
+        </a>
+        
+        <a  class="版本控制 "
+           href="/2019/10/31/Git安装与使用/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="Git安装与使用">Git安装与使用</span>
+            <span class="post-date" title="2019-10-31 11:14:04">2019/10/31</span>
         </a>
         
         <a  class="面试 "
@@ -1134,7 +1157,7 @@ alias hd=&#39;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; git add 
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#DockerCompose','#GitLab','#Harbor','#Nexus','#DockerFile','#Docker 网络','#Docker基础','#Docker命令','#博客','#Feign','#HikariCP连接池','#Intellij破解','#Linux命令','#k8s','#mac_Jdk','#Mysql读写分离面试','#分库分表面试题','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#doubbo、springcloud基础','#SpringBoot监控actuator','#SpringBoot和JDBC和Mybatis和Druid','#SpringBoot任务异步、定时、邮件','#Elasticsearch和SpringBoot','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#Zuul','#小书匠MarkDown图床配置','#SpringCloud_Config','#高并发架构设计','#微服务概述','#Eureka','#Hystrix','#网络','#Jenkins','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#TkMybatis','#SpringBoot',],
+            'data': ['#Harbor','#Nexus','#DockerCompose','#GitLab','#Docker 网络','#DockerFile','#Docker命令','#Docker基础','#Feign','#博客','#Intellij破解','#HikariCP连接池','#k8s','#Linux命令','#mac_Jdk','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#分库分表面试题','#SpringBoot监控actuator','#Mysql读写分离面试','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#Zuul','#小书匠MarkDown图床配置','#高并发架构设计','#SpringCloud_Config','#微服务概述','#git','#Eureka','#Hystrix','#网络','#Jenkins','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#TkMybatis','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

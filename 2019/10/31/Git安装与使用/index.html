@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>Git安装与使用 | XuShengcai</title>
+  <meta name="keywords" content=" git ">
+  <meta name="description" content="Git安装与使用 | XuShengcai">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）在高并发的情况下会有3个问题：1.单机Mysql并发扛不住2.Mysql磁盘快满了3.Mysql单标数据量太大了，Sql慢 二、用过哪些分库分表中间件cobar、TDDL、atlas、sharding-jdbc、mycat 三、不同的分库分表中间件有什么优缺点数据库中间件分为两类：proxy和client端的  cobar：阿里b2b团">
+<meta name="keywords" content="分库分表面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql分库分表类问题">
+<meta property="og:url" content="http://yoursite.com/2019/10/29/Mysql分库分表类问题/index.html">
+<meta property="og:site_name" content="XuShengcai">
+<meta property="og:description" content="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）在高并发的情况下会有3个问题：1.单机Mysql并发扛不住2.Mysql磁盘快满了3.Mysql单标数据量太大了，Sql慢 二、用过哪些分库分表中间件cobar、TDDL、atlas、sharding-jdbc、mycat 三、不同的分库分表中间件有什么优缺点数据库中间件分为两类：proxy和client端的  cobar：阿里b2b团">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572360485544.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572362393692.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572362474241.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572363542586.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366056614.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366324498.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366575411.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572366832321.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367027857.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367092179.png">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572367221542.png">
+<meta property="og:updated_time" content="2019-10-29T16:43:29.436Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql分库分表类问题">
+<meta name="twitter:description" content="一、为什么要分库分表（设计高并发系统的时候，数据库该如何设计）在高并发的情况下会有3个问题：1.单机Mysql并发扛不住2.Mysql磁盘快满了3.Mysql单标数据量太大了，Sql慢 二、用过哪些分库分表中间件cobar、TDDL、atlas、sharding-jdbc、mycat 三、不同的分库分表中间件有什么优缺点数据库中间件分为两类：proxy和client端的  cobar：阿里b2b团">
+<meta name="twitter:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572360485544.png">
+
+
+<link rel="icon" href="/img/sender.jpeg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/sender.jpeg" />
+</a>
+<div class="author">
+    <span>Xu Shengcai</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:18846433665@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=84497122&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(51)</small></div></li>
+    
+        
+            
+            <li><div data-rel="私服">私服<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Docker">Docker<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="SpringCloud">SpringCloud<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="博客">博客<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="开发环境">开发环境<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="连接池">连接池<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Kubernetes">Kubernetes<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Linux">Linux<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="SpringBoot">SpringBoot<small>(14)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="面试">面试<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="项目监控">项目监控<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="分布式">分布式<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="检索">检索<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="异步任务">异步任务<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="版本控制">版本控制<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="计算机网络">计算机网络<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="CI/CD">CI/CD<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="消息队列">消息队列<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="缓存">缓存<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="安全">安全<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="51">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Harbor</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Nexus</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">DockerCompose</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">GitLab</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Docker 网络</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">DockerFile</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Docker命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Docker基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Feign</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Intellij破解</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">HikariCP连接池</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">k8s</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Linux命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">mac_Jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Ribbon</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot MVC配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot热部署</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">分库分表面试题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Mysql读写分离面试</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">SpringBoot和JDBC和Mybatis和Druid</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Elasticsearch和SpringBoot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot任务异步、定时、邮件</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot启动原理源码</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot自定义Starter</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Zuul</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">高并发架构设计</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringCloud_Config</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">微服务概述</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">git</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Eureka</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Hystrix</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">网络</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Jenkins</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SpringBoot订制错误响应</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot与消息队列</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot使用缓存(JCache/Redis)</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBootHelloWorld</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Spring安全Security</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Thymeleaf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringBoot国际化、登录拦截、CRUD</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot内嵌容器个性化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot配置</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">TkMybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">SpringBoot</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/Hexo使用简介/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="Hexo 使用简介">Hexo 使用简介</span>
+            <span class="post-date" title="2019-09-17 00:43:29">2019/09/17</span>
+        </a>
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/hexo博客搭建/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="hexo博客搭建过程">hexo博客搭建过程</span>
+            <span class="post-date" title="2019-09-17 11:52:11">2019/09/17</span>
+        </a>
+        
+        <a id="top" class="博客 "
+           href="/2019/09/17/markdown-高效编写工具小书匠配置介绍/"
+           data-tag="小书匠MarkDown图床配置"
+           data-author="" >
+            <span class="post-title" title="markdown 高效编写工具小书匠配置介绍">markdown 高效编写工具小书匠配置介绍</span>
+            <span class="post-date" title="2019-09-17 12:57:31">2019/09/17</span>
+        </a>
+        
+        <a  class="版本控制 "
+           href="/2019/10/31/Git安装与使用/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="Git安装与使用">Git安装与使用</span>
+            <span class="post-date" title="2019-10-31 11:14:04">2019/10/31</span>
+        </a>
+        
+        <a  class="面试 "
+           href="/2019/10/30/Mysql读写分离相关问题/"
+           data-tag="Mysql读写分离面试"
+           data-author="" >
+            <span class="post-title" title="Mysql读写分离相关问题">Mysql读写分离相关问题</span>
+            <span class="post-date" title="2019-10-30 00:43:25">2019/10/30</span>
+        </a>
+        
+        <a  class="面试 "
+           href="/2019/10/29/Mysql分库分表类问题/"
+           data-tag="分库分表面试题"
+           data-author="" >
+            <span class="post-title" title="Mysql分库分表类问题">Mysql分库分表类问题</span>
+            <span class="post-date" title="2019-10-29 22:05:19">2019/10/29</span>
+        </a>
+        
+        <a  class="面试 "
+           href="/2019/10/29/如何设计一个高并发系统架构/"
+           data-tag="高并发架构设计"
+           data-author="" >
+            <span class="post-title" title="如何设计一个高并发系统架构">如何设计一个高并发系统架构</span>
+            <span class="post-date" title="2019-10-29 21:32:57">2019/10/29</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/10/29/SpringBoot整合TkMybatis以及自动代码生成/"
+           data-tag="TkMybatis"
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合TkMybatis以及自动代码生成">SpringBoot整合TkMybatis以及自动代码生成</span>
+            <span class="post-date" title="2019-10-29 15:14:40">2019/10/29</span>
+        </a>
+        
+        <a  class="连接池 "
+           href="/2019/10/29/HikariCP连接池-SpringBoot/"
+           data-tag="HikariCP连接池"
+           data-author="" >
+            <span class="post-title" title="HikariCP连接池-SpringBoot">HikariCP连接池-SpringBoot</span>
+            <span class="post-date" title="2019-10-29 15:04:02">2019/10/29</span>
+        </a>
+        
+        <a  class="CI/CD "
+           href="/2019/10/29/Jenkins安装与使用/"
+           data-tag="Jenkins"
+           data-author="" >
+            <span class="post-title" title="Jenkins安装与使用">Jenkins安装与使用</span>
+            <span class="post-date" title="2019-10-29 11:47:09">2019/10/29</span>
+        </a>
+        
+        <a  class="Docker "
+           href="/2019/10/29/DockerCompose网络设置/"
+           data-tag="Docker 网络"
+           data-author="" >
+            <span class="post-title" title="DockerCompose网络设置">DockerCompose网络设置</span>
+            <span class="post-date" title="2019-10-29 09:39:47">2019/10/29</span>
+        </a>
+        
+        <a  class="私服 "
+           href="/2019/10/28/DockerCompose搭建Harbor以及使用/"
+           data-tag="Harbor"
+           data-author="" >
+            <span class="post-title" title="DockerCompose搭建Harbor以及使用">DockerCompose搭建Harbor以及使用</span>
+            <span class="post-date" title="2019-10-28 21:18:13">2019/10/28</span>
+        </a>
+        
+        <a  class="私服 "
+           href="/2019/10/28/DockerCompse搭建Nexus以及使用/"
+           data-tag="Nexus"
+           data-author="" >
+            <span class="post-title" title="DockerCompse搭建Nexus以及使用">DockerCompse搭建Nexus以及使用</span>
+            <span class="post-date" title="2019-10-28 21:17:51">2019/10/28</span>
+        </a>
+        
+        <a  class="私服 "
+           href="/2019/10/28/DockerCompose搭建GitLab以及使用/"
+           data-tag="GitLab"
+           data-author="" >
+            <span class="post-title" title="DockerCompose搭建GitLab以及使用">DockerCompose搭建GitLab以及使用</span>
+            <span class="post-date" title="2019-10-28 21:17:26">2019/10/28</span>
+        </a>
+        
+        <a  class="Linux "
+           href="/2019/10/26/Linux常用命令/"
+           data-tag="Linux命令"
+           data-author="" >
+            <span class="post-title" title="Linux常用命令">Linux常用命令</span>
+            <span class="post-date" title="2019-10-26 16:54:31">2019/10/26</span>
+        </a>
+        
+        <a  class="计算机网络 "
+           href="/2019/10/26/IP、子网掩码、网关/"
+           data-tag="网络"
+           data-author="" >
+            <span class="post-title" title="IP、子网掩码、网关、DNS">IP、子网掩码、网关、DNS</span>
+            <span class="post-date" title="2019-10-26 15:31:37">2019/10/26</span>
+        </a>
+        
+        <a  class="Docker "
+           href="/2019/10/10/Docker常用名命令/"
+           data-tag="Docker命令"
+           data-author="" >
+            <span class="post-title" title="Docker常用名命令">Docker常用名命令</span>
+            <span class="post-date" title="2019-10-10 18:25:31">2019/10/10</span>
+        </a>
+        
+        <a  class="Docker "
+           href="/2019/10/10/DockerCompose/"
+           data-tag="DockerCompose"
+           data-author="" >
+            <span class="post-title" title="DockerCompose">DockerCompose</span>
+            <span class="post-date" title="2019-10-10 18:21:55">2019/10/10</span>
+        </a>
+        
+        <a  class="Kubernetes "
+           href="/2019/10/10/Kubernetes入门/"
+           data-tag="k8s"
+           data-author="" >
+            <span class="post-title" title="Kubernetes入门">Kubernetes入门</span>
+            <span class="post-date" title="2019-10-10 17:01:45">2019/10/10</span>
+        </a>
+        
+        <a  class="Docker "
+           href="/2019/10/10/DockerFile定制镜像/"
+           data-tag="DockerFile"
+           data-author="" >
+            <span class="post-title" title="DockerFile定制镜像">DockerFile定制镜像</span>
+            <span class="post-date" title="2019-10-10 16:14:25">2019/10/10</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/SpringCloud-Config分布式配置中心/"
+           data-tag="SpringCloud_Config"
+           data-author="" >
+            <span class="post-title" title="SpringCloud_Config分布式配置中心">SpringCloud_Config分布式配置中心</span>
+            <span class="post-date" title="2019-10-09 21:41:25">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Zuul路由网关/"
+           data-tag="Zuul"
+           data-author="" >
+            <span class="post-title" title="Zuul路由网关">Zuul路由网关</span>
+            <span class="post-date" title="2019-10-09 15:20:52">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Hystrix断路器/"
+           data-tag="Hystrix"
+           data-author="" >
+            <span class="post-title" title="Hystrix断路器(熔断、降级、监控-dashboard)">Hystrix断路器(熔断、降级、监控-dashboard)</span>
+            <span class="post-date" title="2019-10-09 15:20:30">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Feign负载均衡/"
+           data-tag="Feign"
+           data-author="" >
+            <span class="post-title" title="Feign负载均衡">Feign负载均衡</span>
+            <span class="post-date" title="2019-10-09 15:20:10">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Ribbon负载均衡/"
+           data-tag="Ribbon"
+           data-author="" >
+            <span class="post-title" title="Ribbon负载均衡">Ribbon负载均衡</span>
+            <span class="post-date" title="2019-10-09 15:19:48">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/10/09/Eureka服务注册与发现/"
+           data-tag="Eureka"
+           data-author="" >
+            <span class="post-title" title="Eureka服务注册与发现">Eureka服务注册与发现</span>
+            <span class="post-date" title="2019-10-09 15:19:23">2019/10/09</span>
+        </a>
+        
+        <a  class="SpringCloud "
+           href="/2019/09/27/微服务概述与SpringCloud/"
+           data-tag="微服务概述"
+           data-author="" >
+            <span class="post-title" title="微服务概述与SpringCloud">微服务概述与SpringCloud</span>
+            <span class="post-date" title="2019-09-27 22:31:58">2019/09/27</span>
+        </a>
+        
+        <a  class="分布式 "
+           href="/2019/09/26/SpringBoot与分布式-doubbo-springcloud/"
+           data-tag="doubbo、springcloud基础"
+           data-author="" >
+            <span class="post-title" title="分布式doubbo、springcloud初体验">分布式doubbo、springcloud初体验</span>
+            <span class="post-date" title="2019-09-26 19:05:02">2019/09/26</span>
+        </a>
+        
+        <a  class="项目监控 "
+           href="/2019/09/26/SpringBoot-项目监控/"
+           data-tag="SpringBoot监控actuator"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 项目监控actuator">SpringBoot 项目监控actuator</span>
+            <span class="post-date" title="2019-09-26 00:32:43">2019/09/26</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/25/SpringBoot-热部署/"
+           data-tag="SpringBoot热部署"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 热部署">SpringBoot 热部署</span>
+            <span class="post-date" title="2019-09-25 23:45:41">2019/09/25</span>
+        </a>
+        
+        <a  class="安全 "
+           href="/2019/09/25/SpringBoot安全控制-SpringSecurity/"
+           data-tag="Spring安全Security"
+           data-author="" >
+            <span class="post-title" title="安全控制(SpringSecurity)-SpringBoot">安全控制(SpringSecurity)-SpringBoot</span>
+            <span class="post-date" title="2019-09-25 22:05:45">2019/09/25</span>
+        </a>
+        
+        <a  class="异步任务 "
+           href="/2019/09/25/SpringBoot任务-异步、定时、邮件/"
+           data-tag="SpringBoot任务异步、定时、邮件"
+           data-author="" >
+            <span class="post-title" title="SpringBoot任务(异步、定时、邮件)">SpringBoot任务(异步、定时、邮件)</span>
+            <span class="post-date" title="2019-09-25 20:50:30">2019/09/25</span>
+        </a>
+        
+        <a  class="检索 "
+           href="/2019/09/25/SpringBoot与检索-Elasticsearch-基础/"
+           data-tag="Elasticsearch和SpringBoot"
+           data-author="" >
+            <span class="post-title" title="检索(Elasticsearch)基础-SpringBoot">检索(Elasticsearch)基础-SpringBoot</span>
+            <span class="post-date" title="2019-09-25 17:55:42">2019/09/25</span>
+        </a>
+        
+        <a  class="消息队列 "
+           href="/2019/09/25/SpringBoot与消息队列/"
+           data-tag="SpringBoot与消息队列"
+           data-author="" >
+            <span class="post-title" title="消息队列、RabbitMQ-SpringBoot">消息队列、RabbitMQ-SpringBoot</span>
+            <span class="post-date" title="2019-09-25 13:10:06">2019/09/25</span>
+        </a>
+        
+        <a  class="缓存 "
+           href="/2019/09/24/SpringBoot与缓存-原生缓存-Redis/"
+           data-tag="SpringBoot使用缓存(JCache/Redis)"
+           data-author="" >
+            <span class="post-title" title="缓存(原生缓存/Redis)-SpringBoot">缓存(原生缓存/Redis)-SpringBoot</span>
+            <span class="post-date" title="2019-09-24 22:05:34">2019/09/24</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/24/SpringBoot自定义Starter/"
+           data-tag="SpringBoot自定义Starter"
+           data-author="" >
+            <span class="post-title" title="SpringBoot自定义Starter">SpringBoot自定义Starter</span>
+            <span class="post-date" title="2019-09-24 00:56:57">2019/09/24</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/24/SpringBoot启动配置原理源码解析/"
+           data-tag="SpringBoot启动原理源码"
+           data-author="" >
+            <span class="post-title" title="SpringBoot启动配置原理源码解析">SpringBoot启动配置原理源码解析</span>
+            <span class="post-date" title="2019-09-24 00:56:30">2019/09/24</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/23/SpringBoot与数据访问/"
+           data-tag="SpringBoot和JDBC和Mybatis和Druid"
+           data-author="" >
+            <span class="post-title" title="SpringBoot与数据访问">SpringBoot与数据访问</span>
+            <span class="post-date" title="2019-09-23 21:57:11">2019/09/23</span>
+        </a>
+        
+        <a  class="Docker "
+           href="/2019/09/20/Docker基础/"
+           data-tag="Docker基础"
+           data-author="" >
+            <span class="post-title" title="Docker基础">Docker基础</span>
+            <span class="post-date" title="2019-09-20 19:25:30">2019/09/20</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/20/SpringBoot-CRUD实践（国际化，登录拦截）/"
+           data-tag="SpringBoot国际化、登录拦截、CRUD"
+           data-author="" >
+            <span class="post-title" title="SpringBoot CRUD实践 （国际化，登录拦截）">SpringBoot CRUD实践 （国际化，登录拦截）</span>
+            <span class="post-date" title="2019-09-20 10:46:09">2019/09/20</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-内嵌容器个性化配置和外部容器配置及原理/"
+           data-tag="SpringBoot内嵌容器个性化"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 内嵌容器个性化配置和外部容器配置及原理">SpringBoot 内嵌容器个性化配置和外部容器配置及原理</span>
+            <span class="post-date" title="2019-09-19 23:46:07">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-错误响应个性化配置/"
+           data-tag="SpringBoot订制错误响应"
+           data-author="" >
+            <span class="post-title" title="SpringBoot 错误响应个性化配置">SpringBoot 错误响应个性化配置</span>
+            <span class="post-date" title="2019-09-19 23:45:03">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot-SpringMVC个性化配置/"
+           data-tag="SpringBoot MVC配置"
+           data-author="" >
+            <span class="post-title" title="SpringBoot SpringMVC个性化配置">SpringBoot SpringMVC个性化配置</span>
+            <span class="post-date" title="2019-09-19 23:40:19">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/19/SpringBoot模板引擎Thymeleaf/"
+           data-tag="Thymeleaf"
+           data-author="" >
+            <span class="post-title" title="SpringBoot模板引擎Thymeleaf">SpringBoot模板引擎Thymeleaf</span>
+            <span class="post-date" title="2019-09-19 23:39:43">2019/09/19</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/19/SpringBoot静态资源映射规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringBoot静态资源映射规则">SpringBoot静态资源映射规则</span>
+            <span class="post-date" title="2019-09-19 23:39:07">2019/09/19</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot日志/"
+           data-tag="SpringBoot日志"
+           data-author="" >
+            <span class="post-title" title="SpringBoot日志">SpringBoot日志</span>
+            <span class="post-date" title="2019-09-18 15:51:26">2019/09/18</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot配置/"
+           data-tag="SpringBoot配置"
+           data-author="" >
+            <span class="post-title" title="SpringBoot配置">SpringBoot配置</span>
+            <span class="post-date" title="2019-09-18 15:51:07">2019/09/18</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/18/SpringBoot入门HelloWorld搭建/"
+           data-tag="SpringBootHelloWorld"
+           data-author="" >
+            <span class="post-title" title="SpringBoot入门HelloWorld搭建">SpringBoot入门HelloWorld搭建</span>
+            <span class="post-date" title="2019-09-18 15:50:23">2019/09/18</span>
+        </a>
+        
+        <a  class="开发环境 "
+           href="/2019/09/17/Intellij-2019-破解/"
+           data-tag="Intellij破解"
+           data-author="" >
+            <span class="post-title" title="Intellij 2019 破解">Intellij 2019 破解</span>
+            <span class="post-date" title="2019-09-17 17:17:24">2019/09/17</span>
+        </a>
+        
+        <a  class="开发环境 "
+           href="/2019/09/17/Mac-jdk-环境变量配置/"
+           data-tag="mac_Jdk"
+           data-author="" >
+            <span class="post-title" title="Mac jdk 环境变量配置">Mac jdk 环境变量配置</span>
+            <span class="post-date" title="2019-09-17 16:02:32">2019/09/17</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2019/09/17/Spring-Boot-基础/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="Spring Boot 基础">Spring Boot 基础</span>
+            <span class="post-date" title="2019-09-17 15:12:18">2019/09/17</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-Git安装与使用" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Git安装与使用</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="版本控制">版本控制</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color4">git</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-10-31 14:22:09'>2019-10-31 11:14</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、Git工作流"><span class="toc-text">一、Git工作流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Linux搭建私有服务器"><span class="toc-text">二、Linux搭建私有服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建"><span class="toc-text">搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-text">链接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、分支管理"><span class="toc-text">三、分支管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、Git命令"><span class="toc-text">四、Git命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、配置用户名邮箱"><span class="toc-text">1、配置用户名邮箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置编辑器-git在需要输入一些消息"><span class="toc-text">配置编辑器 git在需要输入一些消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置比较工具"><span class="toc-text">配置比较工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读取配置（同一个配置选项会出现多次，以最后一次为准）"><span class="toc-text">读取配置（同一个配置选项会出现多次，以最后一次为准）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件到底修改了什么"><span class="toc-text">查看文件到底修改了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交修改"><span class="toc-text">提交修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把暂存区里面的所有修改提交到当前分支同时创建一个快照"><span class="toc-text">把暂存区里面的所有修改提交到当前分支同时创建一个快照</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如果确认当前所有变更都是同一个commit，可以直接加-a，就不必一个一个add了"><span class="toc-text">如果确认当前所有变更都是同一个commit，可以直接加-a，就不必一个一个add了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作区和版本库里最新版本的区别"><span class="toc-text">工作区和版本库里最新版本的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看提交历史"><span class="toc-text">查看提交历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#撤销修改"><span class="toc-text">撤销修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以把暂存区的修改撤销掉"><span class="toc-text">可以把暂存区的修改撤销掉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交文件删除修改到暂存区"><span class="toc-text">提交文件删除修改到暂存区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本回退"><span class="toc-text">版本回退</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git的版本回退只是改了head-指针，顺便把工作区的文件更新掉了"><span class="toc-text">git的版本回退只是改了head 指针，顺便把工作区的文件更新掉了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以看到reset和commit等命令历史，可以利用这个命令查看最近一次"><span class="toc-text">可以看到reset和commit等命令历史，可以利用这个命令查看最近一次</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作区和暂存区"><span class="toc-text">工作区和暂存区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程库管理"><span class="toc-text">远程库管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看远程库信息"><span class="toc-text">查看远程库信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改远程仓库地址（在已经add了远程仓库地址，使用它进行修改地址）"><span class="toc-text">修改远程仓库地址（在已经add了远程仓库地址，使用它进行修改地址）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关联远程库（添加远程仓库地址）"><span class="toc-text">关联远程库（添加远程仓库地址）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地的master分支推送到远程的master分支上，原则就是master分支要与远程同步-，dev-分支开发分支，也需要远程同步"><span class="toc-text">本地的master分支推送到远程的master分支上，原则就是master分支要与远程同步 ，dev 分支开发分支，也需要远程同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#master分支推送到远程的master分支，本地master-分支和远程master分支建立关联"><span class="toc-text">master分支推送到远程的master分支，本地master 分支和远程master分支建立关联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-pull-如果提示冲突解决冲突-抓去信息碰到没有链接的-有两种方式解决"><span class="toc-text">git pull 如果提示冲突解决冲突 抓去信息碰到没有链接的 有两种方式解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支管理"><span class="toc-text">分支管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建并切换分支"><span class="toc-text">创建并切换分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地分支创建和远程分支相同的分支，主要是仓库从远程clone过来的（一般要先git-fetch，再git-checkout-b-branch-name-origin-branch-name）"><span class="toc-text">本地分支创建和远程分支相同的分支，主要是仓库从远程clone过来的（一般要先git fetch，再git checkout -b branch-name origin/branch-name）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建分支"><span class="toc-text">创建分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切换分支-如果当前的工作只完成一半，还没发提交的话"><span class="toc-text">切换分支 , 如果当前的工作只完成一半，还没发提交的话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以用-git-stash-保存工作现场-，在用它之前可以-git-stash-list-查看有几个暂存的列表"><span class="toc-text">可以用 git stash 保存工作现场 ，在用它之前可以 git stash list 查看有几个暂存的列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#保存工作现场"><span class="toc-text">保存工作现场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#恢复-工作现场"><span class="toc-text">恢复 工作现场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#来删除-工作现场"><span class="toc-text">来删除 工作现场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看当前分支"><span class="toc-text">查看当前分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看远程分支"><span class="toc-text">查看远程分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并分支"><span class="toc-text">合并分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除分支"><span class="toc-text">删除分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强行删除分支"><span class="toc-text">强行删除分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交本地test分支作为远程的master分支"><span class="toc-text">提交本地test分支作为远程的master分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交本地test分支作为远程的test分支"><span class="toc-text">提交本地test分支作为远程的test分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刚提交到远程的test将被删除，但是本地还会保存的，不用担心"><span class="toc-text">刚提交到远程的test将被删除，但是本地还会保存的，不用担心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看分支合并图"><span class="toc-text">查看分支合并图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看提交历史-1"><span class="toc-text">查看提交历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并分支-1"><span class="toc-text">合并分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并分支的时候不采用ff模式（分支删除了还能看的到分支历史信息）"><span class="toc-text">合并分支的时候不采用ff模式（分支删除了还能看的到分支历史信息）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签管理"><span class="toc-text">标签管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看所有的标签"><span class="toc-text">查看所有的标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对莫一个提交历史打一个标签"><span class="toc-text">对莫一个提交历史打一个标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看标签信息"><span class="toc-text">查看标签信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正式开发下最好用这条语句标注下这个标签的描述"><span class="toc-text">正式开发下最好用这条语句标注下这个标签的描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除标签"><span class="toc-text">删除标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推送标签"><span class="toc-text">推送标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推送全部标签"><span class="toc-text">推送全部标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程删除标签（先从本地删除标签）"><span class="toc-text">远程删除标签（先从本地删除标签）</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Git工作流"><a href="#一、Git工作流" class="headerlink" title="一、Git工作流"></a>一、Git工作流</h1><p>如图：<br><img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572500977512.png" alt></p>
+<p> <img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572500986918.png" alt></p>
+<h1 id="二、Linux搭建私有服务器"><a href="#二、Linux搭建私有服务器" class="headerlink" title="二、Linux搭建私有服务器"></a>二、Linux搭建私有服务器</h1><h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><p> 远程仓库实际上和本地仓库没啥不同，纯粹为了7x24小时开机并交换大家的修改。GitHub就是一个免费托管开源代码的远程仓库。但是对于某些视源代码如生命的商业公司来说，既不想公开源代码，又舍不得给GitHub交保护费，那就只能自己搭建一台Git服务器作为私有仓库使用。<br>搭建Git服务器需要准备一台运行Linux的机器，在此我们使用CentOS。以下为安装步骤：<br>1、安装git服务环境准备<br>yum -y install curl curl-devel zlib-devel openssl-devel perl cpio expat-devel gettext-devel gcc cc<br>2、下载git-2.5.0.tar.gz<br>1）解压缩<br>2）cd git-2.5.0<br>3）autoconf<br>4）./configure<br>5）make<br>6）make install<br>3、添加用户<br>adduser -r -c ‘git version control’ -d /home/git -m git<br>此命令执行后会创建/home/git目录作为git用户的主目录。<br>5、设置密码<br>passwd git<br>输入两次密码<br>6、切换到git用户<br>su git<br>7、创建git仓库<br>git –bare init /home/git/first<br>注意：如果不使用“–bare”参数，初始化仓库后，提交master分支时报错。这是由于git默认拒绝了push操作，需要.git/config添加如下代码：<br>[receive]<br>      denyCurrentBranch = ignore<br>推荐使用：git –bare init初始化仓库。</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>私有git服务器搭建完成后就可以向连接github一样连接使用了，但是我们的git服务器并没有配置密钥登录，所以每次连接时需要输入密码。<br>使用命令连接：<br>$ git remote add origin ssh://git@192.168.25.156/home/git/first<br>这种形式和刚才使用的形式好像不一样，前面有ssh://前缀，好吧你也可以这样写：<br>$ git remote add origin <a href="mailto:git@192.168.25.156" target="_blank" rel="noopener">git@192.168.25.156</a>:first</p>
+<p>使用TortoiseGit同步的话参考上面的使用方法。</p>
+<h1 id="三、分支管理"><a href="#三、分支管理" class="headerlink" title="三、分支管理"></a>三、分支管理</h1><p>在我们每次的提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。HEAD指针严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。<br>一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点：<br>  <img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572501610676.png" alt><br>每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长。<br>当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上：<br>  <img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572501600298.png" alt><br>你看，Git创建一个分支很快，因为除了增加一个dev指针，改改HEAD的指向，工作区的文件都没有任何变化！</p>
+<p>不过，从现在开始，对工作区的修改和提交就是针对dev分支了，比如新提交一次后，dev指针往前移动一步，而master指针不变：<br>  <img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572501589730.png" alt><br>假如我们在dev上的工作完成了，就可以把dev合并到master上。Git怎么合并呢？最简单的方法，就是直接把master指向dev的当前提交，就完成了合并：<br>  <img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572501579161.png" alt><br>所以Git合并分支也很快！就改改指针，工作区内容也不变！</p>
+<p>合并完分支后，甚至可以删除dev分支。删除dev分支就是把dev指针给删掉，删掉后，我们就剩下了一条master分支：<br>  <img src="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572501565779.png" alt></p>
+<h1 id="四、Git命令"><a href="#四、Git命令" class="headerlink" title="四、Git命令"></a>四、Git命令</h1><h2 id="1、配置用户名邮箱"><a href="#1、配置用户名邮箱" class="headerlink" title="1、配置用户名邮箱"></a>1、配置用户名邮箱</h2><pre><code class="shell"> git config --global user.name &quot;wirelessqa&quot;
+git config --global user.email wirelessqa.me@gmail.com
+git config --global color.ui true 让Git显示颜色，会让命令输出看起来更醒目</code></pre>
+<p>.gitignore 配置 不纳入git管理 主要是系统文件,编译文件，自定义的文件 ，这个文件也用推送到远程库</p>
+<p><a href="https://github.com/github/gitignore" target="_blank" rel="noopener">https://github.com/github/gitignore</a> ，创建 touch 命令</p>
+<h2 id="配置编辑器-git在需要输入一些消息"><a href="#配置编辑器-git在需要输入一些消息" class="headerlink" title="配置编辑器 git在需要输入一些消息"></a>配置编辑器 git在需要输入一些消息</h2><blockquote>
+<p> git config –global core.editor emacs</p>
+</blockquote>
+<h2 id="配置比较工具"><a href="#配置比较工具" class="headerlink" title="配置比较工具"></a>配置比较工具</h2><blockquote>
+<p> git config –global merge.tool vimdiff</p>
+</blockquote>
+<h2 id="读取配置（同一个配置选项会出现多次，以最后一次为准）"><a href="#读取配置（同一个配置选项会出现多次，以最后一次为准）" class="headerlink" title="读取配置（同一个配置选项会出现多次，以最后一次为准）"></a>读取配置（同一个配置选项会出现多次，以最后一次为准）</h2><blockquote>
+<p> git config –list</p>
+</blockquote>
+<p>提交文件之前<br>先查看当前的状态 ,能提示你接下来怎么做的命令，比如修改工作区文件内容，提示你添加到暂存区或者丢弃工作区修改的命令</p>
+<blockquote>
+<p> git status</p>
+</blockquote>
+<h2 id="查看文件到底修改了什么"><a href="#查看文件到底修改了什么" class="headerlink" title="查看文件到底修改了什么"></a>查看文件到底修改了什么</h2><blockquote>
+<p> git diff</p>
+</blockquote>
+<h2 id="提交修改"><a href="#提交修改" class="headerlink" title="提交修改"></a>提交修改</h2><p>纳入git仓库管理，把修改添加到暂存区(使用.代表将所有的修改进行添加)</p>
+<blockquote>
+<p> git add .</p>
+</blockquote>
+<h2 id="把暂存区里面的所有修改提交到当前分支同时创建一个快照"><a href="#把暂存区里面的所有修改提交到当前分支同时创建一个快照" class="headerlink" title="把暂存区里面的所有修改提交到当前分支同时创建一个快照"></a>把暂存区里面的所有修改提交到当前分支同时创建一个快照</h2><blockquote>
+<p> git commit -m “”</p>
+</blockquote>
+<h2 id="如果确认当前所有变更都是同一个commit，可以直接加-a，就不必一个一个add了"><a href="#如果确认当前所有变更都是同一个commit，可以直接加-a，就不必一个一个add了" class="headerlink" title="如果确认当前所有变更都是同一个commit，可以直接加-a，就不必一个一个add了"></a>如果确认当前所有变更都是同一个commit，可以直接加-a，就不必一个一个add了</h2><blockquote>
+<p> git commit -a -m “”</p>
+</blockquote>
+<h2 id="工作区和版本库里最新版本的区别"><a href="#工作区和版本库里最新版本的区别" class="headerlink" title="工作区和版本库里最新版本的区别"></a>工作区和版本库里最新版本的区别</h2><blockquote>
+<p> git diff HEAD – readme.txt</p>
+</blockquote>
+<h2 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h2><blockquote>
+<p> git log –pretty=oneline</p>
+</blockquote>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><blockquote>
+<p> git checkout – readme.txt</p>
+</blockquote>
+<ul>
+<li><p>1、修改后还没添加到暂存区 ，撤销修改回到最近一次commit的状态，也就是和版本库里面的状态一样</p>
+</li>
+<li><p>2、修改后被添加到暂存区了，又做了修改 ，撤销修改就回到添加到暂存区后的状态,也就是跟暂存区里面的状态保持一致</p>
+</li>
+<li><p>3、用版本库里的版本替换工作去的版本，无论工作区是修改还是删除</p>
+</li>
+</ul>
+<h2 id="可以把暂存区的修改撤销掉"><a href="#可以把暂存区的修改撤销掉" class="headerlink" title="可以把暂存区的修改撤销掉"></a>可以把暂存区的修改撤销掉</h2><blockquote>
+<p> git reset HEAD file</p>
+</blockquote>
+<h2 id="提交文件删除修改到暂存区"><a href="#提交文件删除修改到暂存区" class="headerlink" title="提交文件删除修改到暂存区"></a>提交文件删除修改到暂存区</h2><blockquote>
+<p> git rm test.txt</p>
+</blockquote>
+<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><h2 id="git的版本回退只是改了head-指针，顺便把工作区的文件更新掉了"><a href="#git的版本回退只是改了head-指针，顺便把工作区的文件更新掉了" class="headerlink" title="git的版本回退只是改了head 指针，顺便把工作区的文件更新掉了"></a>git的版本回退只是改了head 指针，顺便把工作区的文件更新掉了</h2><blockquote>
+<p> git reset –hard HEAD^<br>或<br>git reset –hard 3628164<br>查看命令历史</p>
+</blockquote>
+<h2 id="可以看到reset和commit等命令历史，可以利用这个命令查看最近一次"><a href="#可以看到reset和commit等命令历史，可以利用这个命令查看最近一次" class="headerlink" title="可以看到reset和commit等命令历史，可以利用这个命令查看最近一次"></a>可以看到reset和commit等命令历史，可以利用这个命令查看最近一次</h2><blockquote>
+<p> commitidgit reflog</p>
+</blockquote>
+<h2 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h2><ul>
+<li>工作区：电脑上能看到的目录 ,里面有个.git 隐藏目录这个不算工作区，是git的版本库版本库里面包含了暂存区stage和git为我们自动创建第一个分支</li>
+</ul>
+<h2 id="远程库管理"><a href="#远程库管理" class="headerlink" title="远程库管理"></a>远程库管理</h2><h2 id="查看远程库信息"><a href="#查看远程库信息" class="headerlink" title="查看远程库信息"></a>查看远程库信息</h2><blockquote>
+<p> git remote -v</p>
+</blockquote>
+<h2 id="修改远程仓库地址（在已经add了远程仓库地址，使用它进行修改地址）"><a href="#修改远程仓库地址（在已经add了远程仓库地址，使用它进行修改地址）" class="headerlink" title="修改远程仓库地址（在已经add了远程仓库地址，使用它进行修改地址）"></a>修改远程仓库地址（在已经add了远程仓库地址，使用它进行修改地址）</h2><blockquote>
+<p> git remote set-url origin <a href="https://github.com/USERNAME/OTHERREPOSITORY.git" target="_blank" rel="noopener">https://github.com/USERNAME/OTHERREPOSITORY.git</a></p>
+</blockquote>
+<h2 id="关联远程库（添加远程仓库地址）"><a href="#关联远程库（添加远程仓库地址）" class="headerlink" title="关联远程库（添加远程仓库地址）"></a>关联远程库（添加远程仓库地址）</h2><blockquote>
+<p> git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:linhbcode/first-test.git</p>
+</blockquote>
+<h2 id="本地的master分支推送到远程的master分支上，原则就是master分支要与远程同步-，dev-分支开发分支，也需要远程同步"><a href="#本地的master分支推送到远程的master分支上，原则就是master分支要与远程同步-，dev-分支开发分支，也需要远程同步" class="headerlink" title="本地的master分支推送到远程的master分支上，原则就是master分支要与远程同步 ，dev 分支开发分支，也需要远程同步"></a>本地的master分支推送到远程的master分支上，原则就是master分支要与远程同步 ，dev 分支开发分支，也需要远程同步</h2><blockquote>
+<p> git push origin master</p>
+</blockquote>
+<h2 id="master分支推送到远程的master分支，本地master-分支和远程master分支建立关联"><a href="#master分支推送到远程的master分支，本地master-分支和远程master分支建立关联" class="headerlink" title="master分支推送到远程的master分支，本地master 分支和远程master分支建立关联"></a>master分支推送到远程的master分支，本地master 分支和远程master分支建立关联</h2><blockquote>
+<p> git push -u origin master</p>
+</blockquote>
+<p>Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是</p>
+<blockquote>
+<p> origingit clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:linhbcode/first-test.git</p>
+</blockquote>
+<h2 id="git-pull-如果提示冲突解决冲突-抓去信息碰到没有链接的-有两种方式解决"><a href="#git-pull-如果提示冲突解决冲突-抓去信息碰到没有链接的-有两种方式解决" class="headerlink" title="git pull 如果提示冲突解决冲突 抓去信息碰到没有链接的 有两种方式解决"></a>git pull 如果提示冲突解决冲突 抓去信息碰到没有链接的 有两种方式解决</h2><blockquote>
+<p>1、git branch –set-upstream branch-name origin/branch-name 建立本地分支和远程分支的关联</p>
+</blockquote>
+<blockquote>
+<p>2、git pull origin branchname</p>
+</blockquote>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>1、不完整的代码在其它分支上提交</p>
+<p>2、每个提交都在一个时间线上的节点上，分支相当于指向一个节点的指针</p>
+<p>head 本质上是指向分支的指针</p>
+<h2 id="创建并切换分支"><a href="#创建并切换分支" class="headerlink" title="创建并切换分支"></a>创建并切换分支</h2><blockquote>
+<p> git checkout -b dev</p>
+</blockquote>
+<h2 id="本地分支创建和远程分支相同的分支，主要是仓库从远程clone过来的（一般要先git-fetch，再git-checkout-b-branch-name-origin-branch-name）"><a href="#本地分支创建和远程分支相同的分支，主要是仓库从远程clone过来的（一般要先git-fetch，再git-checkout-b-branch-name-origin-branch-name）" class="headerlink" title="本地分支创建和远程分支相同的分支，主要是仓库从远程clone过来的（一般要先git fetch，再git checkout -b branch-name origin/branch-name）"></a>本地分支创建和远程分支相同的分支，主要是仓库从远程clone过来的（一般要先git fetch，再git checkout -b branch-name origin/branch-name）</h2><blockquote>
+<p> git checkout -b branch-name origin/branch-name</p>
+</blockquote>
+<h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><blockquote>
+<p> git branch dev</p>
+</blockquote>
+<h2 id="切换分支-如果当前的工作只完成一半，还没发提交的话"><a href="#切换分支-如果当前的工作只完成一半，还没发提交的话" class="headerlink" title="切换分支 , 如果当前的工作只完成一半，还没发提交的话"></a>切换分支 , 如果当前的工作只完成一半，还没发提交的话</h2><blockquote>
+<p> git checkout dev</p>
+</blockquote>
+<h2 id="可以用-git-stash-保存工作现场-，在用它之前可以-git-stash-list-查看有几个暂存的列表"><a href="#可以用-git-stash-保存工作现场-，在用它之前可以-git-stash-list-查看有几个暂存的列表" class="headerlink" title="可以用 git stash 保存工作现场 ，在用它之前可以 git stash list 查看有几个暂存的列表"></a>可以用 git stash 保存工作现场 ，在用它之前可以 git stash list 查看有几个暂存的列表</h2><p>查看有几个暂存的列表</p>
+<blockquote>
+<p> git stash list</p>
+</blockquote>
+<h2 id="保存工作现场"><a href="#保存工作现场" class="headerlink" title="保存工作现场"></a>保存工作现场</h2><blockquote>
+<p> git stash</p>
+</blockquote>
+<h2 id="恢复-工作现场"><a href="#恢复-工作现场" class="headerlink" title="恢复 工作现场"></a>恢复 工作现场</h2><blockquote>
+<p> git stash apply</p>
+</blockquote>
+<h2 id="来删除-工作现场"><a href="#来删除-工作现场" class="headerlink" title="来删除 工作现场"></a>来删除 工作现场</h2><blockquote>
+<p> git stash drop</p>
+</blockquote>
+<h2 id="查看当前分支"><a href="#查看当前分支" class="headerlink" title="查看当前分支"></a>查看当前分支</h2><blockquote>
+<p> git branch</p>
+</blockquote>
+<h2 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h2><blockquote>
+<p> git branch -r</p>
+</blockquote>
+<h2 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h2><blockquote>
+<p> git merge dev</p>
+</blockquote>
+<h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><blockquote>
+<p> git branch -d dev</p>
+</blockquote>
+<h2 id="强行删除分支"><a href="#强行删除分支" class="headerlink" title="强行删除分支"></a>强行删除分支</h2><blockquote>
+<p> git branch -D dev<br>(删除远程分支)冒号前面的空格不能少，原理是把一个空分支push到server上，相当于删除该分支。</p>
+</blockquote>
+<blockquote>
+<p> git push origin :branch-name</p>
+</blockquote>
+<h2 id="提交本地test分支作为远程的master分支"><a href="#提交本地test分支作为远程的master分支" class="headerlink" title="提交本地test分支作为远程的master分支"></a>提交本地test分支作为远程的master分支</h2><blockquote>
+<p> git push origin test:master</p>
+</blockquote>
+<h2 id="提交本地test分支作为远程的test分支"><a href="#提交本地test分支作为远程的test分支" class="headerlink" title="提交本地test分支作为远程的test分支"></a>提交本地test分支作为远程的test分支</h2><blockquote>
+<p> git push origin test:test</p>
+</blockquote>
+<h2 id="刚提交到远程的test将被删除，但是本地还会保存的，不用担心"><a href="#刚提交到远程的test将被删除，但是本地还会保存的，不用担心" class="headerlink" title="刚提交到远程的test将被删除，但是本地还会保存的，不用担心"></a>刚提交到远程的test将被删除，但是本地还会保存的，不用担心</h2><blockquote>
+<p> git push origin :test</p>
+</blockquote>
+<h2 id="查看分支合并图"><a href="#查看分支合并图" class="headerlink" title="查看分支合并图"></a>查看分支合并图</h2><blockquote>
+<p> git log –graph</p>
+</blockquote>
+<h2 id="查看提交历史-1"><a href="#查看提交历史-1" class="headerlink" title="查看提交历史"></a>查看提交历史</h2><blockquote>
+<p> git log –pretty=oneline –abbrev-commit</p>
+</blockquote>
+<h2 id="合并分支-1"><a href="#合并分支-1" class="headerlink" title="合并分支"></a>合并分支</h2><blockquote>
+<p> git merge branchname</p>
+</blockquote>
+<h2 id="合并分支的时候不采用ff模式（分支删除了还能看的到分支历史信息）"><a href="#合并分支的时候不采用ff模式（分支删除了还能看的到分支历史信息）" class="headerlink" title="合并分支的时候不采用ff模式（分支删除了还能看的到分支历史信息）"></a>合并分支的时候不采用ff模式（分支删除了还能看的到分支历史信息）</h2><blockquote>
+<p> git merge –no-ff -m “merged bug fix 101” issue-101</p>
+</blockquote>
+<h2 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h2><p>描述开发历程，在发布一个版本的时候打一个标签</p>
+<h2 id="查看所有的标签"><a href="#查看所有的标签" class="headerlink" title="查看所有的标签"></a>查看所有的标签</h2><blockquote>
+<p> git tag</p>
+</blockquote>
+<h2 id="对莫一个提交历史打一个标签"><a href="#对莫一个提交历史打一个标签" class="headerlink" title="对莫一个提交历史打一个标签"></a>对莫一个提交历史打一个标签</h2><blockquote>
+<p> git tag v1.0 ［commit id］</p>
+</blockquote>
+<h2 id="查看标签信息"><a href="#查看标签信息" class="headerlink" title="查看标签信息"></a>查看标签信息</h2><blockquote>
+<p> git show ［tagname］</p>
+</blockquote>
+<h2 id="正式开发下最好用这条语句标注下这个标签的描述"><a href="#正式开发下最好用这条语句标注下这个标签的描述" class="headerlink" title="正式开发下最好用这条语句标注下这个标签的描述"></a>正式开发下最好用这条语句标注下这个标签的描述</h2><blockquote>
+<p> git tag -a v0.1 -m “version 0.1 released” 3628164</p>
+</blockquote>
+<h2 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h2><blockquote>
+<p> git tag -d v0.1</p>
+</blockquote>
+<h2 id="推送标签"><a href="#推送标签" class="headerlink" title="推送标签"></a>推送标签</h2><blockquote>
+<p> git push origin v1.0</p>
+</blockquote>
+<h2 id="推送全部标签"><a href="#推送全部标签" class="headerlink" title="推送全部标签"></a>推送全部标签</h2><blockquote>
+<p> git push origin –tags</p>
+</blockquote>
+<h2 id="远程删除标签（先从本地删除标签）"><a href="#远程删除标签（先从本地删除标签）" class="headerlink" title="远程删除标签（先从本地删除标签）"></a>远程删除标签（先从本地删除标签）</h2><blockquote>
+<p> git push origin :refs/tags/v0.9</p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 18846433665@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Git安装与使用</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">2.4k</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Xu Shengcai">Xu Shengcai</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-10-31, 11:14:04</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-31, 14:22:09</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/31/Git安装与使用/" title="Git安装与使用">http://yoursite.com/2019/10/31/Git安装与使用/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '7386c7ecad1c54869b2c',
+            clientSecret: 'e6ebab707b9f5f896922bc54a16ae8e4fac62bfa',
+            repo: '18846433665.github.io',
+            owner: '18846433665',
+            admin: ['18846433665'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2019 xushengcai</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#Harbor','#Nexus','#DockerCompose','#GitLab','#Docker 网络','#DockerFile','#Docker命令','#Docker基础','#Feign','#博客','#Intellij破解','#HikariCP连接池','#k8s','#Linux命令','#mac_Jdk','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#分库分表面试题','#SpringBoot监控actuator','#Mysql读写分离面试','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#Zuul','#小书匠MarkDown图床配置','#高并发架构设计','#SpringCloud_Config','#微服务概述','#git','#Eureka','#Hystrix','#网络','#Jenkins','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#TkMybatis','#SpringBoot',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
