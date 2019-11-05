@@ -6,18 +6,20 @@
   <meta name="keywords" content=" git ">
   <meta name="description" content="Git安装与使用 | XuShengcai">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="一、Lambda表达式二、函数式(Functional)接口三、方法引用与构造器引用">
+<meta name="description" content="Java8新特性简介 一、Lambda表达式Lambda表达式的使用举例： (o1,o2) -&amp;gt; Integer.compare(o1,o2); -&amp;gt;左边：lambda形参列表的参数类型可以省略(类型推断)；如果lambda形参列表只有一个参数，其一对()也可以省略-&amp;gt;右边：lambda体应该使用一对{}包裹；如果lambda体只有一条执行语句（可能是return语句），省略这一">
 <meta name="keywords" content="java8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 8新特性">
 <meta property="og:url" content="http://yoursite.com/2019/10/31/Java-8新特性/index.html">
 <meta property="og:site_name" content="XuShengcai">
-<meta property="og:description" content="一、Lambda表达式二、函数式(Functional)接口三、方法引用与构造器引用">
+<meta property="og:description" content="Java8新特性简介 一、Lambda表达式Lambda表达式的使用举例： (o1,o2) -&amp;gt; Integer.compare(o1,o2); -&amp;gt;左边：lambda形参列表的参数类型可以省略(类型推断)；如果lambda形参列表只有一个参数，其一对()也可以省略-&amp;gt;右边：lambda体应该使用一对{}包裹；如果lambda体只有一条执行语句（可能是return语句），省略这一">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-31T15:19:21.990Z">
+<meta property="og:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572964697181.png">
+<meta property="og:updated_time" content="2019-11-05T15:24:29.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 8新特性">
-<meta name="twitter:description" content="一、Lambda表达式二、函数式(Functional)接口三、方法引用与构造器引用">
+<meta name="twitter:description" content="Java8新特性简介 一、Lambda表达式Lambda表达式的使用举例： (o1,o2) -&amp;gt; Integer.compare(o1,o2); -&amp;gt;左边：lambda形参列表的参数类型可以省略(类型推断)；如果lambda形参列表只有一个参数，其一对()也可以省略-&amp;gt;右边：lambda体应该使用一对{}包裹；如果lambda体只有一条执行语句（可能是return语句），省略这一">
+<meta name="twitter:image" content="https://www.github.com/18846433665/macpro_img/raw/master/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1572964697181.png">
 
 
 <link rel="icon" href="/img/sender.jpeg">
@@ -118,14 +120,6 @@
     
         
             
-            <li><div data-rel="连接池">连接池<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="博客">博客<small>(3)</small></div>
                 
             </li>
@@ -134,7 +128,7 @@
     
         
             
-            <li><div data-rel="Java">Java<small>(1)</small></div>
+            <li><div data-rel="连接池">连接池<small>(1)</small></div>
                 
             </li>
             
@@ -158,7 +152,7 @@
     
         
             
-            <li><div data-rel="面试">面试<small>(3)</small></div>
+            <li><div data-rel="Linux">Linux<small>(1)</small></div>
                 
             </li>
             
@@ -166,7 +160,7 @@
     
         
             
-            <li><div data-rel="Linux">Linux<small>(1)</small></div>
+            <li><div data-rel="面试">面试<small>(3)</small></div>
                 
             </li>
             
@@ -182,7 +176,7 @@
     
         
             
-            <li><div data-rel="分布式">分布式<small>(1)</small></div>
+            <li><div data-rel="项目监控">项目监控<small>(1)</small></div>
                 
             </li>
             
@@ -190,7 +184,7 @@
     
         
             
-            <li><div data-rel="项目监控">项目监控<small>(1)</small></div>
+            <li><div data-rel="分布式">分布式<small>(1)</small></div>
                 
             </li>
             
@@ -260,6 +254,14 @@
             
         
     
+        
+            
+            <li><div data-rel="Java">Java<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -270,7 +272,7 @@
     <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="52">
-<input type="hidden" id="yelog_site_word_count" value="67k">
+<input type="hidden" id="yelog_site_word_count" value="71.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -306,19 +308,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Harbor</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Nexus</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">DockerCompose</a>
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Harbor</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Docker 网络</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Nexus</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -338,15 +340,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">HikariCP连接池</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">java8</a>
+        <a href="javascript:" class="color2">HikariCP连接池</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -358,7 +356,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Linux命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">mac_Jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Mysql读写分离面试</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -366,15 +372,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Linux命令</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">Ribbon</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Mysql读写分离面试</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -386,11 +384,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
+        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">SpringBoot监控actuator</a>
+        <a href="javascript:" class="color1">doubbo、springcloud基础</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -414,15 +412,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">SpringCloud_Config</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Zuul</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color1">小书匠MarkDown图床配置</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">SpringCloud_Config</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -438,11 +436,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Hystrix</a>
+        <a href="javascript:" class="color4">git</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">git</a>
+        <a href="javascript:" class="color3">Hystrix</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -474,11 +472,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">SpringBoot日志</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Thymeleaf</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot日志</a>
+        <a href="javascript:" class="color1">java8</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -490,11 +492,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">SpringBoot配置</a>
+        <a href="javascript:" class="color5">TkMybatis</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">TkMybatis</a>
+        <a href="javascript:" class="color3">SpringBoot配置</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -1290,7 +1292,7 @@ git config --global color.ui true 让Git显示颜色，会让命令输出看起�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GitLab','#Harbor','#Nexus','#DockerCompose','#Docker 网络','#DockerFile','#Docker基础','#Docker命令','#Feign','#HikariCP连接池','#博客','#java8','#Intellij破解','#k8s','#mac_Jdk','#分库分表面试题','#Linux命令','#Ribbon','#Mysql读写分离面试','#SpringBoot MVC配置','#SpringBoot热部署','#doubbo、springcloud基础','#SpringBoot监控actuator','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#Zuul','#小书匠MarkDown图床配置','#SpringCloud_Config','#高并发架构设计','#微服务概述','#Eureka','#Hystrix','#git','#网络','#Jenkins','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#Thymeleaf','#SpringBoot日志','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#SpringBoot配置','#TkMybatis','#SpringBoot',],
+            'data': ['#GitLab','#DockerCompose','#Harbor','#Docker 网络','#Nexus','#DockerFile','#Docker基础','#Docker命令','#Feign','#博客','#HikariCP连接池','#Intellij破解','#k8s','#Linux命令','#mac_Jdk','#Mysql读写分离面试','#分库分表面试题','#Ribbon','#SpringBoot MVC配置','#SpringBoot热部署','#SpringBoot监控actuator','#doubbo、springcloud基础','#SpringBoot和JDBC和Mybatis和Druid','#Elasticsearch和SpringBoot','#SpringBoot任务异步、定时、邮件','#SpringBoot启动原理源码','#SpringBoot自定义Starter','#SpringCloud_Config','#Zuul','#小书匠MarkDown图床配置','#高并发架构设计','#微服务概述','#Eureka','#git','#Hystrix','#网络','#Jenkins','#SpringBoot订制错误响应','#SpringBoot与消息队列','#SpringBoot使用缓存(JCache/Redis)','#SpringBootHelloWorld','#Spring安全Security','#SpringBoot日志','#Thymeleaf','#java8','#SpringBoot国际化、登录拦截、CRUD','#SpringBoot内嵌容器个性化','#TkMybatis','#SpringBoot配置','#SpringBoot',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
